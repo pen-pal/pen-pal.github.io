@@ -1,1 +1,9 @@
 theme: jekyll-theme-hacker
+
+title: "Manish Khadka"
+description: "A personal site"
+url: "https://pen-pal.github.io"
+social:
+  github: "https://github.com/pen-pal"
+  linkedin: "https://www.linkedin.com/in/manishkhadka"
+  medium: "https://medium.com/@dempti"
