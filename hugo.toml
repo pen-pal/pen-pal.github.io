@@ -1,0 +1,49 @@
+baseURL = "https://pen-pal.github.io/"
+disqusShortname = ""
+enableGitInfo = true
+enableRobotsTXT = true
+hasCJKLanguage = true
+languageCode = "en"
+paginate = 15
+rssLimit = 10
+theme = "hugo-texify3"
+title = "Manish Khadka"
+
+[author]
+name = "Manish Khadka"
+email = "manishkhadka+manishkhadka@protonmail.com"
+
+[taxonomies]
+tags = "tags"
+categories = "categories"
+
+[params]
+title="Manish Khadka"
+description = "Software Engineering with tad bit of mathematics"
+footnote = """"""
+customCSS = []
+customJS = []
+dateFormat = "2 January 2006"
+emphasisWithDots = true
+toc = true
+rootFontSize = "105%"
+math = true
+enableDuckDuckGoSearchBox = true
+numberedSubtitles = true
+
+  [params.commentEngine]
+  code = """"""
+
+  [params.buymeacoffee]
+  code = """
+  """
+
+  [params.sharingbuttons]
+  facebook = false
+  twitter = true
+  email = false
+  linkedin = true
+  reddit = true
+  whatsapp = false
+  hackernews = false
+  telegram = true
