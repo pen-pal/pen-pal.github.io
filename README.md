@@ -3,6 +3,7 @@
 DevOps / SRE / Platform Engineer portfolio site. Deployed via GitHub Pages.
 
 ## Structure
+```
 .
 ├── index.html # Entry point
 ├── css/style.css # All styles
@@ -13,3 +14,4 @@ DevOps / SRE / Platform Engineer portfolio site. Deployed via GitHub Pages.
 ├── .github/workflows/
 │ └── deploy.yml # GitHub Pages CI/CD
 └── README.md
+```
