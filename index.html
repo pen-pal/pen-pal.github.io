@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manish Khadka — DevOps / SRE / Platform Engineer</title>
+  <meta name="description" content="DevOps, SRE, and Platform Engineer specializing in Kubernetes, cloud infrastructure, and GitOps across AWS, GCP, and Azure.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">MK</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#blog">Writing</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">DevOps / SRE / Platform Engineer — Kathmandu, Nepal</div>
+    <h1 class="hero-title">Building <em>resilient</em><br>cloud <em>infrastructure</em><br>at scale.</h1>
+    <p class="hero-subtitle">I architect, automate, and optimize complex cloud environments across AWS, GCP, and Azure — turning infrastructure into a strategic advantage. Seven years of craft, curiosity, and precision.</p>
+    <a href="#experience" class="hero-cta">
+      Explore my work
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hero-card-label">By the numbers</div>
+      <div class="hero-stats">
+        <div><div class="stat-number">7<span>+</span></div><div class="stat-label">Years in<br>DevOps</div></div>
+        <div><div class="stat-number">50<span>%</span></div><div class="stat-label">Avg. cost<br>reduction</div></div>
+        <div><div class="stat-number">4</div><div class="stat-label">Cloud platforms<br>mastered</div></div>
+        <div><div class="stat-number">5</div><div class="stat-label">Companies<br>scaled</div></div>
+      </div>
+      <div class="hero-tags" id="heroTags"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee" id="marquee"></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <div class="section-number">01</div>
+    <h2 class="section-title">The <em>engineer.</em></h2>
+  </div>
+  <div class="about">
+    <div class="about-meta reveal" id="aboutMeta"></div>
+    <div class="about-body reveal" style="transition-delay:.1s">
+      <p>I treat infrastructure as a discipline of <strong>craft</strong> — where architecture decisions matter as much as the code running on top. My work spans the full lifecycle: design, CI/CD automation, security hardening, compliance certification, and ongoing FinOps.</p>
+      <p>At <strong>Zenledger</strong> I lead SOC2 & ISO certification, HA database architecture, and zero-trust security modernization. At <strong>CloudHero</strong>, I guided enterprise clients through complex migrations across AWS, GCP, and Azure — consistently near-zero downtime.</p>
+      <p>A background in <strong>Electrical Engineering</strong> combined with ongoing study of <strong>Psychology</strong> gives me an unusual lens: rigorous systems thinking layered with genuine curiosity about the human dynamics that make engineering cultures thrive.</p>
+    </div>
+    <div class="about-pull reveal" style="transition-delay:.2s">The best infrastructure is invisible — robust enough to be forgotten, elegant enough to be admired when seen.</div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <div class="section-number">02</div>
+    <h2 class="section-title">The <em>arsenal.</em></h2>
+  </div>
+  <div class="skills-grid" id="skillsGrid"></div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <div class="section-number">03</div>
+    <h2 class="section-title">Where I've <em>worked.</em></h2>
+  </div>
+  <div class="exp-list" id="expList"></div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <div class="section-number">04</div>
+    <h2 class="section-title">What I've <em>built.</em></h2>
+  </div>
+  <div class="proj-tabs">
+    <button class="proj-tab active" data-tab="work">Work Projects</button>
+    <button class="proj-tab" data-tab="oss">Open Source</button>
+  </div>
+  <div class="proj-pane active" id="pane-work">
+    <div class="proj-grid" id="workGrid"></div>
+  </div>
+  <div class="proj-pane" id="pane-oss">
+    <div class="proj-grid" id="ghGrid">
+      <div class="loading-cell">
+        <div class="spinner"></div>
+        <div class="loading-text">Fetching from GitHub…</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY MODAL -->
+<div class="cs-overlay" id="csOverlay"></div>
+<div class="cs-modal" id="csModal">
+  <div class="cs-head">
+    <button class="cs-close" id="csClose"><span>&times;</span>&nbsp;Close</button>
+    <span class="cs-badge">Case Study</span>
+  </div>
+  <div class="cs-body" id="csBody"></div>
+</div>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="section-header reveal">
+    <div class="section-number">05</div>
+    <h2 class="section-title">From the <em>field.</em></h2>
+  </div>
+  <div class="blog-header reveal">
+    <a href="https://palpen.medium.com" target="_blank" class="btn-outline">All articles on Medium ↗</a>
+  </div>
+  <div class="blog-grid" id="blogGrid">
+    <div class="loading-cell">
+      <div class="spinner"></div>
+      <div class="loading-text">Loading articles…</div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG DRAWER -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <span>Medium</span>
+    <button class="drawer-close" id="drawerCloseBtn">Close ✕</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+</div>
+
+<!-- RESUME -->
+<section id="resume">
+  <div class="section-header reveal">
+    <div class="section-number">06</div>
+    <h2 class="section-title">Full <em>CV.</em></h2>
+  </div>
+  <div class="resume-actions reveal">
+    <a href="https://linkedin.com/in/manishkhadka" target="_blank" class="btn-outline">LinkedIn ↗</a>
+    <button class="btn-filled" id="printBtn">Download PDF</button>
+  </div>
+  <div class="resume-body reveal" style="transition-delay:.1s" id="resumeBody"></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding:0;border-bottom:none">
+  <div class="contact-grid">
+    <div class="contact-left">
+      <div class="section-label reveal">Get in touch</div>
+      <h2 class="c-heading reveal">Let's<br><em>build.</em></h2>
+      <p class="c-sub reveal" style="transition-delay:.1s">Whether it's a migration, a greenfield architecture, or a compliance sprint — I'd love to hear about it.</p>
+    </div>
+    <div class="contact-right" id="contactLinks"></div>
+  </div>
+</section>
+
+<footer>
+  <span class="ft" id="footerCopy"></span>
+  <div class="ft-links" id="footerLinks"></div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/case-studies.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
+
