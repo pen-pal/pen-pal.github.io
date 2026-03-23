@@ -1,0 +1,52 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Validate HTML
+        run: |
+          echo "Checking required files exist..."
+          test -f index.html || (echo "Missing index.html" && exit 1)
+          test -f css/style.css || (echo "Missing css/style.css" && exit 1)
+          test -f js/main.js || (echo "Missing js/main.js" && exit 1)
+          test -f js/data.js || (echo "Missing js/data.js" && exit 1)
+          test -f js/case-studies.js || (echo "Missing js/case-studies.js" && exit 1)
+          echo "All files present."
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
