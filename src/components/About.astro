@@ -7,20 +7,18 @@ import { profile } from '../data/profile';
     <div class="section-number">01</div>
     <h2 class="section-title">The <em>engineer.</em></h2>
   </div>
-  <div class="about">
-    <div class="about-meta reveal">
-      {profile.meta.map(m => (
-        <div class="a-row">
-          <div class="a-key">{m.key}</div>
-          <div class="a-val" style={m.color ? `color:${m.color}` : ''}>{m.val}</div>
-        </div>
-      ))}
-    </div>
-    <div class="about-body reveal" style="transition-delay:.1s">
-      <p>I treat infrastructure as a discipline of <strong>craft</strong> — where architecture decisions matter as much as the code running on top. My work spans the full lifecycle: design, CI/CD automation, security hardening, compliance certification, and ongoing FinOps.</p>
-      <p>At <strong>Zenledger</strong> I lead SOC2 &amp; ISO certification, HA database architecture, and zero-trust security modernization. At <strong>CloudHero</strong>, I guided enterprise clients through complex migrations across AWS, GCP, and Azure — consistently near-zero downtime.</p>
-      <p>A background in <strong>Electrical Engineering</strong> combined with ongoing study of <strong>Psychology</strong> gives me an unusual lens: rigorous systems thinking layered with genuine curiosity about the human dynamics that make engineering cultures thrive.</p>
-    </div>
-    <div class="about-pull reveal" style="transition-delay:.2s">The best infrastructure is invisible — robust enough to be forgotten, elegant enough to be admired when seen.</div>
+  <div class="about-meta-row reveal">
+    {profile.meta.map(m => (
+      <div class="about-meta-item">
+        <span class="a-key">{m.key}:</span>
+        <span class="a-val" style={m.color ? `color:${m.color}` : ''}>{m.val}</span>
+      </div>
+    ))}
   </div>
+  <div class="about-body reveal" style="transition-delay:.1s">
+    <p>I treat infrastructure as a discipline of <strong>craft</strong> — where architecture decisions matter as much as the code running on top. My work spans the full lifecycle: design, CI/CD automation, security hardening, compliance certification, and ongoing FinOps.</p>
+    <p>At <strong>Zenledger</strong> I lead SOC2 &amp; ISO certification, HA database architecture, and zero-trust security modernization. At <strong>CloudHero</strong>, I guided enterprise clients through complex migrations across AWS, GCP, and Azure — consistently near-zero downtime.</p>
+    <p>A background in <strong>Electrical Engineering</strong> combined with ongoing study of <strong>Psychology</strong> gives me an unusual lens: rigorous systems thinking layered with genuine curiosity about the human dynamics that make engineering cultures thrive.</p>
+  </div>
+  <div class="about-pull reveal" style="transition-delay:.2s">The best infrastructure is invisible — robust enough to be forgotten, elegant enough to be admired when seen.</div>
 </section>
