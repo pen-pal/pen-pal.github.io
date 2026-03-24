@@ -1,0 +1,22 @@
+---
+import { profile } from '../data/profile';
+---
+
+<section id="skills">
+  <div class="section-header reveal">
+    <div class="section-number">02</div>
+    <h2 class="section-title">The <em>arsenal.</em></h2>
+  </div>
+  <div class="skills-grid">
+    {profile.skills.map((s, i) => (
+      <div class="skill-cell reveal" style={`transition-delay:${i * 0.04}s`}>
+        <div class="skill-cat">{s.cat}</div>
+        <div class="skill-items">
+          {s.items.map((item, j) => (
+            <span class={`skill-item${s.hot?.includes(j) ? ' hot' : ''}`}>{item}</span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,24 @@
+---
+import { profile } from '../data/profile';
+---
+
+<section id="contact" style="padding:0;border-bottom:none">
+  <div class="contact-grid">
+    <div class="contact-left">
+      <div class="section-label reveal">Get in touch</div>
+      <h2 class="c-heading reveal">Let's<br><em>build.</em></h2>
+      <p class="c-sub reveal" style="transition-delay:.1s">Whether it's a migration, a greenfield architecture, or a compliance sprint — I'd love to hear about it.</p>
+    </div>
+    <div class="contact-right">
+      {profile.contact.map((c, i) => (
+        <a href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined} class="c-link reveal" style={`transition-delay:${i * 0.05}s`}>
+          <div>
+            <div class="c-label">{c.label}</div>
+            <div class="c-val">{c.val}</div>
+          </div>
+          <span class="c-arrow">↗</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

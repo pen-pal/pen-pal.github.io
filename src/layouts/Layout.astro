@@ -1,0 +1,234 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DevOps, SRE, and Platform Engineer specializing in Kubernetes, cloud infrastructure, and GitOps across AWS, GCP, and Azure." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <title>{title}</title>
+</head>
+<body>
+  <div id="progress"></div>
+  <slot />
+  <script is:inline>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Nav scroll
+    let lastScroll = 0;
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      const c = window.pageYOffset;
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      if (navbar) {
+        navbar.classList.toggle('scrolled', c > 40);
+        navbar.classList.toggle('hidden', c > lastScroll && c > 100);
+      }
+      lastScroll = c;
+      const prog = document.getElementById('progress');
+      if (prog && h > 0) prog.style.width = (c / h * 100) + '%';
+    });
+
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+      navLinks.querySelectorAll('a').forEach(l => {
+        l.addEventListener('click', () => navLinks.classList.remove('open'));
+      });
+    }
+
+    // Year
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // Tabs
+    document.querySelectorAll('.proj-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.proj-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.proj-pane').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        const pane = document.getElementById('pane-' + tab.dataset.tab);
+        if (pane) pane.classList.add('active');
+      });
+    });
+
+    // Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeDrawer();
+        closeCaseStudy();
+      }
+    });
+
+    // Case study modal
+    function openCaseStudy(i) {
+      const cs = window.CASE_STUDIES?.[i];
+      if (!cs) return;
+      let h = '<div class="cs-meta">' + cs.meta + '</div><h2 class="cs-title">' + cs.title + '</h2>';
+      cs.sections.forEach(s => {
+        if (s.type === 'metrics') {
+          h += '<div class="cs-section"><h3>' + s.heading + '</h3><div class="cs-metric-grid">';
+          s.metrics.forEach(m => {
+            h += '<div class="cs-metric"><div class="cs-metric-num">' + m.num + '</div><div class="cs-metric-label">' + m.label + '</div></div>';
+          });
+          h += '</div></div>';
+        } else if (s.type === 'timeline') {
+          h += '<div class="cs-section"><h3>' + s.heading          s.items.forEach(it => {
+            h += '<div class="cs-tl-item"><div class="cs-tl-phase">' + it.phase + '</div><div class="cs-tl-desc">' + it.desc + '</div></div>';
+          });
+          h += '</div></div>';
+        } else if (s.tags) {
+          h += '<div class="cs-section"><h3>' + s.heading + '</h3><div class="cs-tags">';
+          s.tags.forEach(t => { + '</h3><div class="cs-timeline">';
+ h += '<span>' + t + '</span>'; });
+          h += '</div></div>';
+        } else {
+          h += '<div class="cs-section"><h3>' + s.heading + '</h3>' + s.content + '</div>';
+        }
+        h += '<hr class="cs-divider">';
+      });
+      const csBody = document.getElementById('csBody');
+      if (csBody) csBody.innerHTML = h;
+      document.getElementById('csModal')?.classList.add('open');
+      document.getElementById('csOverlay')?.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCaseStudy() {
+      document.getElementById('csModal')?.classList.remove('open');
+      document.getElementById('csOverlay')?.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('csClose')?.addEventListener('click', closeCaseStudy);
+    document.getElementById('csOverlay')?.addEventListener('click', closeCaseStudy);
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('.proj-expand');
+      if (btn) openCaseStudy(parseInt(btn.dataset.cs));
+    });
+
+    // Blog drawer
+    function openDrawer(i) {
+      const items = window._mediumItems;
+      if (!items?.[i]) return;
+      const item = items[i];
+      const date = new Date(item.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      const cats = (item.categories || []).slice(0, 3).join(' · ') || 'Article';
+      const dBody = document.getElementById('drawerBody');
+      if (dBody) {
+        dBody.innerHTML = '<div class="drawer-cat">' + cats + '</div>'
+          + '<h2 class="drawer-title">' + item.title + '</h2>'
+          + '<div class="drawer-date">' + date + ' · Manish Khadka</div>'
+          + '<div class="drawer-content">' + item.content + '</div>'
+          + '<a href="' + item.link + '" target="_blank" class="drawer-external">Read on Medium ↗</a>';
+      }
+      document.getElementById('drawer')?.classList.add('open');
+      document.getElementById('drawerOverlay')?.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      document.getElementById('drawer')?.classList.remove('open');
+      document.getElementById('drawerOverlay')?.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('drawerCloseBtn')?.addEventListener('click', closeDrawer);
+    document.getElementById('drawerOverlay')?.addEventListener('click', closeDrawer);
+    document.addEventListener('click', e => {
+      const card = e.target.closest('.blog-card[data-index]');
+      if (card) openDrawer(parseInt(card.dataset.index));
+    });
+
+    // Print
+    document.getElementById('printBtn')?.addEventListener('click', () => window.print());
+
+    // Medium feed
+    (function () {
+      var grid = document.getElementById('blogGrid');
+      if (!grid) return;
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      }
+
+      fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@palpen')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.status !== 'ok' || !data.items || !data.items.length) {
+            grid.innerHTML = '<div class="loading-cell"><div class="loading-text">No articles found. <a href="https://palpen.medium.com" target="_blank" style="color:var(--accent)">Visit Medium →</a></div></div>';
+            return;
+          }
+
+          var items = data.items.slice(0, 6);
+          window._mediumItems = items;
+          var html = '';
+
+          for (var i = 0; i < items.length; i++) {
+            var item = items[i];
+            var safeTitle = escapeHtml(item.title);
+            var cat = (item.categories && item.categories[0]) ? escapeHtml(item.categories[0]) : 'Article';
+            var d = new Date(item.pubDate);
+            var date = d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+            var plain = item.description ? item.description.replace(/<[^>]*>/g, '') : '';
+            var excerpt = escapeHtml(plain.substring(0, 120).trim()) + '…';
+            var thumb = item.thumbnail || '';
+            if (!thumb && item.content) {
+              var m = item.content.match(/<img[^>]+src="([^"]+)"/);
+              if (m) thumb = m[1];
+            }
+            var thumbHtml = thumb
+              ? '<div class="bc-thumb"><img src="' + escapeHtml(thumb) + '" alt="" loading="lazy" onerror="this.parentElement.innerHTML=\'<div class=bc-ph><span>MK</span></div>\'"></div>'
+              : '<div class="bc-ph"><span>MK</span></div>';
+
+            html += '<div class="blog-card reveal" style="animation-delay:' + (i * 0.06) + 's" data-index="' + i + '">';
+            html += thumbHtml;
+            html += '<div class="bc-body">';
+            html += '<div class="bc-cat">' + cat + '</div>';
+            html += '<h3 class="bc-title">' + safeTitle + '</h3>';
+            html += '<p class="bc-excerpt">' + excerpt + '</p>';
+            html += '</div>';
+            html += '<div class="bc-foot">';
+            html += '<span class="bc-date">' + date + '</span>';
+            html += '<span class="bc-read">Read →</span>';
+            html += '</div>';
+            html += '</div>';
+          }
+
+          grid.innerHTML = html;
+          var reveals = grid.querySelectorAll('.reveal');
+          for (var j = 0; j < reveals.length; j++) {
+            observer.observe(reveals[j]);
+          }
+        })
+        .catch(function () {
+          grid.innerHTML = '<div class="loading-cell"><div class="loading-text">Could not load articles. <a href="https://palpen.medium.com" target="_blank" style="color:var(--accent)">Read on Medium →</a></div></div>';
+        });
+    })();
+
+  </script>
+</body>
+</html>

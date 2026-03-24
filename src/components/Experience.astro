@@ -1,0 +1,32 @@
+---
+import { profile } from '../data/profile';
+---
+
+<section id="experience">
+  <div class="section-header reveal">
+    <div class="section-number">03</div>
+    <h2 class="section-title">Where I've <em>worked.</em></h2>
+  </div>
+  <div class="exp-list">
+    {profile.experience.map((e, i) => (
+      <div class="exp-row reveal" style={`transition-delay:${i * 0.06}s`}>
+        <div>
+          {e.live && <div class="exp-live"><span class="exp-live-dot"></span>Current</div>}
+          <div class="exp-date">{e.period}</div>
+          <div class="exp-badge">{e.badge}</div>
+        </div>
+        <div>
+          <div class="exp-role" set:html={e.role}></div>
+          <div class="exp-co">{e.company}</div>
+          <ul class="exp-bullets">
+            {e.bullets.map(b => <li set:html={b}></li>)}
+          </ul>
+          <div class="exp-tags">
+            {e.tags.map(t => <span class="exp-tag">{t}</span>)}
+          </div>
+        </div>
+        <div class="exp-ghost" aria-hidden="true">0{i + 1}</div>
+      </div>
+    ))}
+  </div>
+</section>

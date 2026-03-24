@@ -1,0 +1,31 @@
+---
+import { profile } from '../data/profile';
+---
+
+<section class="hero" id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">{profile.title} — {profile.location}</div>
+    <h1 class="hero-title">Building <em>resilient</em><br>cloud <em>infrastructure</em><br>at scale.</h1>
+    <p class="hero-subtitle">I architect, automate, and optimize complex cloud environments across AWS, GCP, and Azure — turning infrastructure into a strategic advantage. Seven years of craft, curiosity, and precision.</p>
+    <a href="#experience" class="hero-cta">
+      Explore my work
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hero-card-label">By the numbers</div>
+      <div class="hero-stats">
+        {profile.stats.map(s => (
+          <div>
+            <div class="stat-number" set:html={s.number}></div>
+            <div class="stat-label" set:html={s.label.replace('\n', '<br>')}></div>
+          </div>
+        ))}
+      </div>
+      <div class="hero-tags">
+        {profile.heroTags.map(t => <span class="hero-tag">{t}</span>)}
+      </div>
+    </div>
+  </div>
+</section>

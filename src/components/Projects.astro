@@ -1,0 +1,114 @@
+---
+import { profile } from '../data/profile';
+import { caseStudies } from '../data/case-studies';
+---
+
+<section id="projects">
+  <div class="section-header reveal">
+    <div class="section-number">04</div>
+    <h2 class="section-title">What I've <em>WorkedOn.</em></h2>
+  </div>
+  <div class="proj-tabs">
+    <button class="proj-tab active" data-tab="work">Work Projects</button>
+    <button class="proj-tab" data-tab="oss">Open Source</button>
+  </div>
+  <div class="proj-pane active" id="pane-work">
+    <div class="proj-grid">
+      {profile.projects.map((p, i) => (
+        <div class="proj-card reveal" style={`transition-delay:${i * 0.06}s`}>
+          <div class="proj-num">{p.num}</div>
+          <div class="proj-title" set:html={p.title}></div>
+          <div class="proj-desc">{p.desc}</div>
+          <div class="proj-impact">{p.impact}</div>
+          <div class="proj-tags">
+            {p.tags.map(t => <span class="proj-tag">{t}</span>)}
+          </div>
+          <div class="proj-foot">
+            <span class="proj-cat">{p.cat}</span>
+            <button class="proj-expand" data-cs={p.csIndex}>Case study →</button>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="proj-pane" id="pane-oss">
+    <div class="proj-grid" id="ghGrid">
+      <div class="loading-cell">
+        <div class="spinner"></div>
+        <div class="loading-text">Fetching from GitHub…</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cs-overlay" id="csOverlay"></div>
+<div class="cs-modal" id="csModal">
+  <div class="cs-head">
+    <button class="cs-close" id="csClose"><span>&times;</span>&nbsp;Close</button>
+    <span class="cs-badge">Case Study</span>
+  </div>
+  <div class="cs-body" id="csBody"></div>
+</div>
+
+<script is:inline define:vars={{ caseStudiesJSON: JSON.stringify(caseStudies) }}>
+  window.CASE_STUDIES = JSON.parse(caseStudiesJSON);
+
+  fetch('https://api.github.com/users/pen-pal/repos?sort=updated&per_page=6')
+    .then(function (r) { return r.json(); })
+    .then(function (repos) {
+      var grid = document.getElementById('ghGrid');
+      if (!grid || !Array.isArray(repos) || !repos.length) return;
+      var langColors = {
+        JavaScript: '#f1e05a',
+        TypeScript: '#3178c6',
+        Python: '#3572A5',
+        Go: '#00ADD8',
+        Shell: '#89e051',
+        HTML: '#e34c26',
+        CSS: '#563d7c',
+        Dockerfile: '#384d54',
+        HCL: '#844FBA'
+      };
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      var filtered = repos.filter(function (r) { return !r.fork; }).slice(0, 6);
+      var html = '';
+      for (var i = 0; i < filtered.length; i++) {
+        var r = filtered[i];
+        var langDot = '';
+        if (r.language) {
+          var bgColor = langColors[r.language] || '#888';
+          langDot = '<span><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:' + bgColor + ';vertical-align:middle;margin-right:4px"></span>' + r.language + '</span>';
+        }
+        html += '<div class="proj-card reveal" style="animation-delay:' + (i * 0.06) + 's">';
+        html += '<div class="proj-num">' + (r.language || '—') + '</div>';
+        html += '<div class="proj-title">' + r.name.replace(/-/g, ' ') + '</div>';
+        html += '<div class="proj-desc">' + (r.description || 'No description provided.') + '</div>';
+        html += '<div class="proj-foot">';
+        html += '<div style="display:flex;gap:1rem;font-family:var(--mono);font-size:.68rem;color:var(--ink-muted)">';
+        html += langDot;
+        html += '<span>★ ' + r.stargazers_count + '</span>';
+        html += '<span>&#8902; ' + r.forks_count + '</span>';
+        html += '</div>';
+        html += '<a href="' + r.html_url + '" target="_blank" style="font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);text-decoration:none">View →</a>';
+        html += '</div></div>';
+      }
+      grid.innerHTML = html;
+      var reveals = grid.querySelectorAll('.reveal');
+      for (var j = 0; j < reveals.length; j++) {
+        obs.observe(reveals[j]);
+      }
+    })
+    .catch(function () {
+      var grid = document.getElementById('ghGrid');
+      if (grid) {
+        grid.innerHTML = '<div class="loading-cell"><div class="loading-text">Could not load repos. <a href="https://github.com/pen-pal" target="_blank" style="color:var(--accent)">View on GitHub →</a></div></div>';
+      }
+    });
+</script>
