@@ -9,13 +9,19 @@ import { profile } from '../data/profile';
   </div>
   <div class="exp-list">
     {profile.experience.map((e, i) => (
-      <div class="exp-row reveal" style={`transition-delay:${i * 0.06}s`}>
-        <div>
-          {e.live && <div class="exp-live"><span class="exp-live-dot"></span>Current</div>}
-          <div class="exp-date">{e.period}</div>
-          <div class="exp-badge">{e.badge}</div>
+      <div class="exp-row reveal" style={`transition-delay:${i * 0.08}s`}>
+        <div class="exp-timeline">
+          <div class="exp-tl-dot" style={e.live ? 'background:rgba(77,184,158,.8);box-shadow:0 0 12px rgba(77,184,158,.3)' : ''}></div>
+          {i < profile.experience.length - 1 && <div class="exp-tl-line"></div>}
         </div>
-        <div>
+        <div class="exp-content">
+          <div class="exp-top-row">
+            <div class="exp-meta-left">
+              {e.live && <div class="exp-live"><span class="exp-live-dot"></span>Current</div>}
+              <div class="exp-date">{e.period}</div>
+            </div>
+            <div class="exp-badge">{e.badge}</div>
+          </div>
           <div class="exp-role" set:html={e.role}></div>
           <div class="exp-co">{e.company}</div>
           <ul class="exp-bullets">
@@ -25,7 +31,6 @@ import { profile } from '../data/profile';
             {e.tags.map(t => <span class="exp-tag">{t}</span>)}
           </div>
         </div>
-        <div class="exp-ghost" aria-hidden="true">0{i + 1}</div>
       </div>
     ))}
   </div>

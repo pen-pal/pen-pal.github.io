@@ -58,7 +58,7 @@ export const profile = {
       role: "Senior DevOps <em>Engineer</em>",
       company: "Zenledger · Crypto Tax Platform",
       bullets: [
-        "<strong>Led SOC2 & ISO compliance</strong> to certification — hardening infrastructure, access controls, and documentation.",
+        "<strong>Led SOC2 & ISO compliance</strong>to certification — hardening infrastructure, access controls, and documentation.",
         "<strong>Migrated from Cloudflare to AWS WAF</strong>, significantly reducing monthly costs while maintaining edge security.",
         "Designed a <strong>high-availability TimescaleDB cluster</strong> using Autobase for time-series data reliability.",
         "Implemented <strong>Cloudflare Zero Trust</strong>, replacing legacy VPNs with identity-aware secure access.",
@@ -69,7 +69,7 @@ export const profile = {
     {
       period: "Nov 2024 — Jan 2026",
       badge: "Freelance",
-      role: "Blockchain DevOps & <em>MLOps</em>",
+      role: "<em>MLOps</em> & Blockchain DevOps Engineer",
       company: "Independent · Blockchain & ML Infrastructure",
       bullets: [
         "Deployed <strong>HA EVM nodes & Validator infrastructure</strong> on EKS with sub-second RPC latency.",
@@ -90,7 +90,7 @@ export const profile = {
         "Deployed <strong>ArgoCD + Terraform GitOps pipelines</strong> for fully auditable infrastructure management.",
         "Automated migration of <strong>thousands of ingress resources</strong> to Kong API Gateway.",
       ],
-      tags: ["Kubernetes", "ArgoCD", "Kong", "Multi-Cloud", "Terraform"],
+      tags: ["Kubernetes", "ArgoCD", "Kong API Gateway", "AWS", "GCP", "Azure", "Digital Ocean", "Linode", "Terraform"],
     },
     {
       period: "Jul 2021 — Feb 2024",
