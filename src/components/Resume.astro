@@ -7,60 +7,11 @@ import { profile } from '../data/profile';
     <div class="section-number">06</div>
     <h2 class="section-title">Full <em>CV.</em></h2>
   </div>
-  <div class="resume-actions reveal">
-    <a href={profile.linkedin} target="_blank" class="btn-outline">LinkedIn ↗</a>
-    <button class="btn-filled" id="printBtn">Download PDF</button>
-  </div>
-  <div class="resume-body reveal" style="transition-delay:.1s">
-    <div class="resume-sidebar">
-      <div class="rs-title">Core Competencies</div>
-      {profile.skillsResume.map(s => (
-        <div class="skill-bar-row">
-          <div class="skill-bar-top">
-            <span class="skill-bar-name">{s.name}</span>
-            <span class="skill-bar-pct">{s.pct}%</span>
-          </div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style={`width:${s.pct}%`}></div></div>
-        </div>
-      ))}
-      <div class="rs-section" style="margin-top:2rem">
-        <div class="rs-title">Languages</div>
-        {profile.languages.map(l => (
-          <div class="lang-item"><span>{l.lang}</span><span class="lang-lv">{l.level}</span></div>
-        ))}
-      </div>
-      <div class="rs-section" style="margin-top:2rem">
-        <div class="rs-title">Education</div>
-        {profile.education.map(e => (
-          <div class="edu-item">
-            <div class="edu-deg">{e.degree}</div>
-            <div class="edu-school">{e.school}</div>
-          </div>
-        ))}
-      </div>
-      <div class="rs-section" style="margin-top:2rem">
-        <div class="rs-title">Certifications</div>
-        {profile.certifications.map(c => (
-          <div class="cert-item">
-            <span class="cert-name">{c.name}</span>
-            <a href={c.url} target="_blank" class="cert-link">Verify →</a>
-          </div>
-        ))}
-      </div>
-    </div>
-    <div>
-      {profile.resumeExp.map((e, i) => (
-        <div class="resume-exp reveal" style={`transition-delay:${i * 0.05}s`}>
-          <div class="re-head">
-            <span class="re-role">{e.role}</span>
-            <span class="re-dates">{e.dates}</span>
-          </div>
-          <div class="re-company">{e.company}</div>
-          <ul class="re-bullets">
-            {e.bullets.map(b => <li set:html={b}></li>)}
-          </ul>
-        </div>
-      ))}
+  <div class="resume-simple reveal">
+    <p class="resume-desc">Full work history, certifications, education, and detailed project breakdowns — all in one document.</p>
+    <div class="resume-actions">
+      <a href="/manish-khadka-cv.pdf" download class="btn-filled">Download CV</a>
+      <a href={profile.linkedin} target="_blank" class="btn-outline">LinkedIn ↗</a>
     </div>
   </div>
 </section>

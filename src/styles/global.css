@@ -1439,11 +1439,22 @@ section {
 .drawer-external:hover { gap: 1rem }
 
 /* Resume */
+.resume-simple {
+  max-width: 600px;
+}
+
+.resume-desc {
+  font-family: var(--body);
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: var(--ink-soft);
+  margin-bottom: 2rem;
+  white-space: nowrap;
+}
+
 .resume-actions {
   display: flex;
-  gap: .9rem;
-  margin-bottom: 3.5rem;
-  margin-top: -2.5rem;
+  gap: .75rem;
 }
 
 .btn-outline {
@@ -1481,18 +1492,6 @@ section {
 .btn-filled:hover {
   background: var(--accent-warm);
   border-color: var(--accent-warm);
-}
-
-.resume-body {
-  display: grid;
-  grid-template-columns: 22rem 1fr;
-  gap: 4.5rem;
-  align-items: start;
-}
-
-.resume-sidebar {
-  position: sticky;
-  top: 6rem;
 }
 
 .rs-title {
@@ -1597,14 +1596,6 @@ section {
 
 .lang-item:last-child { border-bottom: none }
 .lang-lv { color: var(--ink-muted) }
-
-.resume-exp {
-  margin-bottom: 3rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid var(--rule);
-}
-
-.resume-exp:last-child { border-bottom: none }
 
 .re-head {
   display: flex;

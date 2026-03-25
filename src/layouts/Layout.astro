@@ -117,7 +117,8 @@ const { title } = Astro.props;
           });
           h += '</div></div>';
         } else if (s.type === 'timeline') {
-          h += '<div class="cs-section"><h3>' + s.heading          s.items.forEach(it => {
+          h += '<div class="cs-section"><h3>' + s.heading + '</h3><div class="cs-timeline">';
+          s.items.forEach(it => {
             h += '<div class="cs-tl-item"><div class="cs-tl-phase">' + it.phase + '</div><div class="cs-tl-desc">' + it.desc + '</div></div>';
           });
           h += '</div></div>';
@@ -185,7 +186,7 @@ const { title } = Astro.props;
     });
 
     // Print
-    document.getElementById('printBtn')?.addEventListener('click', () => window.print());
+    //document.getElementById('printBtn')?.addEventListener('click', () => window.print());
 
     // Medium feed
     (function () {
