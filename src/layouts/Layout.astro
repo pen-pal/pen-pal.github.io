@@ -85,6 +85,19 @@ const { title } = Astro.props;
       });
     }
 
+    // Download dropdown
+    var ddToggle = document.getElementById('downloadToggle');
+    var ddDropdown = document.getElementById('downloadDropdown');
+    if (ddToggle && ddDropdown) {
+      ddToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        ddDropdown.classList.toggle('open');
+      });
+      document.addEventListener('click', function () {
+        ddDropdown.classList.remove('open');
+      });
+    }
+
     // Tabs
     document.querySelectorAll('.proj-tab').forEach(tab => {
       tab.addEventListener('click', () => {

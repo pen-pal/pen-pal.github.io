@@ -1,17 +1,30 @@
----
-import { profile } from '../data/profile';
----
-
 <section id="resume">
   <div class="section-header reveal">
     <div class="section-number">06</div>
     <h2 class="section-title">Full <em>CV.</em></h2>
   </div>
   <div class="resume-simple reveal">
-    <p class="resume-desc">Full work history, certifications, education, and detailed project breakdowns — all in one document.</p>
+    <p class="resume-desc">Full work history, certifications, education, and detailed project breakdowns.</p>
     <div class="resume-actions">
-      <a href="/manish-khadka-cv.pdf" download class="btn-filled">Download CV</a>
-      <a href={profile.linkedin} target="_blank" class="btn-outline">LinkedIn ↗</a>
+      <div class="download-dropdown" id="downloadDropdown">
+        <a href="/cv/manish-khadka-cv.pdf" download class="btn-filled">Download CV</a>
+        <button class="download-toggle" id="downloadToggle" aria-label="Download options">▾</button>
+        <div class="download-menu" id="downloadMenu">
+          <a href="/cv/manish-khadka-cv.pdf" download class="download-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+            <span>PDF</span>
+          </a>
+          <a href="/cv/manish-khadka-cv.json" download class="download-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h2M8 17h6"/></svg>
+            <span>JSON</span>
+          </a>
+          <a href="/cv/manish-khadka-cv.tex" download class="download-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M10 13l-2 4 2 4M14 13l2 4-2 4"/></svg>
+            <span>LaTeX</span>
+          </a>
+        </div>
+      </div>
+      <a href="https://linkedin.com/in/manishkhadka" target="_blank" class="btn-outline">LinkedIn ↗</a>
     </div>
   </div>
 </section>
