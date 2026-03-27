@@ -1,0 +1,148 @@
+---
+---
+
+<section class="skills-section" id="skills">
+  <div class="section-header">
+    <div class="section-number">02</div>
+    <h2 class="section-title">Technical <em>Arsenal</em></h2>
+  </div>
+  <div class="skill-network-wrapper">
+    <div id="skill-network"></div>
+    <div class="network-legend" id="network-legend"></div>
+  </div>
+</section>
+
+<script is:inline src="https://d3js.org/d3.v7.min.js"></script>
+
+<script is:inline>
+(function buildNetwork() {
+  const container = document.getElementById('skill-network');
+  if (!container || typeof d3 === 'undefined') return;
+
+  const W = container.clientWidth || 900;
+  const H = container.clientHeight || 550;
+  const svg = d3.select(container).append('svg').attr('viewBox', '0 0 ' + W + ' ' + H);
+  const cx = W / 2, cy = H / 2;
+
+  var categories = [
+    { id: 'cloud', label: 'Cloud', color: 'var(--accent)', skills: ['AWS', 'GCP', 'Azure', 'DigitalOcean', 'Oracle Cloud'] },
+    { id: 'cont', label: 'Containers', color: 'var(--accent-cool)', skills: ['Kubernetes', 'ECS', 'Docker', 'Containerd'] },
+    { id: 'cicd', label: 'CI/CD & GitOps', color: 'var(--accent-warm)', skills: ['ArgoCD', 'GitLab CI', 'GitHub Actions', 'Jenkins', 'CircleCI'] },
+    { id: 'iac', label: 'IaC & Config', color: 'var(--accent-gold)', skills: ['Terraform', 'OpenTofu', 'Terragrunt', 'Ansible', 'CloudFormation', 'Packer'] },
+    { id: 'obs', label: 'Observability', color: 'var(--accent-warm)', skills: ['Prometheus', 'Grafana', 'ELK Stack', 'Datadog', 'PagerDuty'] },
+    { id: 'sec', label: 'Security', color: 'var(--accent)', skills: ['Trivy', 'Snyk', 'Checkov', 'Kyverno', 'Vault', 'AWS Inspector'] },
+    { id: 'net', label: 'Networking', color: 'var(--accent-cool)', skills: ['Kong', 'Istio', 'Cilium', 'Nginx', 'Cloudflare', 'Route 53'] },
+    { id: 'db', label: 'Databases', color: 'var(--accent-gold)', skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Elasticsearch', 'TimescaleDB', 'Milvus'] },
+    { id: 'prac', label: 'Practices', color: 'var(--accent-warm)', skills: ['SRE', 'Platform Eng', 'GitOps', 'Zero Trust', 'Shift-Left', 'Chaos Eng', 'FinOps'] },
+  ];
+
+  var nodes = [{ id: 'me', label: 'Manish', r: 30, color: '#fff', level: 0 }];
+  var links = [];
+
+  categories.forEach(function (cat) {
+    nodes.push({ id: cat.id, label: cat.label, r: 18, color: cat.color, level: 1 });
+    links.push({ source: 'me', target: cat.id });
+    cat.skills.forEach(function (sk, si) {
+      var sid = cat.id + '_' + si;
+      nodes.push({ id: sid, label: sk, r: 7, color: cat.color, level: 2, parentId: cat.id });
+      links.push({ source: cat.id, target: sid });
+    });
+  });
+
+  // resolve CSS vars for colors
+  var rootStyle = getComputedStyle(document.documentElement);
+  function resolveColor(c) {
+    if (c.startsWith('var(')) {
+      var varName = c.replace('var(', '').replace(')', '');
+      return rootStyle.getPropertyValue(varName).trim() || c;
+    }
+    return c;
+  }
+  nodes.forEach(function (n) { n.color = resolveColor(n.color); });
+
+  // legend
+  var leg = document.getElementById('network-legend');
+  categories.forEach(function (c) {
+    var d = document.createElement('div');
+    d.className = 'legend-item';
+    var resolved = resolveColor(c.color);
+    d.innerHTML = '<span class="legend-dot" style="background:' + resolved + '"></span>' + c.label;
+    leg.appendChild(d);
+  });
+
+  var sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).id(function (d) { return d.id; }).distance(function (d) { return d.source.level === 0 ? 100 : 55; }).strength(0.6))
+    .force('charge', d3.forceManyBody().strength(function (d) { return d.level === 0 ? -400 : d.level === 1 ? -180 : -40; }))
+    .force('center', d3.forceCenter(cx, cy))
+    .force('collision', d3.forceCollide().radius(function (d) { return d.r + 6; }))
+    .force('radial', d3.forceRadial(function (d) { return d.level === 0 ? 0 : d.level === 1 ? 130 : 230; }, cx, cy).strength(0.4));
+
+  var linkG = svg.append('g');
+  var nodeG = svg.append('g');
+
+  var linkEls = linkG.selectAll('line').data(links).join('line').attr('class', 'link-line');
+  var nodeEls = nodeG.selectAll('g').data(nodes).join('g').attr('class', function (d) {
+    return d.level === 0 ? 'node-person' : d.level === 1 ? 'node-category' : 'node-skill';
+  });
+
+  nodeEls.append('circle')
+    .attr('r', function (d) { return d.r; })
+    .attr('fill', function (d) { return d.level === 0 ? 'var(--surface)' : d.color + '30'; })
+    .attr('stroke', function (d) { return d.level === 0 ? 'var(--accent)' : d.color; })
+    .attr('stroke-width', function (d) { return d.level === 0 ? 3 : d.level === 1 ? 2.5 : 1.5; });
+
+  // person glow
+  nodeEls.filter(function (d) { return d.level === 0; })
+    .append('circle').attr('r', 38).attr('fill', 'none')
+    .attr('stroke', 'var(--accent)').attr('stroke-width', 1).attr('opacity', 0.2);
+
+  // labels
+  nodeEls.filter(function (d) { return d.level === 0; })
+    .append('text').attr('class', 'node-label label-person').attr('dy', 4).text('M');
+  nodeEls.filter(function (d) { return d.level === 1; })
+    .append('text').attr('class', 'node-label label-cat').attr('dy', function (d) { return d.r + 14; }).text(function (d) { return d.label; });
+  nodeEls.filter(function (d) { return d.level === 2; })
+    .append('text').attr('class', 'node-label label-skill').attr('dy', function (d) { return d.r + 12; }).text(function (d) { return d.label; });
+
+  // hover highlight
+  nodeEls.on('mouseenter', function (e, d) {
+    var connected = new Set();
+    connected.add(d.id);
+    links.forEach(function (l) {
+      var s = typeof l.source === 'object' ? l.source.id : l.source;
+      var t = typeof l.target === 'object' ? l.target.id : l.target;
+      if (s === d.id) connected.add(t);
+      if (t === d.id) connected.add(s);
+      if (d.parentId && s === d.parentId) connected.add(t);
+      if (d.parentId && t === d.parentId) connected.add(s);
+    });
+    if (d.parentId) connected.add(d.parentId);
+    nodeEls.style('opacity', function (n) { return connected.has(n.id) ? 1 : 0.15; });
+    linkEls.style('opacity', function (l) {
+      var s = typeof l.source === 'object' ? l.source.id : l.source;
+      var t = typeof l.target === 'object' ? l.target.id : l.target;
+      return (connected.has(s) && connected.has(t)) ? 0.5 : 0.03;
+    }).attr('class', function (l) {
+      var s = typeof l.source === 'object' ? l.source.id : l.source;
+      var t = typeof l.target === 'object' ? l.target.id : l.target;
+      return (connected.has(s) && connected.has(t)) ? 'link-line highlighted' : 'link-line';
+    });
+  }).on('mouseleave', function () {
+    nodeEls.style('opacity', 1);
+    linkEls.style('opacity', 1).attr('class', 'link-line');
+  });
+
+  // drag
+  nodeEls.call(d3.drag()
+    .on('start', function (e, d) { if (!e.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+    .on('drag', function (e, d) { d.fx = e.x; d.fy = e.y; })
+    .on('end', function (e, d) { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; })
+  );
+
+  sim.on('tick', function () {
+    linkEls.attr('x1', function (d) { return d.source.x; }).attr('y1', function (d) { return d.source.y; })
+      .attr('x2', function (d) { return d.target.x; }).attr('y2', function (d) { return d.target.y; });
+    nodeEls.attr('transform', function (d) { return 'translate(' + d.x + ',' + d.y + ')'; });
+  });
+})();
+</script>

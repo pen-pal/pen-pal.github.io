@@ -18,6 +18,29 @@ const { title } = Astro.props;
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
   <title>{title}</title>
+
+
+
+  
+  <script is:inline src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+
+  <script is:inline>
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#1a1917',
+        primaryTextColor: '#e8e4dc',
+        primaryBorderColor: '#c45d3e',
+        lineColor: '#5c584f',
+        secondaryColor: '#0e0e0c',
+        tertiaryColor: '#141412',
+        fontFamily: 'DM Mono, monospace',
+        fontSize: '13px'
+      }
+    });
+  </script>
+
 </head>
 <body>
   <div id="progress"></div>
@@ -33,6 +56,29 @@ const { title } = Astro.props;
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Counter animation
+    var counters = document.querySelectorAll('.stat-number');
+    var counterObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          var el = e.target;
+          var text = el.textContent;
+          var num = parseInt(text);
+          if (isNaN(num) || num === 0) return;
+          var suffix = text.replace(/[0-9]/g, '');
+          var current = 0;
+          var step = Math.max(1, Math.floor(num / 30));
+          var interval = setInterval(function () {
+            current += step;
+            if (current >= num) { current = num; clearInterval(interval); }
+            el.textContent = current + suffix;
+          }, 30);
+          counterObs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(function (c) { counterObs.observe(c); });
 
     // Nav scroll
     let lastScroll = 0;
@@ -122,48 +168,45 @@ const { title } = Astro.props;
       const cs = window.CASE_STUDIES?.[i];
       if (!cs) return;
       let h = '<div class="cs-meta">' + cs.meta + '</div><h2 class="cs-title">' + cs.title + '</h2>';
-      cs.sections.forEach(s => {
+      cs.sections.forEach(function(s) {
         if (s.type === 'metrics') {
           h += '<div class="cs-section"><h3>' + s.heading + '</h3><div class="cs-metric-grid">';
-          s.metrics.forEach(m => {
+          s.metrics.forEach(function(m) {
             h += '<div class="cs-metric"><div class="cs-metric-num">' + m.num + '</div><div class="cs-metric-label">' + m.label + '</div></div>';
           });
           h += '</div></div>';
         } else if (s.type === 'timeline') {
           h += '<div class="cs-section"><h3>' + s.heading + '</h3><div class="cs-timeline">';
-          s.items.forEach(it => {
+          s.items.forEach(function(it) {
             h += '<div class="cs-tl-item"><div class="cs-tl-phase">' + it.phase + '</div><div class="cs-tl-desc">' + it.desc + '</div></div>';
           });
           h += '</div></div>';
+        } else if (s.type === 'diagram') {
+          h += '<div class="cs-section"><h3>' + s.heading + '</h3>';
+          h += '<div class="mermaid-wrapper"><pre class="mermaid">' + s.diagram + '</pre></div>';
+          h += '</div>';
         } else if (s.tags) {
           h += '<div class="cs-section"><h3>' + s.heading + '</h3><div class="cs-tags">';
-          s.tags.forEach(t => { + '</h3><div class="cs-timeline">';
- h += '<span>' + t + '</span>'; });
+          s.tags.forEach(function(t) { h += '<span>' + t + '</span>'; });
           h += '</div></div>';
         } else {
           h += '<div class="cs-section"><h3>' + s.heading + '</h3>' + s.content + '</div>';
         }
         h += '<hr class="cs-divider">';
       });
-      const csBody = document.getElementById('csBody');
+      var csBody = document.getElementById('csBody');
       if (csBody) csBody.innerHTML = h;
       document.getElementById('csModal')?.classList.add('open');
       document.getElementById('csOverlay')?.classList.add('open');
       document.body.style.overflow = 'hidden';
-    }
 
-    function closeCaseStudy() {
-      document.getElementById('csModal')?.classList.remove('open');
-      document.getElementById('csOverlay')?.classList.remove('open');
-      document.body.style.overflow = '';
+      // render mermaid after DOM update
+      setTimeout(function () {
+        if (typeof mermaid !== 'undefined') {
+          mermaid.run({ querySelector: '.mermaid' });
+        }
+      }, 100);
     }
-
-    document.getElementById('csClose')?.addEventListener('click', closeCaseStudy);
-    document.getElementById('csOverlay')?.addEventListener('click', closeCaseStudy);
-    document.addEventListener('click', e => {
-      const btn = e.target.closest('.proj-expand');
-      if (btn) openCaseStudy(parseInt(btn.dataset.cs));
-    });
 
     // Blog drawer
     function openDrawer(i) {

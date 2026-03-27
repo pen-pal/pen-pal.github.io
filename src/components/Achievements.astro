@@ -1,0 +1,29 @@
+---
+interface Achievement {
+  icon: string;
+  title: string;
+  desc: string;
+}
+
+interface Props {
+  achievements: Achievement[];
+}
+
+const { achievements } = Astro.props;
+---
+
+<section class="ach-section" id="achievements">
+  <div class="section-header">
+    <div class="section-number">04</div>
+    <h2 class="section-title">Key <em>Achievements</em></h2>
+  </div>
+  <div class="achievements-grid">
+    {achievements.map((a, i) => (
+      <div class="ach-card reveal" style={`animation-delay:${i * 0.1}s`}>
+        <div class="ach-icon">{a.icon}</div>
+        <div class="ach-title">{a.title}</div>
+        <div class="ach-desc">{a.desc}</div>
+      </div>
+    ))}
+  </div>
+</section>

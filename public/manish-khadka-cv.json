@@ -1,0 +1,138 @@
+{
+  "name": "Manish Khadka",
+  "address": "Kathmandu, Nepal",
+  "phone": "+977 9843729354",
+  "email": "ManishKhadka@protonmail.com",
+  "linkedin": "linkedin.com/in/manishkhadka",
+  "github": "github.com/pen-pal",
+  "blog": "https://palpen.medium.com",
+  "website": "https://manishkhadka.info.np",
+  "professional_summary": "Key Achievements",
+  "key_achievements": [
+    "Reduced AWS monthly spend from $24K to $12K (50%) through right-sizing, spot instances, and OpenStack consolidation; replicated similar savings at a second company via reserved instances and automated scheduling.",
+    "Led SOC2 and ISO 27001 certification initiatives at two companies, hardening infrastructure controls and passing audits.",
+    "Promoted from DevOps Engineer to Team Lead; built and mentored a 6-person team on IaC, GitOps, and cloud-native practices.",
+    "Engineered GPU sharing across Kubernetes pods for real-time ML video analytics — a non-standard challenge that maximised inference utilisation."
+  ],
+  "technical_skills": {
+    "Cloud": "AWS (primary), GCP, Azure, DigitalOcean, Oracle Cloud",
+    "Containers": "Kubernetes (EKS, self-hosted), ECS, Docker, Containerd",
+    "CI/CD GitOps": "ArgoCD, GitLab CI, GitHub Actions, Jenkins, CircleCI, Bitbucket Pipelines",
+    "IaC Config": "Terraform, OpenTofu, Terragrunt, Ansible, CloudFormation, Packer",
+    "Observability": "Prometheus, Grafana (Loki, Tempo, Alloy), ELK Stack, Datadog, PagerDuty",
+    "Security": "Trivy, Snyk, Checkov, Kyverno, HashiCorp Vault, AWS Private CA, AWS Inspector",
+    "Networking": "Kong API Gateway, Istio, Cilium, Nginx, Cloudflare (incl.Zero Trust), Route 53",
+    "Databases": "PostgreSQL, MySQL, MongoDB, Redis, Elasticsearch, TimescaleDB, Milvus",
+    "Other": "Helm, KEDA, HPA, External Secrets Operator, Snowflake, AWS Glue, Kinesis Firehose, MinIO",
+    "Practices": "Site Reliability Engineering, Platform Engineering, GitOps, Zero Trust Architecture, Shift-Left Security, Chaos Engineering, Infrastructure as Code, Disaster Recovery, FinOps"
+  },
+  "professional_experience": [
+    {
+      "date": "Feb 2025 – Present",
+      "title": "Senior DevOps Engineer",
+      "company": "Zenledger",
+      "location": "Remote",
+      "highlights": [
+        "Cut monthly infrastructure costs by migrating edge security from Cloudflare to AWS WAF; built Python/Bash automation (Terraform-provisioned) to shut down QA/Dev environments outside business hours, eliminating idle spend.",
+        "Designed and deployed a High Availability TimescaleDB cluster; orchestrated zero-downtime major-version migration of Amazon RDS from PostgreSQL 14 to 15.",
+        "Replaced legacy VPN with Cloudflare Zero Trust + Tailscale, implementing identity-aware, least-privilege access across all environments.",
+        "Led SOC2 and ISO 27001 certification to completion; established VPC Peering across Prod/Stage/QA/Dev; managed rolling EKS and EC2 fleet upgrades with zero service disruption across 8+ clusters.",
+        "Designed production observability stack (Prometheus, Grafana, Grafana Alloy, PagerDuty) covering 100% of services; established alerting thresholds aligned with SLA targets."
+      ]
+    },
+    {
+      "date": "Nov 2023 – Feb 2025",
+      "title": "Senior DevOps Engineer",
+      "company": "CloudHero",
+      "location": "Remote",
+      "highlights": [
+        "Migrated client services from on-premises to AWS, GCP, Azure, and DigitalOcean (ECS/EKS) with near-zero downtime; deployed self-hosted Kubernetes on GCP with Ansible and auto-scaling across 20+ clusters.",
+        "Authored a centralised Helm chart blueprint adopted company-wide; deployed Kyverno for admission control and policy enforcement across all client clusters.",
+        "Migrated thousands of ingress resources to Kong API Gateway; implemented Istio service mesh with canary deployments for progressive rollouts.",
+        "Eliminated static AWS secrets via AWS Private CA for IAM key rotation; integrated Trivy and Snyk for vulnerability scanning across all CI/CD pipelines.",
+        "Deployed MinIO for S3-compatible storage and NextCloud for collaboration; built end-to-end monitoring with Prometheus, Grafana, Loki, and ELK Stack."
+      ]
+    },
+    {
+      "date": "Jul 2021 – Feb 2024",
+      "title": "DevOps Engineer ->Team Lead",
+      "company": "Innovatetech Pvt.Ltd",
+      "location": "Kathmandu, Nepal",
+      "highlights": [
+        "Promoted to Team Lead; led and mentored 6 DevOps engineers on IaC, GitOps, and cloud-native practices.",
+        "Reduced cloud spend by 50% across multi-account AWS (Control Tower, 10+ accounts, VPC peering to MongoDB Atlas) through spot/reserved instances, right-sizing, and automated scheduling. Open-sourced a Terraform module for MongoDB Atlas provisioning.",
+        "Built centralised GitLab CI pipelines with shared Helm charts and shift-left security (Snyk, Trivy, Checkov); introduced ephemeral preview environments per PR, cutting QA cycle times significantly.",
+        "Managed EKS with HPA, KEDA, Istio, and External Secrets Operator; drove SOC2, ISO 27001, and GDPR compliance; designed DR strategy with automated AWS Backups.",
+        "Built end-to-end observability and distributed tracing using Prometheus, Grafana, Loki, ELK Stack, Datadog, Sentry, and Grafana Tempo."
+      ]
+    },
+    {
+      "date": "Feb 2020 – Jul 2021",
+      "title": "DevOps Engineer",
+      "company": "IDenTV",
+      "location": "Remote",
+      "highlights": [
+        "Deployed ML models on Kubernetes and bare-metal for real-time video analytics; engineered GPU sharing across pods using the NVIDIA device plugin to maximise inference utilisation.",
+        "Cut monthly AWS spend from $24K to $12K (50%) through right-sizing and OpenStack consolidation; provisioned EKS, ECS, RDS, and ElastiCache via Terraform, reducing manual setup time by 70%.",
+        "Packaged golden AMIs with pre-baked AI models (Packer + Ansible) for single-command deployments in air-gapped government environments.",
+        "Established DevOps practice from scratch — CI/CD (CircleCI, TravisCI), Helm charts for ML deployment, HashiCorp Vault for secrets, Flussonic for video streaming, Milvus for vector storage."
+      ]
+    },
+    {
+      "date": "Jun 2021 – Present",
+      "title": "Freelance DevOps Consultant",
+      "company": "Multiple Clients",
+      "location": "Remote",
+      "highlights": [
+        "Blockchain: Deployed HA EVM node/validator infrastructure on EKS with sub-second RPC latency; automated smart contract pipelines with Hardhat and Foundry.",
+        "Marketplace Data: Architected nested CloudFormation templates for AWS SaaS Marketplace; enabled cross-cloud execution across AWS and Azure using Snowflake Container Services; built real-time data pipelines with AWS Glue + Kinesis Firehose via Terragrunt; deployed Grafana Alloy for unified telemetry across client environments.",
+        "Platform: Deployed AWS Account Factory for Terraform (AFT) for multi-account vending; designed secure multi-account AWS architectures for crypto analytics clients (Altada Technology Solutions).",
+        "Data ML: Engineered scalable ML inference hosting on EKS/ECS with Milvus for vector storage; conducted chaos testing with LitmusChaos; implemented Cilium for eBPF-based networking."
+      ]
+    }
+  ],
+  "early_career": [
+    {
+      "date": "Apr 2019 – Apr 2020",
+      "title": "Linux System Support Engineer",
+      "company": "NepalLink Network",
+      "location": "Kathmandu, Nepal",
+      "description": "Managed VMWare VPS environments (LEMP/LAMP), hardened server security (Maldet, ClamAV, CSF), and deployed Icinga monitoring while providing SLA-driven client support."
+    },
+    {
+      "date": "Apr 2018 – Apr 2019",
+      "title": "Junior Network Monitoring Engineer",
+      "company": "Vianet Communications Pvt.Ltd.",
+      "location": "Kathmandu, Nepal",
+      "description": "Automated OLT reboots via Bash; deployed Nagios, Zabbix, Cacti, and CheckMK for proactive fault detection."
+    },
+    {
+      "date": "Dec 2016 – Feb 2018",
+      "title": "Technical Researcher",
+      "company": "Datalytics Pvt.Ltd.",
+      "location": "Kathmandu, Nepal",
+      "description": "Shell scripting for access auditing, Voice Recognition System projects, Cisco network troubleshooting."
+    }
+  ],
+  "education": [
+    {
+      "date": "2012 – 2016",
+      "degree": "Bachelor of Engineering (Electrical Electronics)",
+      "institution": "Kathmandu University",
+      "location": "Kathmandu, Nepal"
+    },
+    {
+      "date": "2023 – Present",
+      "degree": "Master of Arts in Psychology",
+      "institution": "Tri-Chandra Multiple Campus",
+      "location": "Kathmandu, Nepal",
+      "note": "Pursuing alongside career to deepen understanding of team dynamics and organisational behaviour."
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Private CA",
+      "url": "https://www.credly.com/badges/bd435d12-affc-486b-bff6-57c50cb2dfd9"
+    }
+  ]
+}

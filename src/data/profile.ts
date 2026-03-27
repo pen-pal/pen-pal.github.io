@@ -41,12 +41,12 @@ export const profile = {
 
   skills: [
     { cat: "Cloud Platforms", items: ["AWS", "GCP", "Azure", "DigitalOcean", "Oracle Cloud"], hot: [0, 1, 2] },
-    { cat: "Containers & Orchestration", items: ["Kubernetes", "EKS", "ECS", "Docker", "Containerd"], hot: [0, 1] },
-    { cat: "CI/CD & GitOps", items: ["ArgoCD", "GitHub Actions", "GitLab CI", "Jenkins", "CircleCI"], hot: [0, 1] },
-    { cat: "Infrastructure as Code", items: ["Terraform", "OpenTofu", "Terragrunt", "Ansible", "CloudFormation", "Packer"], hot: [0, 1] },
-    { cat: "Observability", items: ["Prometheus", "Grafana", "Loki", "Tempo", "ELK Stack", "Datadog", "PagerDuty"], hot: [0, 1] },
+    { cat: "Containers & Orchestration", items: ["Kubernetes", "EKS", "ECS", "Docker", "Containerd", "Podman"], hot: [0, 1] },
+    { cat: "CI/CD & GitOps", items: ["ArgoCD", "FluxCD", "GitHub Actions", "GitLab CI", "Jenkins", "CircleCI", "Bitbucket Pipelines", "TravisCI"], hot: [0, 1] },
+    { cat: "Infrastructure as Code", items: ["Terraform", "OpenTofu", "Terragrunt", "Ansible", "CloudFormation", "Packer", "CDK"], hot: [0, 1] },
+    { cat: "Observability", items: ["Prometheus", "Grafana", "Loki", "Tempo", "ELK Stack", "Datadog", "PagerDuty", "Honeybadger", "ScoutAPM", "Sentry", "NewRelic", "AWS Cloudwatch", "AWS EventBridge", "AWS CloudTrial", "AWS GuardDuty", "AWS Security Hub"], hot: [0, 1] },
     { cat: "Security & Networking", items: ["Trivy", "Snyk", "Checkov", "Kyverno", "Vault", "Kong", "Istio", "Cilium", "Cloudflare ZT"], hot: [0, 1] },
-    { cat: "Databases", items: ["PostgreSQL", "MySQL", "Redis", "MongoDB", "TimescaleDB", "Elasticsearch", "Milvus"] },
+    { cat: "Databases", items: ["PostgreSQL", "MySQL", "Redis", "MongoDB", "TimescaleDB", "Elasticsearch", "Milvus", "OracleDB", "Microsoft SQL Server", "InfluxDB", "Meilisearch", "DyanamonDB"] },
     { cat: "Practices", items: ["SRE", "Platform Engineering", "GitOps", "Zero Trust", "Shift-Left Security", "Chaos Engineering", "FinOps", "Disaster Recovery"], hot: [0, 1] },
     { cat: "Other", items: ["Helm", "KEDA", "Snowflake", "AWS Glue", "Kinesis Firehose", "MinIO", "LitmusChaos"] },
   ],

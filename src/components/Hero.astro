@@ -1,8 +1,17 @@
 ---
 import { profile } from '../data/profile';
+interface Props {
+  name: string;
+  role: string;
+  subtitle: string;
+}
+
+const { name, role, subtitle } = Astro.props;
 ---
 
 <section class="hero" id="hero">
+  <div class="hero-orb"></div>
+  <div class="hero-orb"></div>
   <div class="hero-left">
     <div class="hero-eyebrow">{profile.title} — {profile.location}</div>
     <h1 class="hero-title">Building <em>resilient</em><br>cloud <em>infrastructure</em><br>at scale.</h1>
