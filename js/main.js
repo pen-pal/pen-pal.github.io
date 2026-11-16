@@ -279,7 +279,7 @@
       var isLive = !!job.live;
       var leftHtml = isLive
         ? '<div class="exp-live"><span class="exp-live-dot"></span>Current</div>'
-        : '<div class="exp-dot"></div>';
+        : "";
 
       var tagsHtml = job.tags
         ? '<div class="exp-tags">' + job.tags.map(function (t) {
@@ -301,7 +301,6 @@
           '</ul>' +
           tagsHtml +
         '</div>' +
-        '<div class="exp-ghost" aria-hidden="true">0' + (idx + 1) + '</div>' +
         '</div>';
     }).join("") +
     (P.earlyCareer
