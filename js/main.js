@@ -426,48 +426,55 @@
   // ATS print resume
   var resumePrint = $("#resumePrint");
   if (resumePrint) {
-    var expPrintHtml = (P.resumeExp || []).map(function (e) {
-      return '<div style="margin-bottom:12pt">' +
-        '<div style="display:flex;justify-content:space-between;font-weight:bold">' +
-          '<span>' + e.role + '</span><span>' + e.dates + '</span>' +
-        '</div>' +
-        '<div style="font-style:italic;color:#555;margin-bottom:4pt">' + e.company + '</div>' +
-        '<ul style="padding-left:16pt">' +
-          e.bullets.map(function (b) { return '<li style="margin-bottom:2pt">' + b.replace(/<[^>]*>/g,'') + '</li>'; }).join("") +
-        '</ul>' +
+    function plain(html) { return html.replace(/<[^>]*>/g, ""); }
+    function h2(t) { return '<h2>' + t + '</h2>'; }
+
+    var expPrintHtml = (P.experience || []).map(function (e) {
+      return '<div class="rp-job">' +
+        '<div class="rp-row"><strong>' + plain(e.role) + '</strong><span>' + e.period + '</span></div>' +
+        '<div class="rp-co">' + e.company + '</div>' +
+        '<ul>' + e.bullets.map(function (b) { return '<li>' + plain(b) + '</li>'; }).join("") + '</ul>' +
         '</div>';
+    }).join("") + (P.earlyCareer ? '<p><strong>Early career, 2016 – 2020:</strong> ' + P.earlyCareer + '</p>' : "");
+
+    var skillsPrintHtml = (P.skills || []).map(function (g) {
+      return '<li><strong>' + g.cat + ':</strong> ' + g.items.join(", ") + '</li>';
     }).join("");
 
-    var certPrintHtml = (P.certifications || []).map(function (c) {
-      return '<div style="margin-bottom:6pt">' + c.name + '</div>';
+    var ossPrintHtml = (P.openSource || []).map(function (o) {
+      return '<li><strong>' + o.title + '</strong> (' + o.role + '): ' + o.desc + '</li>';
     }).join("");
-
-    var eduPrintHtml = (P.education || []).map(function (e) {
-      return '<div style="margin-bottom:6pt"><strong>' + e.degree + '</strong><br>' + e.school + '</div>';
-    }).join("");
-
-    var allSkills = (P.skills || []).map(function (g) { return g.items.join(", "); }).join(" | ");
 
     resumePrint.innerHTML =
-      '<div style="font-family:Arial,sans-serif;font-size:11pt;color:#111;line-height:1.5;max-width:720px;margin:0 auto">' +
-        '<h1 style="font-size:20pt;margin-bottom:2pt">' + P.name + '</h1>' +
-        '<p style="color:#555;font-size:11pt;margin-bottom:6pt">' + P.title + '</p>' +
-        '<p style="font-size:9pt;color:#555;margin-bottom:16pt">' +
-          P.email + ' · ' + P.phone + ' · ' + P.location + ' · ' +
-          P.linkedin.replace("https://","") + ' · ' + P.github.replace("https://","") +
-        '</p>' +
-        '<hr style="border:none;border-top:1.5px solid #111;margin-bottom:10pt">' +
-        '<h2 style="font-size:10pt;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8pt">Professional Summary</h2>' +
-        '<p style="font-size:10pt;color:#333;margin-bottom:16pt">Senior DevOps Engineer with 7+ years of experience designing, building, and operating complex cloud infrastructures across AWS, GCP, and Azure. Specializes in Kubernetes, GitOps, CI/CD automation, and multi-cloud migrations. Track record of up to 50% cost reductions. AWS Certified DevOps Engineer — Professional.</p>' +
-        '<h2 style="font-size:10pt;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8pt">Technical Skills</h2>' +
-        '<p style="font-size:10pt;color:#333;margin-bottom:16pt">' + allSkills + '</p>' +
-        '<h2 style="font-size:10pt;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8pt">Experience</h2>' +
-        expPrintHtml +
-        '<h2 style="font-size:10pt;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8pt">Certifications</h2>' +
-        certPrintHtml +
-        '<h2 style="font-size:10pt;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8pt">Education</h2>' +
-        eduPrintHtml +
-      '</div>';
+      '<h1>' + P.name + '</h1>' +
+      '<p class="rp-title">' + P.title + '</p>' +
+      '<p class="rp-contact">' +
+        [P.location, P.email, P.phone, P.linkedin, P.github, P.medium].map(function (v) {
+          return v.replace("https://", "");
+        }).join(" · ") +
+      '</p>' +
+      h2("Summary") + '<p>' + P.summary + '</p>' +
+      h2("Technical Skills") + '<ul class="rp-skills">' + skillsPrintHtml + '</ul>' +
+      h2("Experience") + expPrintHtml +
+      h2("Projects and Open Source") + '<ul>' + ossPrintHtml + '</ul>' +
+      h2("Certifications") + '<ul>' + (P.certifications || []).map(function (c) { return '<li>' + c.name + '</li>'; }).join("") + '</ul>' +
+      h2("Education") + '<ul>' + (P.education || []).map(function (e) { return '<li><strong>' + e.degree + '</strong>, ' + e.school + '</li>'; }).join("") + '</ul>';
+  }
+
+  // -- Open source contributions (curated) --
+  var ossGrid = $("#ossGrid");
+  if (ossGrid && P.openSource) {
+    ossGrid.innerHTML = P.openSource.map(function (o, i) {
+      return '<div class="proj-card reveal" style="transition-delay:' + (i * .05) + 's">' +
+        '<div class="proj-num">' + o.role + '</div>' +
+        '<div class="proj-title">' + o.title + '</div>' +
+        '<div class="proj-desc">' + o.desc + '</div>' +
+        '<div class="proj-tags">' + o.tags.map(function (t) { return '<span class="proj-tag">' + t + '</span>'; }).join("") + '</div>' +
+        '<div class="proj-foot"><span class="proj-cat">Open source</span>' +
+          '<a class="proj-expand" href="' + o.href + '" target="_blank" rel="noopener">View on GitHub ↗</a>' +
+        '</div></div>';
+    }).join("");
+    ossGrid.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
   }
 
   // ==========================================
