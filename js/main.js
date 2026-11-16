@@ -199,8 +199,7 @@
   // ==========================================
   // PRINT (ATS resume)
   // ==========================================
-  var printBtn = $("#printBtn");
-  if (printBtn) printBtn.addEventListener("click", function () { window.print(); });
+  $$(".js-print").forEach(function (b) { b.addEventListener("click", function () { window.print(); }); });
 
   // ==========================================
   // ESCAPE KEY

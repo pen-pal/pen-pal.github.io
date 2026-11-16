@@ -82,10 +82,8 @@ nav.hidden { transform: none !important }
 nav.scrolled { border-color: var(--rule2) }
 
 .nav-logo {
-  font-family: var(--mono);
-  font-size: 0.86rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  font-family: var(--serif);
+  font-size: 1.35rem;
   color: var(--ink);
   text-decoration: none;
   transition: color .3s;
@@ -178,23 +176,17 @@ nav.scrolled { border-color: var(--rule2) }
   margin-bottom: 2rem;
 }
 
-.hero-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: .75rem;
-  font-family: var(--mono);
-  font-size: 0.86rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--rule2);
-  transition: all .3s;
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem }
+.hero-worked { margin-top: 2rem; font-size: .9rem; color: var(--ink-muted) }
+.hero-worked strong { color: var(--ink-soft); font-weight: 500 }
+.hero-avail {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: .85rem; color: var(--accent-cool);
+  padding: .3rem .8rem; margin-bottom: 1.5rem;
+  border: 1px solid rgba(77,184,158,.3); border-radius: 999px;
+  background: rgba(77,184,158,.08);
 }
-.hero-cta:hover { border-color: var(--accent); color: var(--accent); gap: 1.2rem }
-.hero-cta svg { width: 14px; height: 14px; transition: transform .3s }
-.hero-cta:hover svg { transform: translateX(4px) }
+.hero-avail span { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-cool); animation: pulse 2.2s ease-in-out infinite }
 
 .hero-right {
   position: relative;
