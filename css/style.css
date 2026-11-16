@@ -620,7 +620,7 @@ a.proj-expand { text-decoration: none }
 /* ========================================
    BLOG — fixed cards
    ======================================== */
-.blog-header { display: flex; justify-content: flex-end; margin-bottom: 2rem; margin-top: -2rem }
+.blog-header { display: flex; justify-content: flex-end; margin-bottom: 1.25rem }
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -738,14 +738,15 @@ a.proj-expand { text-decoration: none }
 /* ========================================
    RESUME — clean download card (no full CV)
    ======================================== */
-.resume-actions { display: flex; gap: .75rem; margin-bottom: 3rem; margin-top: -2rem }
+.resume-actions { display: flex; gap: .75rem; margin-bottom: 1.5rem }
 .btn-outline {
   font-family: var(--mono);
   font-size: 0.82rem;
   letter-spacing: .1em;
   text-transform: uppercase;
-  padding: .8rem 1.6rem;
-  border: 1px solid var(--rule);
+  padding: .7rem 1.4rem;
+  border: 1px solid var(--rule2);
+  border-radius: 999px;
   color: var(--ink-muted);
   background: transparent;
   text-decoration: none;
@@ -758,7 +759,8 @@ a.proj-expand { text-decoration: none }
   font-size: 0.82rem;
   letter-spacing: .1em;
   text-transform: uppercase;
-  padding: .8rem 1.6rem;
+  border-radius: 999px;
+  padding: .7rem 1.4rem;
   border: 1px solid var(--accent);
   background: var(--accent);
   color: var(--bg);
@@ -814,6 +816,7 @@ a.proj-expand { text-decoration: none }
 .rc-cert {
   padding: 1rem;
   border: 1px solid var(--rule);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
