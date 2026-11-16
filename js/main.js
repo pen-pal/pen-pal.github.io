@@ -227,29 +227,36 @@
     skillsGrid.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
   }
 
-  // -- Experience List --
+  // -- Experience List (improved) --
   var expList = $("#expList");
   if (expList && P.experience) {
-    expList.innerHTML = P.experience.map(function (job, i) {
-      var liveHtml = job.live
-        ? '<div class="exp-live"><span class="live-dot"></span>Current</div>'
+    expList.innerHTML = P.experience.map(function (job, idx) {
+      var isLive = !!job.live;
+      var leftHtml = isLive
+        ? '<div class="exp-live"><span class="exp-live-dot"></span>Current</div>'
         : '<div class="exp-dot"></div>';
+
       var tagsHtml = job.tags
-        ? '<div class="exp-tags">' + job.tags.map(function (t) { return '<span>' + t + '</span>'; }).join("") + '</div>'
+        ? '<div class="exp-tags">' + job.tags.map(function (t) {
+            return '<span class="exp-tag">' + t + '</span>';
+          }).join("") + '</div>'
         : "";
-      return '<div class="exp-row reveal" style="transition-delay:' + (i * 0.08) + 's">' +
-        '<div class="exp-left">' + liveHtml +
-        '<div class="exp-period">' + job.period + '</div>' +
-        '<div class="exp-badge">' + job.badge + '</div>' +
+
+      return '<div class="exp-row' + (isLive ? ' exp-live-row' : '') + ' reveal" style="transition-delay:' + (idx * .07) + 's">' +
+        '<div class="exp-left">' +
+          leftHtml +
+          '<div class="exp-period">' + job.period + '</div>' +
+          '<div class="exp-badge">' + job.badge + '</div>' +
         '</div>' +
         '<div class="exp-right">' +
-        '<div class="exp-role">' + job.role + '</div>' +
-        '<div class="exp-company">' + job.company + '</div>' +
-        '<ul class="exp-bullets">' +
-        job.bullets.map(function (b) { return '<li>' + b + '</li>'; }).join("") +
-        '</ul>' + tagsHtml +
+          '<div class="exp-role">' + job.role + '</div>' +
+          '<div class="exp-co">' + job.company + '</div>' +
+          '<ul class="exp-bullets">' +
+            job.bullets.map(function (b) { return '<li>' + b + '</li>'; }).join("") +
+          '</ul>' +
+          tagsHtml +
         '</div>' +
-        '<div class="exp-ghost" aria-hidden="true">0' + (i + 1) + '</div>' +
+        '<div class="exp-ghost" aria-hidden="true">0' + (idx + 1) + '</div>' +
         '</div>';
     }).join("");
     expList.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
