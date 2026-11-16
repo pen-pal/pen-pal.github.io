@@ -14,7 +14,7 @@ const PROFILE = {
     { key: "Location", val: "Kathmandu, Nepal (UTC+5:45)" },
     { key: "Current", val: "DevOps consultant, Emergegen AI (part-time)" },
     { key: "Specialty", val: "Kubernetes, GitOps & DevSecOps" },
-    { key: "Status", val: "Open to roles · remote or on-site", color: "#4db89e" },
+    { key: "Status", val: "Open to remote or on-site", color: "#4db89e" },
   ],
 
   stats: [
