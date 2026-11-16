@@ -84,7 +84,7 @@ nav.scrolled { border-color: var(--rule2) }
 .nav-logo {
   font-family: var(--mono);
   font-size: 0.86rem;
-  letter-spacing: .22em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--ink);
   text-decoration: none;
@@ -94,10 +94,8 @@ nav.scrolled { border-color: var(--rule2) }
 
 .nav-links { display: flex; gap: 2.2rem; list-style: none }
 .nav-links a {
-  font-family: var(--mono);
-  font-size: 0.80rem;
-  letter-spacing: .15em;
-  text-transform: uppercase;
+  font-family: var(--body);
+  font-size: .92rem;
   color: var(--ink-muted);
   text-decoration: none;
   position: relative;
@@ -146,7 +144,7 @@ nav.scrolled { border-color: var(--rule2) }
 .hero-eyebrow {
   font-family: var(--mono);
   font-size: .8rem;
-  letter-spacing: .2em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 1.8rem;
@@ -185,7 +183,7 @@ nav.scrolled { border-color: var(--rule2) }
   gap: .75rem;
   font-family: var(--mono);
   font-size: 0.86rem;
-  letter-spacing: .15em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--ink);
   text-decoration: none;
@@ -222,7 +220,7 @@ nav.scrolled { border-color: var(--rule2) }
 .hero-card-label {
   font-family: var(--mono);
   font-size: 0.80rem;
-  letter-spacing: .2em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--ink-muted);
   margin-bottom: 1.8rem;
@@ -286,7 +284,7 @@ section {
 .section-label {
   font-family: var(--mono);
   font-size: 0.84rem;
-  letter-spacing: .18em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: .75rem;
@@ -322,7 +320,7 @@ section {
   display: block;
   font-family: var(--mono);
   font-size: 0.78rem;
-  letter-spacing: .15em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--accent-gold);
   margin-bottom: .2rem;
@@ -360,7 +358,7 @@ section {
 .skill-cat {
   font-family: var(--mono);
   font-size: 0.80rem;
-  letter-spacing: .18em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--accent-gold);
   margin-bottom: 1rem;
@@ -487,7 +485,7 @@ section {
 .proj-tab {
   font-family: var(--mono);
   font-size: 0.82rem;
-  letter-spacing: .15em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   padding: .55rem 1.2rem;
   color: var(--ink-muted);
@@ -525,7 +523,7 @@ section {
 .proj-num {
   font-family: var(--mono);
   font-size: 0.78rem;
-  letter-spacing: .18em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--ink-muted);
 }
@@ -558,7 +556,7 @@ section {
 }
 .proj-tag:hover { color: var(--accent-gold) }
 .proj-foot { display: flex; align-items: center; justify-content: space-between; padding-top: .8rem; border-top: 1px solid var(--rule) }
-.proj-cat { font-family: var(--mono); font-size: 0.78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent) }
+.proj-cat { font-family: var(--mono); font-size: 0.78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent) }
 .proj-actions { display: flex; align-items: center; gap: 1rem }
 .proj-expand {
   font-family: var(--mono);
@@ -574,9 +572,9 @@ section {
 }
 .proj-expand:hover { gap: .7rem }
 a.proj-expand { text-decoration: none }
-.proj-subhead { font-family: var(--mono); font-size: 0.80rem; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-muted); margin: 3rem 0 1rem }
+.proj-subhead { font-family: var(--mono); font-size: 0.80rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); margin: 3rem 0 1rem }
 .exp-early { padding-top: 2rem; font-family: var(--body); font-size: .95rem; line-height: 1.55; color: var(--ink-muted) }
-.exp-early-lbl { display: block; font-family: var(--mono); font-size: 0.78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-gold); margin-bottom: .4rem }
+.exp-early-lbl { display: block; font-family: var(--mono); font-size: 0.78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-gold); margin-bottom: .4rem }
 
 /* Loading */
 .loading-cell { grid-column: 1/-1; padding: 3rem; text-align: center }
@@ -592,11 +590,11 @@ a.proj-expand { text-decoration: none }
 .cs-modal { position: fixed; top: 0; right: 0; bottom: 0; width: min(820px, 100vw); background: var(--bg2); z-index: 501; transform: translateX(100%); transition: transform .45s cubic-bezier(.22,1,.36,1); overflow-y: auto; border-left: 1px solid var(--rule2) }
 .cs-modal.open { transform: translateX(0) }
 .cs-head { position: sticky; top: 0; background: rgba(14,14,12,.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); padding: 1.2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; z-index: 10 }
-.cs-close { font-family: var(--mono); font-size: 0.82rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-muted); cursor: pointer; background: none; border: none; transition: color .3s; display: flex; align-items: center; gap: .5rem }
+.cs-close { font-family: var(--mono); font-size: 0.82rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); cursor: pointer; background: none; border: none; transition: color .3s; display: flex; align-items: center; gap: .5rem }
 .cs-close:hover { color: var(--accent) }
 .cs-badge { font-family: var(--mono); font-size: 0.80rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent) }
 .cs-body { padding: 3rem 2.5rem 5rem; max-width: 700px; margin: 0 auto }
-.cs-meta { font-family: var(--mono); font-size: 0.80rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 1rem }
+.cs-meta { font-family: var(--mono); font-size: 0.80rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 1rem }
 .cs-title { font-family: var(--serif); font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 400; line-height: 1.2; letter-spacing: -.02em; color: var(--ink); margin-bottom: 2rem }
 .cs-section { margin-bottom: 2.5rem }
 .cs-section h3 { font-family: var(--serif); font-size: 1.4rem; font-weight: 400; color: var(--ink); margin-bottom: 1rem }
@@ -719,7 +717,7 @@ a.proj-expand { text-decoration: none }
 .drawer-close { font-family: var(--mono); font-size: 0.80rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); cursor: pointer; background: none; border: 1px solid var(--rule); padding: .45rem .9rem; transition: all .3s }
 .drawer-close:hover { border-color: var(--accent); color: var(--accent) }
 .drawer-body { padding: 2.5rem 2rem 4rem; max-width: 600px; margin: 0 auto }
-.drawer-cat { font-family: var(--mono); font-size: 0.80rem; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem }
+.drawer-cat { font-family: var(--mono); font-size: 0.80rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem }
 .drawer-title { font-family: var(--serif); font-size: 2.1rem; line-height: 1.2; letter-spacing: -.02em; color: var(--ink); margin-bottom: .75rem }
 .drawer-date { font-family: var(--mono); font-size: 0.80rem; color: var(--ink-muted); margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule) }
 .drawer-content { font-family: var(--body); font-size: 1rem; line-height: 1.7; color: var(--ink-soft) }
@@ -743,7 +741,7 @@ a.proj-expand { text-decoration: none }
 .btn-outline {
   font-family: var(--mono);
   font-size: 0.82rem;
-  letter-spacing: .15em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   padding: .8rem 1.6rem;
   border: 1px solid var(--rule);
@@ -757,7 +755,7 @@ a.proj-expand { text-decoration: none }
 .btn-filled {
   font-family: var(--mono);
   font-size: 0.82rem;
-  letter-spacing: .15em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   padding: .8rem 1.6rem;
   border: 1px solid var(--accent);
@@ -835,7 +833,7 @@ a.proj-expand { text-decoration: none }
 .rc-section-lbl {
   font-family: var(--mono);
   font-size: 0.76rem;
-  letter-spacing: .18em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--accent-gold);
   margin-bottom: .75rem;
@@ -873,7 +871,7 @@ a.proj-expand { text-decoration: none }
 .contact-link:hover { padding-left: .4rem }
 .contact-link:hover .c-arrow { transform: translateX(0); opacity: 1 }
 .contact-link:hover .cl-val { color: var(--ink) }
-.cl-label { font-family: var(--mono); font-size: 0.78rem; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: .15rem }
+.cl-label { font-family: var(--mono); font-size: 0.78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: .15rem }
 .cl-val { font-family: var(--body); font-size: .95rem; color: var(--ink-soft); transition: color .25s }
 .c-arrow { font-size: .8rem; color: var(--accent); transform: translateX(-5px); opacity: .25; transition: all .3s }
 
