@@ -4,6 +4,7 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
 :root {
+  color-scheme: dark;
   --bg: #080808;
   --bg2: #0e0e0c;
   --bg3: #141412;
@@ -31,6 +32,30 @@
   /* side padding that caps content at ~72rem on wide screens */
   --gutter: max(3rem, calc((100% - 72rem) / 2));
 }
+
+/* Light theme: follows the system unless the visitor picked one with the toggle. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) { 
+    color-scheme: light;
+    --bg: #fafaf9; --bg2: #ffffff; --bg3: #f1f0ee; --surface: #ffffff;
+    --ink: #18181b; --ink-soft: #3f3f46; --ink-muted: #6b6b73;
+    --accent: #b8431f; --accent-warm: #9a3412; --accent-cool: #0f766e;
+    --rule: rgba(0,0,0,.08); --rule2: rgba(0,0,0,.14); --chip: rgba(0,0,0,.05);
+    --accent-soft: rgba(184,67,31,.09); --cool-soft: rgba(15,118,110,.07); --cool-line: rgba(15,118,110,.3);
+    --glow: rgba(184,67,31,.07); --nav-bg: rgba(250,250,249,.92); --panel-head: rgba(255,255,255,.94);
+    --overlay: rgba(24,24,27,.35);
+   }
+}
+:root[data-theme="light"] { 
+    color-scheme: light;
+    --bg: #fafaf9; --bg2: #ffffff; --bg3: #f1f0ee; --surface: #ffffff;
+    --ink: #18181b; --ink-soft: #3f3f46; --ink-muted: #6b6b73;
+    --accent: #b8431f; --accent-warm: #9a3412; --accent-cool: #0f766e;
+    --rule: rgba(0,0,0,.08); --rule2: rgba(0,0,0,.14); --chip: rgba(0,0,0,.05);
+    --accent-soft: rgba(184,67,31,.09); --cool-soft: rgba(15,118,110,.07); --cool-line: rgba(15,118,110,.3);
+    --glow: rgba(184,67,31,.07); --nav-bg: rgba(250,250,249,.92); --panel-head: rgba(255,255,255,.94);
+    --overlay: rgba(24,24,27,.35);
+   }
 
 html {
   scroll-behavior: smooth;
@@ -99,6 +124,9 @@ nav.scrolled { border-color: var(--rule2) }
   transition: color .3s;
 }
 .nav-logo:hover { color: var(--accent) }
+.nav-logo { margin-right: auto }
+nav { gap: .75rem }
+.nav-links { margin-right: 1.5rem }
 
 .nav-links { display: flex; gap: 2.2rem; list-style: none }
 .nav-links a {
@@ -120,6 +148,13 @@ nav.scrolled { border-color: var(--rule2) }
 .nav-links a:hover { color: var(--ink) }
 .nav-links a:hover::after { width: 100% }
 
+.theme-toggle {
+  background: none; border: 1px solid var(--rule2); border-radius: 999px;
+  width: 2.1rem; height: 2.1rem; display: grid; place-items: center;
+  color: var(--ink-muted); cursor: pointer; transition: color .25s, border-color .25s;
+}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent) }
+.theme-toggle svg { width: 16px; height: 16px }
 .nav-hamburger {
   display: none;
   flex-direction: column;

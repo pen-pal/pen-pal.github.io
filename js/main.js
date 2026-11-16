@@ -196,6 +196,15 @@
     if (card) { e.preventDefault(); openDrawer(parseInt(card.dataset.index, 10)); }
   });
 
+  // Theme toggle: flip whatever is showing now and remember the choice.
+  var themeToggle = $("#themeToggle");
+  if (themeToggle) themeToggle.addEventListener("click", function () {
+    var root = document.documentElement;
+    var current = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    root.dataset.theme = current === "light" ? "dark" : "light";
+    try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+  });
+
   // ==========================================
   // ESCAPE KEY
   // ==========================================
