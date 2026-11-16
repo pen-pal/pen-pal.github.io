@@ -761,6 +761,7 @@ a.proj-expand { text-decoration: none }
   color: var(--bg);
   cursor: pointer;
   transition: all .3s;
+  text-decoration: none;
 }
 .btn-filled:hover { background: var(--accent-warm); border-color: var(--accent-warm) }
 
