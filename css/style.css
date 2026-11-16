@@ -561,8 +561,6 @@ section {
 .proj-expand:hover { gap: .7rem }
 a.proj-expand { text-decoration: none }
 .proj-subhead { font-family: var(--mono); font-size: 0.80rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); margin: 3rem 0 1rem }
-.exp-early { padding-top: 2rem; font-family: var(--body); font-size: .95rem; line-height: 1.55; color: var(--ink-muted) }
-.exp-early-lbl { display: block; font-family: var(--mono); font-size: 0.78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-gold); margin-bottom: .4rem }
 
 /* Loading */
 .loading-cell { grid-column: 1/-1; padding: 3rem; text-align: center }

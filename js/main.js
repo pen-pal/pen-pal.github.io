@@ -285,10 +285,7 @@
           tagsHtml +
         '</div>' +
         '</div>';
-    }).join("") +
-    (P.earlyCareer
-      ? '<div class="exp-early reveal"><span class="exp-early-lbl">Early career, 2016 — 2020</span>' + P.earlyCareer + '</div>'
-      : "");
+    }).join("");
     expList.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
   }
 

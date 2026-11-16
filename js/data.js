@@ -215,6 +215,7 @@ const PROFILE = {
         "Led the <strong>move off Datadog</strong> to a self-hosted Prometheus, Grafana, Alloy, Faro, OpenReplay, GlitchTip and PagerDuty stack covering 100% of services, with alerts tied to SLA targets.",
         "Replaced the legacy VPN with <strong>Cloudflare Zero Trust and Tailscale</strong> for identity-aware, least-privilege access to every environment.",
         "Ran <strong>rolling EKS and EC2 upgrades across 8+ clusters</strong> with zero service disruption, plus disaster-recovery drills for validator nodes and RPC endpoints.",
+        "Hardened AWS validator and RPC infrastructure with <strong>least-privilege IAM</strong>, security group isolation and CloudTrail audit logging, and connected Prod, Stage, QA and Dev with VPC peering.",
         "Cut monthly spend by moving edge security from Cloudflare to <strong>AWS WAF</strong> and shutting down QA and Dev outside business hours.",
       ],
       tags: [
@@ -246,9 +247,9 @@ const PROFILE = {
       company: "Innovatetech Pvt. Ltd. · Kathmandu, Nepal",
       bullets: [
         "Led infrastructure for the live-class platform behind <strong>mySecondTeacher</strong>, an ed-tech product serving millions of users through the COVID-19 demand surge.",
-        "<strong>Promoted to Team Lead</strong> after seven months; led and mentored six DevOps engineers and introduced weekly R&D and code review standards.",
+        "<strong>Promoted to Team Lead</strong> after seven months; led and mentored the DevOps team, introduced weekly R&D and code review standards, and reported on infrastructure and security to the CTO.",
         "Designed and built <strong>JMW (Jitsi Meet Multi-tenant)</strong>, which streams live JVB and Jicofo metrics into AWS to autoscale on real demand instead of provisioned peak.",
-        "<strong>Cut cloud spend 50%</strong> across a 10+ account AWS organisation using spot and reserved instances, right-sizing and automated scheduling.",
+        "<strong>Cut cloud spend 50%</strong> across a 10+ account AWS organisation using spot and reserved instances, right-sizing and automated shutdown outside peak hours, with governance on AWS Control Tower.",
         "Added <strong>per-PR preview environments</strong> that cut feedback loops from days to minutes, and blue-green and canary releases for zero-downtime deploys.",
         "Built <strong>shift-left security scanning</strong> into every pipeline (SonarQube, Snyk, Trivy, Checkov) and drove SOC 2, ISO 27001 and GDPR compliance.",
         "Ran EKS with HPA, KEDA, Istio and External Secrets Operator, with tracing on Prometheus, Grafana, Loki, Tempo, ELK and Sentry.",
@@ -270,22 +271,72 @@ const PROFILE = {
     },
     {
       live: true,
-      period: "Jun 2021 — Present",
-      role: "DevOps, MLOps & Platform <em>Consultant</em>",
-      company: "Part-time · Twine, Emergegen AI, Altada",
+      period: "Mar 2025 — Present",
+      role: "DevOps <em>Consultant</em>",
+      company: "Emergegen AI · Remote (freelance, part-time)",
       bullets: [
-        "<strong>Twine</strong> (cross-chain Layer 2): deployed HA EVM node and validator infrastructure on EKS with <strong>sub-second RPC latency and 99.99% uptime</strong>, plus Hardhat and Foundry contract pipelines with security analysis.",
-        "<strong>Emergegen AI</strong>: built ML inference hosting on EKS and ECS with Milvus, and <strong>KEDA autoscaling on RabbitMQ queue depth</strong> that scales GPU instances to zero when idle.",
-        "<strong>Emergegen AI</strong>: deployed Account Factory for Terraform to vend accounts with security baselines (SCPs) in under 30 minutes.",
-        "<strong>Altada</strong>: built real-time pipelines with AWS Glue and Kinesis Firehose (Terragrunt) and designed a secure multi-account AWS architecture.",
-        "Published cross-cloud apps on the <strong>Snowflake Marketplace</strong> with Snowflake Container Services, and nested CloudFormation for metered AWS SaaS Marketplace listings.",
+        "Built ML inference hosting on EKS and ECS with Milvus, and <strong>KEDA autoscaling on RabbitMQ queue depth</strong> that scales GPU instances to zero when idle.",
+        "Deployed <strong>AWS Account Factory for Terraform</strong> to vend accounts with security baselines (SCPs) in under 30 minutes.",
+        "Containerised applications for ECS and EKS, cutting deployment times, and scaled ingress with the NGINX Ingress Controller.",
+        "Designed cloud-native architectures with the developers, improving reliability.",
       ],
-      tags: ["EVM nodes", "KEDA", "AWS AFT", "Snowflake", "LitmusChaos"],
+      tags: ["KEDA", "EKS", "AWS AFT", "Milvus", "RabbitMQ"],
+    },
+    {
+      period: "Freelance",
+      role: "Blockchain & Data Platform <em>Consultant</em>",
+      company: "Twine and other clients · Remote",
+      bullets: [
+        "<strong>Twine</strong> (cross-chain Layer 2): deployed HA EVM node and validator infrastructure on EKS with <strong>sub-second RPC latency and 99.99% uptime</strong>.",
+        "Automated Twine's smart-contract build and deployment with <strong>Hardhat and Foundry</strong>, with security analysis before mainnet release.",
+        "Published AWS and Azure apps on the <strong>Snowflake Marketplace</strong> via Snowflake Container Services, and wrote nested CloudFormation for metered AWS SaaS Marketplace listings.",
+        "Ran Argo CD for zero-downtime deployments, implemented Cilium eBPF networking, chaos-tested with LitmusChaos and built SOC 2 infrastructure controls.",
+      ],
+      tags: ["EVM nodes", "Snowflake", "Cilium", "LitmusChaos"],
+    },
+    {
+      period: "Jun 2021 — Oct 2022",
+      role: "DevOps <em>Consultant</em>",
+      company: "Altada Technology Solutions · Remote (freelance, part-time)",
+      bullets: [
+        "Built real-time data pipelines with <strong>AWS Glue and Kinesis Firehose</strong>, provisioned with Terraform and Terragrunt.",
+        "Designed a <strong>multi-account AWS architecture</strong> that isolates services by environment for security and compliance.",
+        "Wrote a DevOps strategy from scratch and worked with stakeholders in pre-sales to shape the roadmap.",
+      ],
+      tags: ["AWS Glue", "Kinesis", "Terragrunt"],
+    },
+    {
+      period: "Apr 2019 — Apr 2020",
+      role: "Linux System Support <em>Engineer</em>",
+      company: "NepalLink Network · Kathmandu, Nepal",
+      bullets: [
+        "Resolved client hosting issues within SLA across cPanel and ZPanel, email, DNS and SSL certificates, and built VPS servers to client requirements.",
+        "Scanned hosted websites for malware and backdoors with Maldet, ClamAV and CSF.",
+        "Set up <strong>Icinga monitoring</strong>, improving response time to issues by 40%.",
+      ],
+      tags: ["Linux", "Icinga", "ClamAV"],
+    },
+    {
+      period: "Apr 2018 — Apr 2019",
+      role: "Junior Network Monitoring <em>Engineer</em>",
+      company: "Vianet Communications · Kathmandu, Nepal",
+      bullets: [
+        "Analysed bandwidth utilisation and ran proactive fault management across network devices with the NOC and fibre teams.",
+        "Configured switches and OLTs for new POP installations, and wrote scripts that <strong>automate OLT reboots</strong> across regions.",
+      ],
+      tags: ["Networking", "Zabbix", "Bash"],
+    },
+    {
+      period: "Dec 2016 — Feb 2018",
+      role: "Technical <em>Researcher</em>",
+      company: "Datalytics · Kathmandu, Nepal",
+      bullets: [
+        "Delivered client research projects, including voice recognition systems and micro hydro power plants, and guided new recruits.",
+        "Troubleshot network issues and wrote shell scripts that log user access for security monitoring.",
+      ],
+      tags: ["Linux", "Bash", "Cisco"],
     },
   ],
-
-  earlyCareer:
-    "Linux System Support Engineer, NepalLink Network (2019–2020) · Junior Network Monitoring Engineer, Vianet Communications (2018–2019) · Technical Researcher, Datalytics (2016–2018)",
 
   projects: [
     {
