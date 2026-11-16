@@ -29,17 +29,6 @@ const PROFILE = {
 
   heroTags: ["Kubernetes", "AWS", "Terraform", "GitOps", "SOC 2", "FinOps"],
 
-  marqueeItems: [
-    "AWS Certified DevOps <em>Pro</em>",
-    "<em>Kubernetes</em> & GitOps",
-    "SOC 2 & ISO 27001",
-    "Zero-Trust Access",
-    "<em>50%</em> Cloud Spend Cut",
-    "GPU & MLOps Infrastructure",
-    "Zero-Downtime Upgrades",
-    "<em>8+</em> Years in Production"
-  ],
-
   skills: [
     { cat: "Cloud", items: ["AWS", "GCP", "Azure", "DigitalOcean", "Oracle Cloud"], hot: [0, 1] },
     { cat: "Containers & Orchestration", items: ["Kubernetes", "EKS", "k3s", "Helm", "Docker", "ECS", "KEDA", "HPA", "Docker Swarm"], hot: [0, 1, 3] },

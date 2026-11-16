@@ -259,41 +259,6 @@ nav.scrolled { border-color: var(--rule2) }
 }
 .hero-tags span:hover { border-color: var(--accent); color: var(--accent-warm) }
 
-/* ========================================
-   MARQUEE
-   ======================================== */
-.marquee-wrap {
-  overflow: hidden;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--rule);
-  background: var(--bg2);
-}
-.marquee {
-  display: flex;
-  gap: 2.5rem;
-  animation: scroll 40s linear infinite;
-  width: max-content;
-  align-items: center;
-}
-.marquee-item {
-  font-family: var(--mono);
-  font-size: 0.80rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  white-space: nowrap;
-}
-.marquee-item em { color: var(--accent); font-style: normal }
-.marquee-sep {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  color: var(--ink-muted);
-  opacity: .3;
-}
-@keyframes scroll {
-  0% { transform: translateX(0) }
-  100% { transform: translateX(-50%) }
-}
 
 /* ========================================
    SECTION COMMON
@@ -1036,7 +1001,7 @@ footer { padding: 1.5rem var(--gutter); border-top: 1px solid var(--rule); displ
    PRINT — ATS
    ======================================== */
 @media print {
-  nav,.hero,.marquee-wrap,#about,#skills,#experience,#projects,
+  nav,.hero,#about,#skills,#experience,#projects,
   #blog,.cs-overlay,.cs-modal,.drawer-overlay,.drawer,
   #contact,footer,.resume-actions,.resume-card { display: none !important }
   body { background: #fff !important; color: #111 !important; font-family: Arial,sans-serif !important }

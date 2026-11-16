@@ -235,16 +235,6 @@
   var heroStatsEl = $("#heroStats");
   if (heroStatsEl) heroStatsEl.innerHTML = statsHtml("stat-number", "stat-label");
 
-  // -- Marquee --
-  var marqueeEl = $("#marquee");
-  if (marqueeEl && P.marqueeItems) {
-    var doubled = P.marqueeItems.concat(P.marqueeItems);
-    marqueeEl.innerHTML = doubled.map(function (item, i) {
-      return '<span class="marquee-item">' + item + '</span>' +
-             '<span class="marquee-sep">·</span>';
-    }).join("");
-  }
-
   // -- About Meta --
   var aboutMetaEl = $("#aboutMeta");
   if (aboutMetaEl && P.meta) {
