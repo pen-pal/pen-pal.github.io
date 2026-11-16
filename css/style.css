@@ -305,13 +305,16 @@ section {
    ======================================== */
 .about {
   display: grid;
-  grid-template-columns: 14rem minmax(0, 46rem);
+  grid-template-columns: 14rem minmax(0, 1fr);
   gap: 3rem;
+  border-top: 1px solid var(--rule2);
+  padding-top: 1.5rem;
 }
 .about-meta .meta-row {
   padding: .8rem 0;
   border-bottom: 1px solid var(--rule);
 }
+.about-meta .meta-row:first-child { padding-top: 0 }
 .about-meta .meta-row:last-child { border-bottom: none }
 .meta-key {
   display: block;
@@ -332,8 +335,6 @@ section {
   font-size: 1rem;
   line-height: 1.65;
   color: var(--ink-soft);
-  border-top: 1px solid var(--rule2);
-  padding-top: 1.5rem;
 }
 .about-body p+p { margin-top: 1.2rem }
 .about-body strong { color: var(--ink); font-weight: 500 }
