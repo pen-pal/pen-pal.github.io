@@ -53,7 +53,7 @@
   $$(".proj-tab").forEach(function (tab) {
     tab.addEventListener("click", function () {
       $$(".proj-tab").forEach(function (t) { t.classList.remove("active"); });
-      $$(".proj-pane").forEach(function (p) { p.classList.remove("active"); }); // FIX: was truncated
+      $$(".proj-pane").forEach(function (p) { p.classList.remove("active"); });
       tab.classList.add("active");
       var pane = $("#pane-" + tab.dataset.tab);
       if (pane) {
@@ -72,7 +72,7 @@
     var html = '<div class="cs-meta">' + cs.meta + '</div><h2 class="cs-title">' + cs.title + '</h2>';
     cs.sections.forEach(function (s) {
       if (s.type === "metrics") {
-        html += '<div class="cs-section"><h3>' + s.heading + '</h3><div class="cs-metric-grid">'; // FIX: corrupted </h3>
+        html += '<div class="cs-section"><h3>' + s.heading + '</h3><div class="cs-metric-grid">';
         s.metrics.forEach(function (m) {
           html += '<div class="cs-metric"><div class="cs-metric-num">' + m.num + '</div><div class="cs-metric-label">' + m.label + '</div></div>';
         });
@@ -176,13 +176,13 @@
   });
 
   // ==========================================
-  // DATA RENDERING (all gated on PROFILE)
+  // ALL DATA RENDERING — gated on PROFILE
   // ==========================================
   if (typeof PROFILE === "undefined") return;
   var P = PROFILE;
 
   // -- Hero Tags --
-  var heroTagsEl = $("#heroTags"); // FIX: was shadowing PROFILE.heroTags array
+  var heroTagsEl = $("#heroTags");
   if (heroTagsEl && P.heroTags) {
     P.heroTags.forEach(function (tag) {
       var span = document.createElement("span");
@@ -384,7 +384,7 @@
   }
 
   // ==========================================
-  // GITHUB REPOS
+  // GITHUB REPOS (lazy — only on tab click)
   // ==========================================
   window._ghLoaded = false;
   function loadGitHub() {
@@ -425,7 +425,7 @@
   }
 
   // ==========================================
-  // MEDIUM FEED  (FIX: was truncated mid-line)
+  // MEDIUM FEED
   // ==========================================
   var blogGrid = $("#blogGrid");
   if (blogGrid) {
@@ -466,282 +466,3 @@
   }
 
 })();
-//
-//(function () {
-//  "use strict";
-//
-//  function $(sel) { return document.querySelector(sel); }
-//  function $$(sel) { return document.querySelectorAll(sel); }
-//
-//  // Year
-//  var yearEl = document.getElementById("year");
-//  if (yearEl) yearEl.textContent = new Date().getFullYear();
-//
-//  // SCROLL REVEAL
-//  var observer = new IntersectionObserver(function (entries) {
-//    entries.forEach(function (entry) {
-//      if (entry.isIntersecting) {
-//        entry.target.classList.add("visible");
-//        observer.unobserve(entry.target);
-//      }
-//    });
-//  }, { threshold: 0.08, rootMargin: "0px 0px -30px 0px" });
-//
-//  $$(".reveal").forEach(function (el) { observer.observe(el); });
-//
-//  // NAV
-//  var lastScroll = 0;var navbar = document.getElementById("navbar");
-//
-//  window.addEventListener("scroll", function () {
-//    var c = window.pageYOffset;
-//    var h = document.documentElement.scrollHeight - window.innerHeight;
-//    if (navbar) {
-//      navbar.classList.toggle("scrolled", c > 40);
-//      navbar.classList.toggle("hidden", c > lastScroll && c > 100);
-//    }
-//    lastScroll = c;
-//    var prog = document.getElementById("progress");
-//    if (prog && h > 0) prog.style.width = (c /h * 100) + "%";
-//  });
-//
-//  var hamburger = document.getElementById("hamburger");
-//  var navLinks = document.getElementById("navLinks");
-//  if (hamburger && navLinks) {
-//    hamburger.addEventListener("click", function () {
-//      navLinks.classList.toggle("open");
-//    });
-//    navLinks.querySelectorAll("a").forEach(function (l) {
-//      l.addEventListener("click", function () {
-//        navLinks.classList.remove("open");
-//      });
-//    });
-//  }
-//
-//  // TAB SWITCHING
-//  $$(".proj-tab").forEach(function (tab) {
-//    tab.addEventListener("click", function () {
-//      $$(".proj-tab").forEach(function (t) {
-//        t.classList.remove("active");
-//      });
-//      $$(".proj-pane").forEach(function (p) {
-//        p.classList.remove("active");
-//      });
-//      tab.classList.add("active");
-//      var pane = document.getElementById("pane-" + tab.dataset.tab);
-//      if (pane) pane.classList.add("active");
-//    });
-//  });
-//
-//  // CASE STUDY MODAL
-//  function openCaseStudy(i) {
-//    if (typeof CASE_STUDIES === "undefined" || !CASE_STUDIES[i]) return;
-//    var cs = CASE_STUDIES[i];
-//    var html = '<div class="cs-meta">' + cs.meta + '</div>';
-//    html += '<h2 class="cs-title">' + cs.title + '</h2>';
-//    cs.sections.forEach(function (s) {
-//      if (s.type === "metrics") {
-//        html += '<div class="cs-section"><h3>' + s.heading + '</h3><div class="cs-metric-grid">';
-//        s.metrics.forEach(function (m) {
-//          html += '<div class="cs-metric">';
-//          html += '<div class="cs-metric-num">' + m.num + '</div>';
-//          html += '<div class="cs-metric-label">' + m.label + '</div>';
-//          html += '</div>';
-//        });
-//        html += '</div></div>';
-//      } else if (s.type === "timeline") {
-//        html += '<div class="cs-section"><h3>' + s.heading + '</h3><div class="cs-timeline">';
-//        s.items.forEach(function (it) {
-//          html += '<div class="cs-tl-item">';
-//          html += '<div class="cs-tl-phase">' + it.phase + '</div>';
-//          html += '<div class="cs-tl-desc">' + it.desc + '</div>';
-//          html += '</div>';
-//        });
-//        html += '</div></div>';
-//      } else if (s.tags) {
-//        html += '<div class="cs-section"><h3>' + s.heading + '</h3><div class="cs-tags">';
-//        s.tags.forEach(function (t) {
-//          html += '<span>' + t + '</span>';
-//        });
-//        html += '</div></div>';
-//      } else {
-//        html += '<div class="cs-section"><h3>' + s.heading + '</h3>' + s.content + '</div>';
-//      }
-//      html += '<hr class="cs-divider">';
-//    });
-//    var csBody = document.getElementById("csBody");
-//    if (csBody) csBody.innerHTML = html;
-//    var csModal = document.getElementById("csModal");
-//    var csOverlay = document.getElementById("csOverlay");
-//    if (csModal) csModal.classList.add("open");
-//    if (csOverlay) csOverlay.classList.add("open");
-//    document.body.style.overflow = "hidden";
-//  }
-//
-//  function closeCaseStudy () {
-//    var csModal = document.getElementById ("csModal");
-//    var csOverlay = document.getElementById ("csOverlay");
-//    if (csModal) csModal.classList.remove ("open");
-//    if (csOverlay) csOverlay.classList.remove ("open");
-//    document.body.style.overflow = "";
-//  }
-//
-//  var csClose = document.getElementById ("csClose");
-//  var csOverlayEl = document.getElementById ("csOverlay");
-//  if (csClose) csClose.addEventListener ("click", closeCaseStudy);
-//  if (csOverlayEl) csOverlayEl.addEventListener ("click", closeCaseStudy);
-//
-//  document.addEventListener ("click", function (e) {
-//    var btn = e.target.closest (".proj-expand");
-//    if (btn) openCaseStudy (parseInt (btn.dataset.cs));
-//  });// BLOG DRAWER
-//  function openDrawer (i) {
-//    var items = window._mediumItems;
-//    if (!items || !items[i]) return;
-//    var item = items[i];
-//    var date = new Date(item.pubDate).toLocaleDateString("en-US", {
-//      year: "numeric",
-//      month: "long",
-//      day: "numeric"
-//    });
-//    var cats = (item.categories || []).slice(0, 3).join(" · ") || "Article";
-//    var drawerBody = document.getElementById("drawerBody");
-//    if (drawerBody) {
-//      drawerBody.innerHTML = '<div class="drawer-cat">' + cats + '</div>'
-//        + '<h2 class="drawer-title">' + item.title + '</h2>'
-//        + '<div class="drawer-date">' + date + ' · Manish Khadka</div>'
-//        + '<div class="drawer-content">' + item.content + '</div>'
-//        + '<a href="' + item.link + '" target="_blank" class="drawer-external">Read on Medium ↗</a>';
-//    }
-//    var drawer = document.getElementById("drawer");
-//    var drawerOv = document.getElementById("drawerOverlay");
-//    if (drawer) drawer.classList.add("open");
-//    if (drawerOv) drawerOv.classList.add("open");
-//    document.body.style.overflow = "hidden";
-//  }
-//
-//  function closeDrawer() {
-//    var drawer = document.getElementById("drawer");
-//    var drawerOv = document.getElementById("drawerOverlay");
-//    if (drawer) drawer.classList.remove("open");
-//    if (drawerOv) drawerOv.classList.remove("open");
-//    document.body.style.overflow = "";
-//  }
-//
-//  var drawerCloseBtn = document.getElementById("drawerCloseBtn");
-//  var drawerOvEl = document.getElementById("drawerOverlay");
-//  if (drawerCloseBtn) drawerCloseBtn.addEventListener("click", closeDrawer);
-//  if (drawerOvEl) drawerOvEl.addEventListener("click", closeDrawer);
-//
-//  document.addEventListener("click", function (e) {
-//    var card = e.target.closest(".blog-card[data-index]");
-//    if (card) openDrawer(parseInt(card.dataset.index));
-//  });
-//
-//  // PRINT
-//  var printBtn = document.getElementById("printBtn");
-//  if (printBtn) printBtn.addEventListener("click", function () {
-//    window.print();
-//  });
-//
-//  // ESCAPE KEY
-//  document.addEventListener("keydown", function (e) {
-//    if (e.key === "Escape") {
-//      closeDrawer();
-//      closeCaseStudy();
-//    }
-//  });
-//
-//  // GITHUB REPOS
-//  if (typeof PROFILE !== "undefined") {
-//    var P = PROFILE;
-//    var ghGrid = document.getElementById("ghGrid");
-//    if (ghGrid && P.githubUser) {
-//      fetch("https://api.github.com/users/" + P.githubUser + "/repos?sort=updated&per_page=6")
-//        .then(function (r) { return r.json(); })
-//        .then(function (repos) {
-//          if (!Array.isArray(repos) || repos.length === 0) {
-//            ghGrid.innerHTML = '<div class="loading-cell"><div class="loading-text">No public repos. <a href="' + P.github + '" target="_blank" style="color:var(--accent)">View on GitHub →</a></div></div>';
-//            return;}
-//          var langColors = {
-//            JavaScript: "#f1e05a",
-//            TypeScript: "#3178c6",
-//            Python: "#3572A5",
-//            Go: "#00ADD8",
-//            Shell: "#89e051",
-//            HTML: "#e34c26",
-//            CSS: "#563d7c",
-//            Dockerfile: "#384d54",
-//            HCL: "#844FBA"
-//          };
-//          var html = "";
-//          repos.filter(function (r) { return !r.fork; }).slice(0, 6).forEach(function (r, i) {
-//            var langDot = r.language
-//              ? '<span><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:' + (langColors[r.language] || "#888") + ';vertical-align:middle;margin-right:4px"></span>' + r.language + '</span>'
-//              : '';
-//            html += '<div class="proj-card reveal" style="animation-delay:' + (i * 0.06) + 's">';
-//            html += '<div class="proj-num">' + (r.language || "—") + '</div>';
-//            html += '<div class="proj-title">' + r.name.replace(/-/g, " ") + '</div>';
-//            html += '<div class="proj-desc">' + (r.description || "No description provided.") + '</div>';
-//            html += '<div class="proj-foot">';
-//            html += '<div style="display:flex;gap:1rem;font-family:var(--mono);font-size:.68rem;color:var(--ink-muted)">';html += langDot;
-//            html += '<span>★ ' + r.stargazers_count + '</span>';
-//            html += '<span>⑂ ' + r.forks_count + '</span>';
-//            html += '</div>';
-//            html += '<a href="' + r.html_url + '" target="_blank" style="font-family:var(--mono);;text-transform:uppercase;color:var(--accent);text-decoration:none">View →</a>';
-//            html += '</div></div>';
-//          });
-//          ghGrid.innerHTML = html;
-//          ghGrid.querySelectorAll(".reveal").forEach(function (el) {
-//            observer.observe(el);
-//          });
-//        })
-//        .catch(function () {
-//          ghGrid.innerHTML = '<div class="loading-cell"><div class="loading-text">Could not load repos. <a href="' + P.github + '" target="_blank" style="color:var(--accent)">View on GitHub →</a></div></div>';
-//        });
-//    }
-//  }
-//
-//  // MEDIUM FEED
-//  var blogGrid = document.getElementById("blogGrid");
-//  if (blogGrid) {
-//    fetch("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@palpen")
-//      .then(function (r) { return r.json(); })
-//      .then(function (data) {
-//        if (data.status !== "ok" || !data.items || !data.items.length) {
-//          blogGrid.innerHTML = '<div class="loading-cell"><div class="loading-text">Could not load feed. <a href="https://palpen.medium.com" target="_blank" style="color:var(--accent)">Read on Medium →</a></div></div>';
-//          return;
-//        }
-//        var items = data.items.slice(0, 6);
-//        var html = "";
-//        items.forEach(function (item, i) {
-//          var cat = (item.categories || [])[0] || "Article";
-//          var date = new Date(item.pubDate).toLocaleDateString("en-US", {
-//            year: "numeric",
-//            month: "short",
-//            day: "numeric"
-//          });
-//          var excerpt = item.description.replace(/<[^>]*>/g, "").substring(0, 120).trim() + "…";
-//          var thumb = item.thumbnail || (item.content.match(/<img[^>]+src="([^">]+)"/) || [])[1] || "";
-//          var thumbHtml = thumb
-//            ? '<div class="bc-thumb"><img src="' + thumb + '" alt="" loading="lazy" onerror="this.parentElement.innerHTML=\'<div class=bc-ph><span>MK</span></div>\'"></div>'
-//            : '<div class="bc-ph"><span>MK</span></div>';
-//          html += '<div class="blog-card reveal" style="animation-delay:' + (i * 0.06) + 's" data-index="' + i + '">';
-//          html += thumbHtml;
-//          html += '<div class="bc-body"><div class="bc-cat">' + cat + '</div>';
-//          html += '<h3 class="bc-title">' + item.title + '</h3>';
-//          html += '<p class="bc-excerpt">' + excerpt + '</p></div>';
-//          html += '<div class="bc-foot"><span class="bc-date">' + date + '</span>';
-//          html += '<span class="bc-read">Read →</span></div></div>';
-//        });
-//        blogGrid.innerHTML = html;
-//        window._mediumItems = items;
-//        blogGrid.querySelectorAll(".reveal").forEach(function (el) {
-//          observer.observe(el);
-//        });
-//      })
-//      .catch(function () {
-//        blogGrid.innerHTML = '<div class="loading-cell"><div class="loading-text">Could not load articles. <a href="https://palpen.medium.com" target="_blank" style="color:var(--accent)">Read on Medium →</a></div></div>';
-//      });
-//  }
-//
-//})();
