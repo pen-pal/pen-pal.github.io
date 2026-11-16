@@ -16,10 +16,10 @@
     });
   }, { threshold: 0.08, rootMargin: "0px 0px -30px 0px" });
 
-  $$(".reveal").forEach(function (el) { observer.observe(el); });   // FIX: was $$$$ 
+  $$(".reveal").forEach(function (el) { observer.observe(el); });
 
   // ==========================================
-  // NAV
+  // NAV — scroll indicator only, never hides
   // ==========================================
   var lastScroll = 0;
   var navbar = $("#navbar");
@@ -29,7 +29,7 @@
     var h = document.documentElement.scrollHeight - window.innerHeight;
     if (navbar) {
       navbar.classList.toggle("scrolled", c > 40);
-      navbar.classList.toggle("hidden", c > lastScroll && c > 100);
+      // REMOVED: navbar.classList.toggle("hidden", ...) — nav is always visible
     }
     lastScroll = c;
     var prog = $("#progress");

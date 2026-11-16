@@ -73,44 +73,38 @@ body::after {
 }
 
 /* ========================================
-   NAVIGATION
+   NAVIGATION — always visible
    ======================================== */
 nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 100;
-  padding: 1.25rem 3rem;
+  padding: 1.1rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(8,8,8,.92);
+  background: rgba(8,8,8,.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid transparent;
-  transition: all .4s ease;
+  border-bottom: 1px solid var(--rule);
 }
 
-nav.scrolled { border-color: var(--rule) }
-nav.hidden { transform: translateY(-100%) }
+/* Override hide — nav is always visible */
+nav.hidden { transform: none !important }
+nav.scrolled { border-color: var(--rule2) }
 
 .nav-logo {
   font-family: var(--mono);
-  font-size: .75rem;
+  font-size: .78rem;
   letter-spacing: .22em;
   text-transform: uppercase;
-  color: var(--ink-muted);
+  color: var(--ink);
   text-decoration: none;
   transition: color .3s;
 }
 .nav-logo:hover { color: var(--accent) }
 
-.nav-links {
-  display: flex;
-  gap: 2.2rem;
-  list-style: none;
-}
+.nav-links { display: flex; gap: 2.2rem; list-style: none }
 .nav-links a {
   font-family: var(--mono);
   font-size: .72rem;
@@ -124,10 +118,8 @@ nav.hidden { transform: translateY(-100%) }
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 0;
-  height: 1px;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
   background: var(--accent);
   transition: width .3s;
 }
@@ -144,8 +136,7 @@ nav.hidden { transform: translateY(-100%) }
   padding: 4px;
 }
 .nav-hamburger span {
-  width: 22px;
-  height: 1.5px;
+  width: 22px; height: 1.5px;
   background: var(--ink-muted);
   transition: all .3s;
 }
@@ -1540,18 +1531,7 @@ footer {
 @media (max-width: 768px) {
   nav { padding: 1rem 1.5rem }
   .nav-links { display: none }
-  .nav-links.open {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--bg);
-    padding: 2rem 1.5rem;
-    border-bottom: 1px solid var(--rule);
-    gap: 1.5rem;
-  }
+  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); padding: 2rem 1.5rem; border-bottom: 1px solid var(--rule); gap: 1.5rem }
   .nav-hamburger { display: flex }
   section { padding: 4rem 1.5rem }
   .hero { padding: 6rem 1.5rem 3rem }
