@@ -380,7 +380,7 @@
         '<div class="proj-desc">' + o.desc + '</div>' +
         '<div class="proj-tags">' + o.tags.map(function (t) { return '<span class="proj-tag">' + t + '</span>'; }).join("") + '</div>' +
         '<div class="proj-foot"><span></span>' +
-          '<a class="proj-expand" href="' + o.href + '" target="_blank" rel="noopener">View on GitHub ↗</a>' +
+          '<a class="proj-expand" href="' + o.href + '" target="_blank" rel="noopener">View ↗</a>' +
         '</div></div>';
     }).join("");
     ossGrid.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });

@@ -446,6 +446,13 @@ const PROFILE = {
       desc: "rampart is self-hosted uptime monitoring on Postgres; terraform-aws-mongodbatlas is a Terraform module for MongoDB Atlas on AWS.",
       tags: ["Postgres", "Terraform", "MongoDB Atlas"],
     },
+    {
+      title: "AUR packages",
+      href: "https://aur.archlinux.org/packages?O=0&SeB=M&K=pen-pal&SB=p&SO=d&PP=50",
+      role: "Maintainer",
+      desc: "Maintain tfk8s-bin, which converts Kubernetes YAML to Terraform HCL, and shellfirm-bin, a guard against risky shell commands.",
+      tags: ["Arch Linux", "Packaging"],
+    },
   ],
 
   contact: [
