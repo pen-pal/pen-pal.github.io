@@ -239,9 +239,8 @@ nav.scrolled { border-color: var(--rule2) }
   display: flex; gap: .5rem; flex-wrap: wrap;
 }
 .hero-tags span {
-  font-family: var(--mono);
+  font-family: var(--body);
   font-size: 0.80rem;
-  letter-spacing: .08em;
   padding: .35rem .7rem;
   background: var(--chip); border-radius: 6px;
   color: var(--ink-muted);
@@ -364,9 +363,8 @@ section {
 }
 .skill-items { display: flex; flex-wrap: wrap; gap: .35rem }
 .skill-tag {
-  font-family: var(--mono);
+  font-family: var(--body);
   font-size: 0.80rem;
-  letter-spacing: .06em;
   padding: .28rem .65rem;
   background: var(--chip); border-radius: 6px;
   color: var(--ink-muted);
@@ -464,9 +462,8 @@ section {
   margin-top: 1.2rem;
 }
 .exp-tag {
-  font-family: var(--mono);
+  font-family: var(--body);
   font-size: 0.78rem;
-  letter-spacing: .06em;
   padding: .22rem .6rem;
   background: var(--chip); border-radius: 6px;
   color: var(--ink-muted);
@@ -540,9 +537,8 @@ section {
 }
 .proj-tags { display: flex; flex-wrap: wrap; gap: .3rem }
 .proj-tag {
-  font-family: var(--mono);
+  font-family: var(--body);
   font-size: 0.76rem;
-  letter-spacing: .08em;
   padding: .22rem .55rem;
   background: var(--chip); border-radius: 6px;
   color: var(--ink-muted);
@@ -604,7 +600,7 @@ a.proj-expand { text-decoration: none }
 .cs-tl-phase { font-family: var(--mono); font-size: 0.80rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .3rem }
 .cs-tl-desc { font-family: var(--body); font-size: .95rem; color: var(--ink-soft); line-height: 1.6 }
 .cs-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: 1.5rem }
-.cs-tags span { font-family: var(--mono); font-size: 0.78rem; letter-spacing: .08em; padding: .22rem .55rem; background: var(--chip); border-radius: 6px; color: var(--ink-muted) }
+.cs-tags span { font-family: var(--body); font-size: 0.82rem; padding: .22rem .55rem; background: var(--chip); border-radius: 6px; color: var(--ink-muted) }
 .cs-divider { border: none; border-top: 1px solid var(--rule); margin: 2rem 0 }
 
 /* ========================================
