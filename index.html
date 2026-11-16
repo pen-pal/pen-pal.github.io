@@ -25,7 +25,7 @@
     <li><a href="#resume">Resume</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -101,9 +101,9 @@
     <div class="section-number">04</div>
     <h2 class="section-title">What I've <em>built.</em></h2>
   </div>
-  <div class="proj-tabs">
-    <button class="proj-tab active" data-tab="work">Work Projects</button>
-    <button class="proj-tab" data-tab="oss">Open Source</button>
+  <div class="proj-tabs" role="tablist">
+    <button class="proj-tab active" role="tab" aria-selected="true" aria-controls="pane-work" data-tab="work">Work Projects</button>
+    <button class="proj-tab" role="tab" aria-selected="false" aria-controls="pane-oss" data-tab="oss">Open Source</button>
   </div>
   <div class="proj-pane active" id="pane-work">
     <div class="proj-grid" id="workGrid"></div>
@@ -119,8 +119,8 @@
 </section>
 
 <!-- CASE STUDY MODAL -->
-<div class="cs-overlay" id="csOverlay"></div>
-<div class="cs-modal" id="csModal">
+<div class="cs-overlay" id="csOverlay" aria-hidden="true"></div>
+<div class="cs-modal" id="csModal" role="dialog" aria-modal="true" aria-label="Case study">
   <div class="cs-head">
     <button class="cs-close" id="csClose"><span>&times;</span>&nbsp;Close</button>
     <span class="cs-badge">Case Study</span>
@@ -135,7 +135,7 @@
     <h2 class="section-title">From the <em>field.</em></h2>
   </div>
   <div class="blog-header reveal">
-    <a href="https://palpen.medium.com" target="_blank" class="btn-outline">All articles on Medium ↗</a>
+    <a href="https://palpen.medium.com" target="_blank" rel="noopener" class="btn-outline">All articles on Medium ↗</a>
   </div>
   <div class="blog-grid" id="blogGrid">
     <div class="loading-cell">
@@ -146,8 +146,8 @@
 </section>
 
 <!-- BLOG DRAWER -->
-<div class="drawer-overlay" id="drawerOverlay"></div>
-<div class="drawer" id="drawer">
+<div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
   <div class="drawer-head">
     <span>Medium</span>
     <button class="drawer-close" id="drawerCloseBtn">Close ✕</button>
@@ -162,7 +162,7 @@
     <h2 class="section-title">Full <em>CV.</em></h2>
   </div>
   <div class="resume-actions reveal">
-    <a href="https://linkedin.com/in/manishkhadka" target="_blank" class="btn-outline">LinkedIn ↗</a>
+    <a href="https://linkedin.com/in/manishkhadka" target="_blank" rel="noopener" class="btn-outline">LinkedIn ↗</a>
     <button class="btn-filled" id="printBtn">Download PDF</button>
   </div>
   <div class="reveal" style="transition-delay:.1s" id="resumeBody"></div>

@@ -81,10 +81,13 @@
   var navLinks = $("#navLinks");
   if (hamburger && navLinks) {
     hamburger.addEventListener("click", function () {
-      navLinks.classList.toggle("open");
+      hamburger.setAttribute("aria-expanded", navLinks.classList.toggle("open"));
     });
     navLinks.querySelectorAll("a").forEach(function (l) {
-      l.addEventListener("click", function () { navLinks.classList.remove("open"); });
+      l.addEventListener("click", function () {
+        navLinks.classList.remove("open");
+        hamburger.setAttribute("aria-expanded", "false");
+      });
     });
   }
 
@@ -93,9 +96,10 @@
   // ==========================================
   $$(".proj-tab").forEach(function (tab) {
     tab.addEventListener("click", function () {
-      $$(".proj-tab").forEach(function (t) { t.classList.remove("active"); });
+      $$(".proj-tab").forEach(function (t) { t.classList.remove("active"); t.setAttribute("aria-selected", "false"); });
       $$(".proj-pane").forEach(function (p) { p.classList.remove("active"); });
       tab.classList.add("active");
+      tab.setAttribute("aria-selected", "true");
       var pane = $("#pane-" + tab.dataset.tab);
       if (pane) {
         pane.classList.add("active");
@@ -136,19 +140,11 @@
     var csBody = $("#csBody");
     if (csBody) csBody.innerHTML = html;
     var csModal = $("#csModal");
-    var csOverlay = $("#csOverlay");
-    if (csModal) csModal.classList.add("open");
-    if (csOverlay) csOverlay.classList.add("open");
-    document.body.style.overflow = "hidden";
+    if (csModal) csModal.scrollTop = 0;
+    openPanel(csModal, $("#csOverlay"), $("#csClose"));
   }
 
-  function closeCaseStudy() {
-    var csModal = $("#csModal");
-    var csOverlay = $("#csOverlay");
-    if (csModal) csModal.classList.remove("open");
-    if (csOverlay) csOverlay.classList.remove("open");
-    document.body.style.overflow = "";
-  }
+  function closeCaseStudy() { closePanel($("#csModal"), $("#csOverlay")); }
 
   var csClose = $("#csClose");
   var csOverlayEl = $("#csOverlay");
@@ -157,7 +153,7 @@
 
   document.addEventListener("click", function (e) {
     var btn = e.target.closest(".proj-expand");
-    if (btn) openCaseStudy(parseInt(btn.dataset.cs));
+    if (btn) openCaseStudy(parseInt(btn.dataset.cs, 10));
   });
 
   // ==========================================
@@ -192,7 +188,12 @@
 
   document.addEventListener("click", function (e) {
     var card = e.target.closest(".blog-card[data-index]");
-    if (card) openDrawer(parseInt(card.dataset.index));
+    if (card) openDrawer(parseInt(card.dataset.index, 10));
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    var card = e.target.closest && e.target.closest(".blog-card[data-index]");
+    if (card) { e.preventDefault(); openDrawer(parseInt(card.dataset.index, 10)); }
   });
 
   // ==========================================
