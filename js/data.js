@@ -45,7 +45,6 @@ const PROFILE = {
   experience: [
     {
       period: "Feb 2025 — Nov 2026",
-      badge: "ZenLedger",
       role: "Senior DevOps <em>Engineer</em>",
       company: "ZenLedger · United States (remote)",
       bullets: [
@@ -61,7 +60,6 @@ const PROFILE = {
     },
     {
       period: "Nov 2023 — Feb 2025",
-      badge: "CloudHero",
       role: "Senior DevOps <em>Engineer</em>",
       company: "CloudHero · Romania (remote, contract)",
       bullets: [
@@ -77,7 +75,6 @@ const PROFILE = {
     },
     {
       period: "Jul 2021 — Feb 2024",
-      badge: "Innovatetech",
       role: "DevOps Engineer, then <em>Team Lead</em>",
       company: "Innovatetech Pvt. Ltd. · Kathmandu, Nepal",
       bullets: [
@@ -93,7 +90,6 @@ const PROFILE = {
     },
     {
       period: "Feb 2020 — Jul 2021",
-      badge: "IDenTV",
       role: "DevOps <em>Engineer</em>",
       company: "IDenTV · United States (remote)",
       bullets: [
@@ -108,7 +104,6 @@ const PROFILE = {
     {
       live: true,
       period: "Jun 2021 — Present",
-      badge: "Freelance",
       role: "DevOps, MLOps & Platform <em>Consultant</em>",
       company: "Part-time · Twine, Emergegen AI, Altada",
       bullets: [

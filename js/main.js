@@ -281,7 +281,6 @@
         '<div class="exp-left">' +
           leftHtml +
           '<div class="exp-period">' + job.period + '</div>' +
-          '<div class="exp-badge">' + job.badge + '</div>' +
         '</div>' +
         '<div class="exp-right">' +
           '<div class="exp-role">' + job.role + '</div>' +
