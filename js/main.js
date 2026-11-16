@@ -163,7 +163,7 @@
   });
 
   // ==========================================
-  // PRINT
+  // PRINT (ATS resume)
   // ==========================================
   var printBtn = $("#printBtn");
   if (printBtn) printBtn.addEventListener("click", function () { window.print(); });
@@ -316,78 +316,113 @@
     }).join("");
   }
 
-  // -- Resume --
+  // ==========================================
+  // RESUME — clean card (no full inline CV)
+  // ==========================================
   var resumeBody = $("#resumeBody");
   if (resumeBody) {
-    var skillBarsHtml = (P.skillsResume || []).map(function (s) {
-      return '<div class="res-skill-row">' +
-        '<div class="res-skill-meta"><span>' + s.name + '</span><span>' + s.pct + '%</span></div>' +
-        '<div class="res-skill-track"><div class="res-skill-fill" data-w="' + s.pct + '" style="width:0%"></div></div>' +
-        '</div>';
-    }).join("");
-
-    var expHtml = (P.resumeExp || []).map(function (e) {
-      return '<div class="res-exp-item">' +
-        '<div class="res-exp-head"><span class="res-exp-role">' + e.role + '</span><span class="res-exp-dates">' + e.dates + '</span></div>' +
-        '<div class="res-exp-co">' + e.company + '</div>' +
-        '<ul class="res-exp-bullets">' + e.bullets.map(function (b) { return '<li>' + b + '</li>'; }).join("") + '</ul>' +
-        '</div>';
-    }).join("");
-
     var certHtml = (P.certifications || []).map(function (c) {
-      return '<div class="res-cert"><span>' + c.name + '</span><a href="' + c.url + '" target="_blank">Verify ↗</a></div>';
-    }).join("");
-
-    var eduHtml = (P.education || []).map(function (e) {
-      return '<div class="res-edu-item"><div class="res-edu-deg">' + e.degree + '</div><div class="res-edu-school">' + e.school + '</div></div>';
-    }).join("");
-
-    var langHtml = (P.languages || []).map(function (l) {
-      return '<div class="res-lang-row"><span>' + l.lang + '</span><span>' + l.level + '</span></div>';
+      return '<div class="rc-cert">' +
+        '<span class="rc-cert-name">' + c.name + '</span>' +
+        '<a href="' + c.url + '" target="_blank" class="rc-cert-link">Verify ↗</a>' +
+        '</div>';
     }).join("");
 
     var contactInfoHtml = [
-      P.email, P.phone, P.location, P.linkedin.replace("https://", ""), P.github.replace("https://", "")
-    ].map(function (v) { return '<span>' + v + '</span>'; }).join("");
+      { label: "Email", val: P.email },
+      { label: "Phone", val: P.phone },
+      { label: "Location", val: P.location },
+      { label: "LinkedIn", val: P.linkedin.replace("https://", "") },
+      { label: "GitHub", val: P.github.replace("https://", "") },
+      { label: "Medium", val: P.medium.replace("https://", "") }
+    ].map(function (c) {
+      return '<div class="rc-contact-item">' +
+        '<span class="rc-contact-label">' + c.label + '</span>' +
+        '<span>' + c.val + '</span>' +
+        '</div>';
+    }).join("");
+
+    var eduHtml = (P.education || []).map(function (e) {
+      return '<div class="rc-edu-item">' +
+        '<div class="rc-edu-deg">' + e.degree + '</div>' +
+        '<div class="rc-edu-sch">' + e.school + '</div>' +
+        '</div>';
+    }).join("");
 
     resumeBody.innerHTML =
-      '<div class="res-sidebar">' +
-        '<div class="res-avatar">MK</div>' +
-        '<div class="res-name">' + P.name + '</div>' +
-        '<div class="res-title-badge">' + P.title + '</div>' +
-        '<div class="res-divider"></div>' +
-        '<div class="res-section-lbl">Contact</div>' +
-        '<div class="res-contact-info">' + contactInfoHtml + '</div>' +
-        '<div class="res-divider"></div>' +
-        '<div class="res-section-lbl">Core Skills</div>' +
-        '<div id="resSkilBars">' + skillBarsHtml + '</div>' +
-        '<div class="res-divider"></div>' +
-        '<div class="res-section-lbl">Languages</div>' +
-        '<div class="res-langs">' + langHtml + '</div>' +
-      '</div>' +
-      '<div class="res-main">' +
-        '<div class="res-block">' +
-          '<div class="res-block-lbl">Summary</div>' +
-          '<p class="res-summary">Senior DevOps Engineer with 7+ years of experience designing, building, and operating complex cloud infrastructures across AWS, GCP, and Azure. Specializes in Kubernetes orchestration, GitOps workflows, CI/CD automation, and multi-cloud migrations. Track record of achieving up to 50% cost reductions while elevating security posture and compliance readiness. AWS Certified DevOps Engineer — Professional.</p>' +
+      '<div class="resume-card">' +
+        '<div class="rc-left">' +
+          '<div class="rc-name">' + P.name + '</div>' +
+          '<div class="rc-jobtitle">' + P.title + '</div>' +
+          '<div class="rc-stats">' +
+            '<div><div class="rc-stat-n">7<span>+</span></div><div class="rc-stat-l">Years in cloud</div></div>' +
+            '<div><div class="rc-stat-n">50<span>%</span></div><div class="rc-stat-l">Avg. cost reduction</div></div>' +
+            '<div><div class="rc-stat-n">3</div><div class="rc-stat-l">Cloud platforms</div></div>' +
+            '<div><div class="rc-stat-n">5</div><div class="rc-stat-l">Companies scaled</div></div>' +
+          '</div>' +
+          certHtml +
         '</div>' +
-        '<div class="res-block"><div class="res-block-lbl">Experience</div>' + expHtml + '</div>' +
-        '<div class="res-block"><div class="res-block-lbl">Certifications</div>' + certHtml + '</div>' +
-        '<div class="res-block"><div class="res-block-lbl">Education</div>' + eduHtml + '</div>' +
+        '<div class="rc-right">' +
+          '<div>' +
+            '<div class="rc-section-lbl">Contact</div>' +
+            contactInfoHtml +
+          '</div>' +
+          '<div>' +
+            '<div class="rc-section-lbl">Education</div>' +
+            eduHtml +
+          '</div>' +
+          '<p style="font-family:var(--body);font-size:1rem;line-height:1.7;color:var(--ink-muted);font-style:italic;margin-top:auto">' +
+            'Full CV available as PDF — click Download above, or connect on LinkedIn.' +
+          '</p>' +
+        '</div>' +
       '</div>';
+  }
 
-    // Animate skill bars on scroll
-    var skillBarIO = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll(".res-skill-fill").forEach(function (bar) {
-            bar.style.width = bar.dataset.w + "%";
-          });
-          skillBarIO.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    var sbContainer = $("#resSkilBars");
-    if (sbContainer) skillBarIO.observe(sbContainer);
+  // ATS print resume
+  var resumePrint = $("#resumePrint");
+  if (resumePrint) {
+    var expPrintHtml = (P.resumeExp || []).map(function (e) {
+      return '<div style="margin-bottom:12pt">' +
+        '<div style="display:flex;justify-content:space-between;font-weight:bold">' +
+          '<span>' + e.role + '</span><span>' + e.dates + '</span>' +
+        '</div>' +
+        '<div style="font-style:italic;color:#555;margin-bottom:4pt">' + e.company + '</div>' +
+        '<ul style="padding-left:16pt">' +
+          e.bullets.map(function (b) { return '<li style="margin-bottom:2pt">' + b.replace(/<[^>]*>/g,'') + '</li>'; }).join("") +
+        '</ul>' +
+        '</div>';
+    }).join("");
+
+    var certPrintHtml = (P.certifications || []).map(function (c) {
+      return '<div style="margin-bottom:6pt">' + c.name + '</div>';
+    }).join("");
+
+    var eduPrintHtml = (P.education || []).map(function (e) {
+      return '<div style="margin-bottom:6pt"><strong>' + e.degree + '</strong><br>' + e.school + '</div>';
+    }).join("");
+
+    var allSkills = (P.skills || []).map(function (g) { return g.items.join(", "); }).join(" | ");
+
+    resumePrint.innerHTML =
+      '<div style="font-family:Arial,sans-serif;font-size:11pt;color:#111;line-height:1.5;max-width:720px;margin:0 auto">' +
+        '<h1 style="font-size:20pt;margin-bottom:2pt">' + P.name + '</h1>' +
+        '<p style="color:#555;font-size:11pt;margin-bottom:6pt">' + P.title + '</p>' +
+        '<p style="font-size:9pt;color:#555;margin-bottom:16pt">' +
+          P.email + ' · ' + P.phone + ' · ' + P.location + ' · ' +
+          P.linkedin.replace("https://","") + ' · ' + P.github.replace("https://","") +
+        '</p>' +
+        '<hr style="border:none;border-top:1.5px solid #111;margin-bottom:10pt">' +
+        '<h2 style="font-size:10pt;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8pt">Professional Summary</h2>' +
+        '<p style="font-size:10pt;color:#333;margin-bottom:16pt">Senior DevOps Engineer with 7+ years of experience designing, building, and operating complex cloud infrastructures across AWS, GCP, and Azure. Specializes in Kubernetes, GitOps, CI/CD automation, and multi-cloud migrations. Track record of up to 50% cost reductions. AWS Certified DevOps Engineer — Professional.</p>' +
+        '<h2 style="font-size:10pt;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8pt">Technical Skills</h2>' +
+        '<p style="font-size:10pt;color:#333;margin-bottom:16pt">' + allSkills + '</p>' +
+        '<h2 style="font-size:10pt;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8pt">Experience</h2>' +
+        expPrintHtml +
+        '<h2 style="font-size:10pt;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8pt">Certifications</h2>' +
+        certPrintHtml +
+        '<h2 style="font-size:10pt;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8pt">Education</h2>' +
+        eduPrintHtml +
+      '</div>';
   }
 
   // ==========================================
