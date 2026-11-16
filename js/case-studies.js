@@ -1,227 +1,202 @@
+// Case studies opened from the Work Projects grid (PROFILE.projects[].caseStudy is an index here).
+// Only include figures that also appear on the CV.
 const CASE_STUDIES = [
   {
-    meta: "Security & Compliance · Zenledger · 2025",
-    title: "SOC2 & ISO Compliance Automation Framework",
+    meta: "Security & Compliance · ZenLedger 2025–2026 · Innovatetech 2021–2024",
+    title: "SOC 2 & ISO 27001 Programmes",
     sections: [
       {
         heading: "The Challenge",
-        content: `<p>Zenledger, a rapidly growing crypto tax platform, needed SOC2 Type II and ISO 27001 certifications to serve enterprise clients. The existing infrastructure had grown organically without formal compliance controls — scattered access policies, inconsistent audit logging, and manual secrets rotation created significant gaps.</p><p>The timeline was aggressive: certification within two quarters while the engineering team continued shipping product features.</p>`
+        content: `<p>Both a crypto tax platform and an ed-tech product serving millions of users needed SOC 2 and ISO 27001 to sell to larger customers — while engineering kept shipping. The infrastructure had to be brought up to the controls an auditor expects without stalling delivery.</p>`
       },
       {
         type: "metrics",
-        heading: "Key Metrics",
+        heading: "At a Glance",
         metrics: [
-          { num: "0", label: "Critical findings" },
-          { num: "2", label: "Quarters to certify" },
-          { num: "47", label: "Controls automated" }
+          { num: "2", label: "Companies" },
+          { num: "100%", label: "Pipelines scanned" },
+          { num: "0", label: "Legacy VPNs left" }
         ]
       },
       {
         type: "timeline",
-        heading: "Approach",
+        heading: "What I Did",
         items: [
-          { phase: "Discovery & Gap Analysis", desc: "Audited existing infrastructure against SOC2 Trust Service Criteria and ISO 27001 Annex A. Mapped 47 required controls to existing tooling, identifying 23 gaps." },
-          { phase: "Infrastructure Hardening", desc: "Implemented <strong>Kyverno admission policies</strong> for Kubernetes, enforcing pod security standards. Deployed <strong>HashiCorp Vault</strong> for centralized secrets management with automatic rotation." },
-          { phase: "Continuous Compliance Pipeline", desc: "Built automated scanning with <strong>Trivy, AWS Inspector, and Checkov</strong> on every infrastructure change. Terraform plans validated against CIS benchmarks before apply." },
-          { phase: "Audit Logging & Monitoring", desc: "Centralized audit trails via <strong>CloudWatch Logs + Athena</strong> with 365-day retention. Real-time alerting for policy violations and configuration drift." },
-          { phase: "Certification", desc: "Generated compliance documentation from infrastructure-as-code. Both SOC2 Type II and ISO 27001 achieved with <strong>zero critical findings</strong>." }
+          { phase: "Programme lead", desc: "Ran <strong>auditor and tooling selection</strong> at ZenLedger and drove SOC 2, ISO 27001 and GDPR work at Innovatetech." },
+          { phase: "Zero-trust access", desc: "Replaced the legacy VPN with <strong>Cloudflare Zero Trust and Tailscale</strong>, giving identity-aware, least-privilege access to every environment." },
+          { phase: "Hardened infrastructure", desc: "Locked down validator and RPC infrastructure with <strong>least-privilege IAM</strong>, security group isolation and <strong>CloudTrail</strong> audit logging." },
+          { phase: "Shift-left scanning", desc: "Built <strong>SonarQube, Snyk, Trivy and Checkov</strong> into every pipeline; adopted distroless containers, ClamAV file scanning and VPC endpoints." },
+          { phase: "Recovery", desc: "Designed the disaster-recovery strategy on <strong>automated AWS Backup</strong> and ran DR drills for production nodes and endpoints." }
         ]
       },
       {
-        heading: "Technical Stack",
-        tags: ["Kyverno", "HashiCorp Vault", "Trivy", "AWS Inspector", "Checkov", "Terraform", "CloudWatch", "Athena", "AWS Config"]
-      },
-      {
-        heading: "Outcome",
-        content: `<p>The framework transformed compliance from a periodic scramble into a <strong>continuous, automated process</strong>. New infrastructure changes are validated against compliance requirements before deployment, reducing audit preparation time by an estimated 80%.</p>`
+        heading: "Stack",
+        tags: ["Cloudflare Zero Trust", "Tailscale", "IAM", "CloudTrail", "Trivy", "Snyk", "Checkov", "SonarQube", "AWS Backup"]
       }
     ]
   },
   {
-    meta: "Blockchain Infrastructure · Freelance · 2024–2026",
+    meta: "Blockchain Infrastructure · Twine (freelance)",
     title: "High-Availability EVM Node Infrastructure on EKS",
     sections: [
       {
         heading: "The Challenge",
-        content: `<p>Blockchain applications demand exceptional reliability and low-latency RPC access. Validator nodes must maintain near-perfect uptime to avoid slashing penalties, while RPC endpoints need sub-second response times under variable load.</p>`
+        content: `<p>Twine, a cross-chain Layer 2, needed EVM nodes and validators that stay up and answer RPC calls quickly, and a safe way to ship smart contracts to mainnet.</p>`
       },
       {
         type: "metrics",
-        heading: "Key Metrics",
+        heading: "At a Glance",
         metrics: [
           { num: "<1s", label: "RPC latency" },
-          { num: "99.99%", label: "Uptime achieved" },
-          { num: "3", label: "Availability zones" }
+          { num: "99.99%", label: "Uptime" },
+          { num: "L2", label: "Cross-chain network" }
         ]
       },
       {
         type: "timeline",
-        heading: "Architecture",
+        heading: "What I Did",
         items: [
-          { phase: "Multi-AZ EKS Cluster", desc: "Deployed EKS across <strong>3 availability zones</strong> with dedicated node groups. Topology spread constraints ensure even distribution." },
-          { phase: "Optimized Networking", desc: "<strong>AWS NLB with cross-zone load balancing</strong> for RPC traffic. Host networking for validator pods to minimize latency." },
-          { phase: "Autoscaling & Resilience", desc: "Custom <strong>Karpenter provisioners</strong> for rapid scaling. PodDisruptionBudgets ensure minimum validator availability." },
-          { phase: "Smart Contract CI/CD", desc: "Automated pipelines using <strong>Hardhat and Foundry</strong> with static analysis, fuzz testing, and gas optimization before mainnet." },
-          { phase: "Observability", desc: "<strong>Prometheus + custom exporters</strong> tracking block sync height, peer count, RPC latency percentiles, and attestation rates." }
+          { phase: "Nodes on EKS", desc: "Deployed <strong>high-availability EVM node and validator infrastructure</strong> on Amazon EKS." },
+          { phase: "Contract pipelines", desc: "Automated smart-contract build and deployment with <strong>Hardhat and Foundry</strong>, with security analysis before mainnet release." }
         ]
       },
       {
-        heading: "Technical Stack",
-        tags: ["Amazon EKS", "Kubernetes", "Karpenter", "AWS NLB", "Terraform", "Hardhat", "Foundry", "Prometheus", "Grafana"]
-      },
-      {
-        heading: "Outcome",
-        content: `<p>The infrastructure has maintained <strong>99.99% uptime</strong> with P99 RPC latency under 800ms. The automated pipeline has caught multiple vulnerabilities before mainnet, with zero critical issues reaching production.</p>`
+        heading: "Stack",
+        tags: ["Amazon EKS", "Kubernetes", "EVM", "Validators", "Hardhat", "Foundry"]
       }
     ]
   },
   {
-    meta: "Multi-Cloud / Data · Freelance · 2024",
-    title: "Cross-Cloud Snowflake Marketplace Distribution",
+    meta: "Databases · ZenLedger · 2025–2026",
+    title: "From Timescale Cloud to Self-Hosted HA TimescaleDB",
     sections: [
       {
         heading: "The Challenge",
-        content: `<p>The client needed to distribute a native application on the Snowflake Marketplace executing across both AWS and Azure — while meeting Snowflake's strict requirements for metering, security boundaries, and automated provisioning.</p>`
+        content: `<p>Time-series data lived on Timescale Cloud. Bringing it in-house meant running a highly available cluster with reliable backups — and moving terabytes without a long outage.</p>`
       },
       {
         type: "metrics",
-        heading: "Key Metrics",
+        heading: "At a Glance",
         metrics: [
-          { num: "2", label: "Cloud providers" },
-          { num: "1", label: "Unified artifact" },
-          { num: "100%", label: "Metering compliance" }
+          { num: "3", label: "Node HA cluster" },
+          { num: "5 TB+", label: "Of backups" },
+          { num: "14→15", label: "RDS upgrade, zero downtime" }
         ]
       },
       {
         type: "timeline",
-        heading: "Approach",
+        heading: "What I Did",
         items: [
-          { phase: "Snowflake Container Services", desc: "Built a containerized application running natively within Snowflake compute, meeting all Marketplace listing requirements." },
-          { phase: "Nested CloudFormation", desc: "Modular, nested stacks with parameter validation, cross-stack references, and conditional resource creation." },
-          { phase: "Cross-Cloud Execution", desc: "Abstraction layers enabling the same package to execute on both <strong>AWS and Azure</strong> through Snowflake's multi-cloud capabilities." },
-          { phase: "Compliance & Metering", desc: "Integrated Snowflake's usage metering APIs. Implemented tenant isolation and data residency compliance." }
+          { phase: "Cluster", desc: "Built a <strong>3-node high-availability TimescaleDB cluster</strong> with Autobase." },
+          { phase: "Backups", desc: "Set up <strong>pgBackRest</strong> holding 5 TB+ of backups." },
+          { phase: "Migration", desc: "Moved off Timescale Cloud <strong>with minimal downtime</strong>." },
+          { phase: "RDS upgrade", desc: "Separately upgraded Amazon RDS from <strong>PostgreSQL 14 to 15 with zero downtime</strong>." },
+          { phase: "Upstream", desc: "Contributed back to Autobase, including <strong>configurable HAProxy failover</strong> so long-running queries survive." }
         ]
       },
       {
-        heading: "Technical Stack",
-        tags: ["Snowflake", "Container Services", "CloudFormation", "AWS", "Azure", "Docker"]
-      },
-      {
-        heading: "Outcome",
-        content: `<p>Successfully listed on the Snowflake Marketplace with full cross-cloud support. Automated provisioning reduced customer onboarding from days to minutes.</p>`
+        heading: "Stack",
+        tags: ["TimescaleDB", "PostgreSQL", "Autobase", "pgBackRest", "HAProxy", "Amazon RDS"]
       }
     ]
   },
   {
-    meta: "Platform Engineering · Innovatetech · 2022",
-    title: "Per-PR Immutable Preview Environments",
+    meta: "Observability · ZenLedger · 2025–2026",
+    title: "Moving Observability off Datadog",
     sections: [
       {
         heading: "The Challenge",
-        content: `<p>QA cycles were bottlenecked by shared staging environments. Developers waited days for access, environments accumulated state pollution, and reproducing bugs required manual setup.</p>`
+        content: `<p>Monitoring ran on Datadog. The goal was a self-hosted stack that covers every service end to end — metrics, front-end telemetry, session replay, errors and paging — with alerts that mean something.</p>`
       },
       {
         type: "metrics",
-        heading: "Key Metrics",
+        heading: "At a Glance",
         metrics: [
-          { num: "Days→Min", label: "Feedback loop" },
-          { num: "100%", label: "Environment isolation" },
-          { num: "~$0", label: "Idle cost" }
+          { num: "100%", label: "Services covered" },
+          { num: "7", label: "Tools in the stack" },
+          { num: "SLA", label: "Driven alerting" }
         ]
       },
       {
         type: "timeline",
-        heading: "Architecture",
+        heading: "What I Did",
         items: [
-          { phase: "GitOps Foundation", desc: "<strong>ArgoCD ApplicationSets</strong> watching for PR events. Each PR triggers a namespaced Kubernetes environment with full stack." },
-          { phase: "Environment Composition", desc: "<strong>Helm charts</strong> parameterized per PR with seeded databases, Vault secrets, and ingress routing." },
-          { phase: "Automated Lifecycle", desc: "GitHub Actions handle creation on PR open, updates on push, and <strong>automatic teardown on merge/close</strong>." },
-          { phase: "Developer Experience", desc: "PR comments include preview URLs, environment status, and teardown commands. Slack notifications when ready." }
+          { phase: "Metrics & collection", desc: "<strong>Prometheus and Grafana</strong>, with <strong>Alloy</strong> as the collector." },
+          { phase: "Front end", desc: "<strong>Faro</strong> for browser telemetry and <strong>OpenReplay</strong> for session replay." },
+          { phase: "Errors & paging", desc: "<strong>GlitchTip</strong> for error tracking and <strong>PagerDuty</strong> for on-call." },
+          { phase: "Alerting", desc: "Tied alert thresholds to <strong>SLA targets</strong> rather than arbitrary limits." }
         ]
       },
       {
-        heading: "Technical Stack",
-        tags: ["ArgoCD", "ApplicationSets", "GitHub Actions", "Kubernetes", "Helm", "Terraform", "Vault"]
-      },
-      {
-        heading: "Outcome",
-        content: `<p>Feedback loops compressed from <strong>days to minutes</strong>. QA tested against clean environments for every change. Environment-related bugs dropped to near-zero.</p>`
+        heading: "Stack",
+        tags: ["Prometheus", "Grafana", "Alloy", "Faro", "OpenReplay", "GlitchTip", "PagerDuty"]
       }
     ]
   },
   {
-    meta: "MLOps · IDenTV · 2020–2021",
-    title: "GPU-Sharing ML Inference Platform",
+    meta: "Real-time Video · Innovatetech · 2021–2024",
+    title: "JMW — Jitsi Meet Multi-tenant",
     sections: [
       {
         heading: "The Challenge",
-        content: `<p>IDenTV's video intelligence platform ran ML inference on expensive GPU instances. Most models didn't fully utilize GPU capacity, but Kubernetes allocated entire GPUs to single pods — significant waste and inflated bills.</p>`
+        content: `<p><a href="https://www.mysecondteacher.com/" target="_blank" rel="noopener">mySecondTeacher</a> moved classes online during COVID-19 and its live-class platform had to serve millions of users. Provisioning video bridges for peak load all day is expensive; under-provisioning drops classes.</p>`
       },
       {
         type: "metrics",
-        heading: "Key Metrics",
+        heading: "At a Glance",
         metrics: [
-          { num: "60%+", label: "Cost reduction" },
-          { num: "3-4x", label: "GPU utilization" },
-          { num: "$12K/mo", label: "Saved" }
+          { num: "M+", label: "Users served" },
+          { num: "50%", label: "Cloud spend cut" },
+          { num: "6", label: "Engineers led" }
         ]
       },
       {
         type: "timeline",
-        heading: "Approach",
+        heading: "What I Did",
         items: [
-          { phase: "GPU Time-Slicing", desc: "Enabled <strong>NVIDIA GPU time-slicing</strong> on EKS, allowing multiple pods to share physical GPUs." },
-          { phase: "MPS Integration", desc: "<strong>NVIDIA Multi-Process Service (MPS)</strong> for concurrent GPU access with better throughput." },
-          { phase: "Monitoring", desc: "<strong>DCGM Exporter + Prometheus</strong> for GPU utilization metrics. Grafana dashboards for per-pod tracking." },
-          { phase: "Cost Optimization", desc: "Combined GPU sharing with <strong>Spot Instances</strong> and predictive autoscaling based on queue depth." }
+          { phase: "Design", desc: "Designed and built <strong>JMW</strong>, a multi-tenancy layer on top of Jitsi Meet." },
+          { phase: "Live signals", desc: "Streamed <strong>JVB and Jicofo metrics</strong> into AWS in real time." },
+          { phase: "Autoscaling", desc: "Scaled out from <strong>custom AMIs</strong> on real demand instead of provisioned peak capacity." },
+          { phase: "Cost", desc: "Alongside spot and reserved instances and right-sizing, helped <strong>cut cloud spend 50%</strong> across a 10+ account AWS organisation." }
         ]
       },
       {
-        heading: "Technical Stack",
-        tags: ["Kubernetes", "NVIDIA MPS", "DCGM", "EKS", "Prometheus", "Grafana", "Spot Instances"]
-      },
-      {
-        heading: "Outcome",
-        content: `<p>GPU utilization increased from ~25% to over 80%. Per-inference costs dropped by 60%+, saving <strong>$12K/month</strong> while maintaining sub-100ms P95 latency.</p>`
+        heading: "Stack",
+        tags: ["Jitsi Meet", "JVB", "Jicofo", "AWS", "Custom AMIs", "Autoscaling", "Control Tower"]
       }
     ]
   },
   {
-    meta: "Cloud Governance · Freelance · 2024",
-    title: "AWS Multi-Account Factory with Terraform",
+    meta: "MLOps / GPU · IDenTV 2020–2021 · Emergegen AI (freelance)",
+    title: "GPU Sharing and Scale-to-Zero for ML Inference",
     sections: [
       {
         heading: "The Challenge",
-        content: `<p>The organization was scaling across multiple AWS accounts without consistent governance. Each new account required manual setup — leading to configuration drift and compliance gaps.</p>`
+        content: `<p>Real-time video analytics — facial identification, aerial and object detection — ran on GPUs that Kubernetes hands out one whole card per pod, so most of each card sat idle. Later, at Emergegen AI, GPU instances were burning money between jobs.</p>`
       },
       {
         type: "metrics",
-        heading: "Key Metrics",
+        heading: "At a Glance",
         metrics: [
-          { num: "<30m", label: "Account provisioning" },
-          { num: "0", label: "Config drift" },
-          { num: "100%", label: "Baseline coverage" }
+          { num: "60%+", label: "Per-inference cost cut" },
+          { num: "3", label: "Vision model services" },
+          { num: "→0", label: "GPUs when idle" }
         ]
       },
       {
         type: "timeline",
-        heading: "Approach",
+        heading: "What I Did",
         items: [
-          { phase: "Control Tower", desc: "<strong>AWS Control Tower</strong> with custom guardrails, mandatory SCPs, and centralized logging." },
-          { phase: "AFT Pipeline", desc: "<strong>Account Factory for Terraform</strong> automating account vending with standardized baselines." },
-          { phase: "IAM Guardrails", desc: "<strong>SCPs</strong> preventing dangerous actions. Automated IAM provisioning with least-privilege defaults." },
-          { phase: "Continuous Compliance", desc: "<strong>AWS Config rules</strong> continuously evaluate against CIS benchmarks. Drift triggers auto-remediation." }
+          { phase: "Share the card", desc: "Engineered <strong>GPU sharing across pods</strong> with the NVIDIA device plugin and MPS." },
+          { phase: "Containerise models", desc: "Containerised ML services and shipped them with <strong>Helm charts</strong> on CircleCI and TravisCI." },
+          { phase: "Air-gapped installs", desc: "Packaged a <strong>single-node k3s cluster with pre-baked models</strong> as a golden AMI and ISO for government environments." },
+          { phase: "Scale to zero", desc: "At Emergegen AI, built <strong>KEDA autoscaling on RabbitMQ queue depth</strong> that scales GPU instances to zero when idle." }
         ]
       },
       {
-        heading: "Technical Stack",
-        tags: ["AWS AFT", "Terraform", "Control Tower", "IAM", "SCP", "AWS Config", "EventBridge"]
-      },
-      {
-        heading: "Outcome",
-        content: `<p>New accounts provisioned in under 30 minutes with <strong>zero configuration drift</strong>. Security baselines enforced automatically. Eliminated the manual setup bottleneck entirely.</p>`
+        heading: "Stack",
+        tags: ["Kubernetes", "NVIDIA device plugin", "MPS", "k3s", "Packer", "Ansible", "KEDA", "RabbitMQ", "Milvus"]
       }
     ]
   }
 ];
-

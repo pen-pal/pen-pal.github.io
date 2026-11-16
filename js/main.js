@@ -225,6 +225,16 @@
     });
   }
 
+  // -- Stats (hero card and resume card share one source) --
+  function statsHtml(numCls, labelCls) {
+    return (P.stats || []).map(function (s) {
+      return '<div><div class="' + numCls + '">' + s.num + (s.unit ? '<span>' + s.unit + '</span>' : '') + '</div>' +
+        '<div class="' + labelCls + '">' + s.label + '</div></div>';
+    }).join("");
+  }
+  var heroStatsEl = $("#heroStats");
+  if (heroStatsEl) heroStatsEl.innerHTML = statsHtml("stat-number", "stat-label");
+
   // -- Marquee --
   var marqueeEl = $("#marquee");
   if (marqueeEl && P.marqueeItems) {
@@ -293,7 +303,10 @@
         '</div>' +
         '<div class="exp-ghost" aria-hidden="true">0' + (idx + 1) + '</div>' +
         '</div>';
-    }).join("");
+    }).join("") +
+    (P.earlyCareer
+      ? '<div class="exp-early reveal"><span class="exp-early-lbl">Early career, 2016 — 2020</span>' + P.earlyCareer + '</div>'
+      : "");
     expList.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
   }
 
@@ -306,7 +319,7 @@
         ? '<button class="proj-expand" data-cs="' + proj.caseStudy + '">Case Study →</button>'
         : "";
       return '<div class="proj-card reveal" style="transition-delay:' + (i * .06) + 's">' +
-        '<div class="proj-num">' + proj.num + '</div>' +
+        '<div class="proj-num">' + ("0" + (i + 1)).slice(-2) + '</div>' +
         '<div class="proj-title">' + proj.title + '</div>' +
         '<div class="proj-desc">' + proj.desc + '</div>' +
         (proj.impact ? '<div class="proj-impact">↑ ' + proj.impact + '</div>' : '') +
@@ -391,12 +404,7 @@
         '<div class="rc-left">' +
           '<div class="rc-name">' + P.name + '</div>' +
           '<div class="rc-jobtitle">' + P.title + '</div>' +
-          '<div class="rc-stats">' +
-            '<div><div class="rc-stat-n">7<span>+</span></div><div class="rc-stat-l">Years in cloud</div></div>' +
-            '<div><div class="rc-stat-n">50<span>%</span></div><div class="rc-stat-l">Avg. cost reduction</div></div>' +
-            '<div><div class="rc-stat-n">3</div><div class="rc-stat-l">Cloud platforms</div></div>' +
-            '<div><div class="rc-stat-n">5</div><div class="rc-stat-l">Companies scaled</div></div>' +
-          '</div>' +
+          '<div class="rc-stats">' + statsHtml("rc-stat-n", "rc-stat-l") + '</div>' +
           certHtml +
         '</div>' +
         '<div class="rc-right">' +
