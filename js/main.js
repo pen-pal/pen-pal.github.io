@@ -194,16 +194,17 @@
   // -- Marquee --
   var marqueeEl = $("#marquee");
   if (marqueeEl && P.marqueeItems) {
-    var items = P.marqueeItems.concat(P.marqueeItems); // duplicate for seamless loop
-    marqueeEl.innerHTML = items.map(function (item) {
-      return '<span class="marquee-item">' + item + '</span>';
-    }).join('<span class="marquee-sep">·</span>');
+    var doubled = P.marqueeItems.concat(P.marqueeItems);
+    marqueeEl.innerHTML = doubled.map(function (item, i) {
+      return '<span class="marquee-item">' + item + '</span>' +
+             '<span class="marquee-sep">·</span>';
+    }).join("");
   }
 
   // -- About Meta --
-  var aboutMeta = $("#aboutMeta");
-  if (aboutMeta && P.meta) {
-    aboutMeta.innerHTML = P.meta.map(function (row) {
+  var aboutMetaEl = $("#aboutMeta");
+  if (aboutMetaEl && P.meta) {
+    aboutMetaEl.innerHTML = P.meta.map(function (row) {
       return '<div class="meta-row">' +
         '<span class="meta-key">' + row.key + '</span>' +
         '<span class="meta-val"' + (row.color ? ' style="color:' + row.color + '"' : '') + '>' + row.val + '</span>' +
@@ -215,13 +216,13 @@
   var skillsGrid = $("#skillsGrid");
   if (skillsGrid && P.skills) {
     skillsGrid.innerHTML = P.skills.map(function (group) {
-      var itemsHtml = group.items.map(function (item, i) {
-        var hot = group.hot && group.hot.indexOf(i) !== -1;
-        return '<span class="skill-tag' + (hot ? ' hot' : '') + '">' + item + '</span>';
+      var tagsHtml = group.items.map(function (item, i) {
+        var isHot = group.hot && group.hot.indexOf(i) !== -1;
+        return '<span class="skill-tag' + (isHot ? ' hot' : '') + '">' + item + '</span>';
       }).join("");
       return '<div class="skill-group reveal">' +
         '<div class="skill-cat">' + group.cat + '</div>' +
-        '<div class="skill-items">' + itemsHtml + '</div>' +
+        '<div class="skill-items">' + tagsHtml + '</div>' +
         '</div>';
     }).join("");
     skillsGrid.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
@@ -262,25 +263,23 @@
     expList.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
   }
 
-  // -- Work Projects Grid --
+  // -- Work Projects --
   var workGrid = $("#workGrid");
   if (workGrid && P.projects) {
     workGrid.innerHTML = P.projects.map(function (proj, i) {
-      var tagsHtml = proj.tags.map(function (t) { return '<span>' + t + '</span>'; }).join("");
-      var csBtn = (typeof proj.caseStudy === "number")
+      var tagsHtml = proj.tags.map(function (t) { return '<span class="proj-tag">' + t + '</span>'; }).join("");
+      var csBtn = typeof proj.caseStudy === "number"
         ? '<button class="proj-expand" data-cs="' + proj.caseStudy + '">Case Study →</button>'
         : "";
-      return '<div class="proj-card reveal" style="transition-delay:' + (i * 0.06) + 's">' +
+      return '<div class="proj-card reveal" style="transition-delay:' + (i * .06) + 's">' +
         '<div class="proj-num">' + proj.num + '</div>' +
         '<div class="proj-title">' + proj.title + '</div>' +
         '<div class="proj-desc">' + proj.desc + '</div>' +
         (proj.impact ? '<div class="proj-impact">↑ ' + proj.impact + '</div>' : '') +
-        '<div class="proj-foot">' +
         '<div class="proj-tags">' + tagsHtml + '</div>' +
-        '<div class="proj-actions">' +
-        '<span class="proj-cat">' + proj.cat + '</span>' +
-        csBtn +
-        '</div>' +
+        '<div class="proj-foot">' +
+          '<span class="proj-cat">' + proj.cat + '</span>' +
+          '<div class="proj-actions">' + csBtn + '</div>' +
         '</div>' +
         '</div>';
     }).join("");
@@ -291,12 +290,14 @@
   var contactLinks = $("#contactLinks");
   if (contactLinks && P.contact) {
     contactLinks.innerHTML = P.contact.map(function (c) {
-      return '<a class="contact-link reveal" href="' + c.href + '"' + (c.href.startsWith("http") ? ' target="_blank" rel="noopener"' : '') + '>' +
+      var isExternal = c.href.startsWith("http");
+      return '<a class="contact-link reveal" href="' + c.href + '"' +
+        (isExternal ? ' target="_blank" rel="noopener"' : '') + '>' +
         '<div>' +
-        '<div class="cl-label">' + c.label + '</div>' +
-        '<div class="cl-val">' + c.val + '</div>' +
+          '<div class="cl-label">' + c.label + '</div>' +
+          '<div class="cl-val">' + c.val + '</div>' +
         '</div>' +
-        '<span class="cl-arrow">→</span>' +
+        '<span class="c-arrow">→</span>' +
         '</a>';
     }).join("");
     contactLinks.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
@@ -304,7 +305,9 @@
 
   // -- Footer --
   var footerCopy = $("#footerCopy");
-  if (footerCopy) footerCopy.textContent = "© " + new Date().getFullYear() + " " + P.name + " — " + P.location;
+  if (footerCopy) {
+    footerCopy.textContent = "© " + new Date().getFullYear() + " " + P.name + " — " + P.location;
+  }
   var footerLinks = $("#footerLinks");
   if (footerLinks) {
     footerLinks.innerHTML = [
@@ -443,20 +446,21 @@
       .then(function (repos) {
         if (!Array.isArray(repos) || !repos.length) throw new Error("empty");
         ghGrid.innerHTML = repos.filter(function (r) { return !r.fork; }).slice(0, 9).map(function (r, i) {
-          var dot = r.language
-            ? '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:' + (langColors[r.language] || "#888") + ';vertical-align:middle;margin-right:5px"></span>'
-            : "";
+          var dotColor = langColors[r.language] || "#888";
+          var langDot = r.language
+            ? '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:' + dotColor + ';vertical-align:middle;margin-right:5px"></span>' + r.language
+            : "—";
           return '<div class="proj-card reveal" style="transition-delay:' + (i * .05) + 's">' +
-            '<div class="proj-num">' + (i < 9 ? "0" + (i + 1) : i + 1) + '</div>' +
+            '<div class="proj-num">0' + (i + 1) + '</div>' +
             '<div class="proj-title">' + r.name.replace(/-/g, " ") + '</div>' +
             '<div class="proj-desc">' + (r.description || "No description provided.") + '</div>' +
             '<div class="proj-foot">' +
-            '<div style="display:flex;gap:.75rem;font-family:var(--mono);font-size:.65rem;color:var(--ink-muted)">' +
-            (r.language ? '<span>' + dot + r.language + '</span>' : '') +
-            '<span>★ ' + r.stargazers_count + '</span>' +
-            '<span>⑂ ' + r.forks_count + '</span>' +
-            '</div>' +
-            '<a href="' + r.html_url + '" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);text-decoration:none">View →</a>' +
+              '<div style="font-family:var(--mono);font-size:.68rem;color:var(--ink-muted);display:flex;gap:.75rem;align-items:center">' +
+                '<span>' + langDot + '</span>' +
+                '<span>★ ' + r.stargazers_count + '</span>' +
+                '<span>⑂ ' + r.forks_count + '</span>' +
+              '</div>' +
+              '<a href="' + r.html_url + '" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);text-decoration:none">View →</a>' +
             '</div></div>';
         }).join("");
         ghGrid.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
@@ -477,33 +481,52 @@
         if (data.status !== "ok" || !data.items || !data.items.length) throw new Error("no items");
         var items = data.items.slice(0, 6);
         window._mediumItems = items;
+
         blogGrid.innerHTML = items.map(function (item, i) {
           var cat = (item.categories || [])[0] || "Article";
           var date = new Date(item.pubDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
-          var readTime = Math.max(1, Math.round((item.content || "").replace(/<[^>]*>/g, "").split(/\s+/).length / 200));
-          var excerpt = (item.description || "").replace(/<[^>]*>/g, "").substring(0, 120).trim() + "…";
+          var words = (item.content || "").replace(/<[^>]*>/g, "").split(/\s+/).length;
+          var readTime = Math.max(1, Math.round(words / 200));
+          var excerpt = (item.description || "").replace(/<[^>]*>/g, "").trim().substring(0, 120) + "…";
+
+          // Best-effort thumbnail extraction
           var thumb = item.thumbnail
             || (item.enclosure && item.enclosure.link)
             || ((item.content || "").match(/<img[^>]+src="([^">]+)"/) || [])[1]
             || "";
-          var thumbHtml = thumb
+
+          // Only show thumb if we actually have one — otherwise use compact placeholder
+          var mediaHtml = thumb
             ? '<div class="bc-thumb"><img src="' + thumb + '" alt="" loading="lazy" onerror="this.parentElement.style.display=\'none\'"></div>'
             : '<div class="bc-ph"><span>' + item.title.charAt(0).toUpperCase() + '</span></div>';
+
           return '<div class="blog-card reveal" data-index="' + i + '" style="transition-delay:' + (i * .05) + 's">' +
-            thumbHtml +
+            mediaHtml +
             '<div class="bc-body">' +
-            '<div class="bc-meta"><span>' + cat + '</span><span class="bc-sep">·</span><span>' + date + '</span><span class="bc-sep">·</span><span>' + readTime + ' min</span></div>' +
-            '<div class="bc-title">' + item.title + '</div>' +
-            '<div class="bc-excerpt">' + excerpt + '</div>' +
+              '<div class="bc-meta">' +
+                '<span>' + cat + '</span>' +
+                '<span class="bc-sep">·</span>' +
+                '<span>' + date + '</span>' +
+                '<span class="bc-sep">·</span>' +
+                '<span>' + readTime + ' min read</span>' +
+              '</div>' +
+              '<div class="bc-title">' + item.title + '</div>' +
+              '<div class="bc-excerpt">' + excerpt + '</div>' +
             '</div>' +
-            '<div class="bc-foot"><span class="bc-read">Read article</span><span class="bc-arrow">↗</span></div>' +
+            '<div class="bc-foot">' +
+              '<span class="bc-read">Read article</span>' +
+              '<span class="bc-arrow">↗</span>' +
+            '</div>' +
             '</div>';
         }).join("");
+
         blogGrid.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
       })
       .catch(function () {
-        blogGrid.innerHTML = '<div class="loading-cell"><div class="loading-text">Could not load feed. ' +
-          '<a href="' + P.medium + '" target="_blank" style="color:var(--accent)">Read on Medium →</a></div></div>';
+        blogGrid.innerHTML = '<div class="loading-cell">' +
+          '<div class="loading-text">Could not load feed. ' +
+          '<a href="' + P.medium + '" target="_blank" style="color:var(--accent)">Read on Medium →</a>' +
+          '</div></div>';
       });
   }
 
