@@ -307,7 +307,6 @@
         ? '<button class="proj-expand" data-cs="' + proj.caseStudy + '">Case Study →</button>'
         : "";
       return '<div class="proj-card reveal" style="transition-delay:' + (i * .06) + 's">' +
-        '<div class="proj-num">' + ("0" + (i + 1)).slice(-2) + '</div>' +
         '<div class="proj-title">' + proj.title + '</div>' +
         '<div class="proj-desc">' + proj.desc + '</div>' +
         (proj.impact ? '<div class="proj-impact">↑ ' + proj.impact + '</div>' : '') +
@@ -488,7 +487,6 @@
             ? '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:' + dotColor + ';vertical-align:middle;margin-right:5px"></span>' + esc(r.language)
             : "—";
           return '<div class="proj-card reveal" style="transition-delay:' + (i * .05) + 's">' +
-            '<div class="proj-num">0' + (i + 1) + '</div>' +
             '<div class="proj-title">' + esc(r.name.replace(/-/g, " ")) + '</div>' +
             '<div class="proj-desc">' + esc(r.description || "No description provided.") + '</div>' +
             '<div class="proj-foot">' +
