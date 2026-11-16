@@ -174,8 +174,8 @@ nav.scrolled { border-color: var(--rule2) }
   font-size: 1.25rem;
   color: var(--ink-soft);
   max-width: 42ch;
-  line-height: 1.8;
-  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
 }
 
 .hero-cta {
