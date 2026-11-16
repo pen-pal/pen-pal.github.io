@@ -569,16 +569,17 @@ section {
   font-size: 1.1rem;
   line-height: 1.75;
   color: var(--ink-soft);
-  display: grid;
-  grid-template-columns: 1.2rem 1fr;
-  gap: .2rem;
+  position: relative;
+  padding-left: 1.4rem;
 }
 .exp-bullets li::before {
   content: '—';
+  position: absolute;
+  left: 0;
+  top: .35rem;
   font-family: var(--mono);
   font-size: .6rem;
   color: var(--accent);
-  margin-top: .32rem;
 }
 .exp-bullets li strong { color: var(--ink); font-weight: 400 }
 .exp-tags {
