@@ -425,7 +425,7 @@
         '<div class="proj-title">' + o.title + '</div>' +
         '<div class="proj-desc">' + o.desc + '</div>' +
         '<div class="proj-tags">' + o.tags.map(function (t) { return '<span class="proj-tag">' + t + '</span>'; }).join("") + '</div>' +
-        '<div class="proj-foot"><span class="proj-cat">Open source</span>' +
+        '<div class="proj-foot"><span></span>' +
           '<a class="proj-expand" href="' + o.href + '" target="_blank" rel="noopener">View on GitHub ↗</a>' +
         '</div></div>';
     }).join("");
@@ -458,12 +458,12 @@
             '<div class="proj-title">' + esc(r.name.replace(/-/g, " ")) + '</div>' +
             '<div class="proj-desc">' + esc(r.description || "No description provided.") + '</div>' +
             '<div class="proj-foot">' +
-              '<div style="font-family:var(--mono);font-size:.68rem;color:var(--ink-muted);display:flex;gap:.75rem;align-items:center">' +
+              '<div style="font-family:var(--mono);font-size:.78rem;color:var(--ink-muted);display:flex;gap:.75rem;align-items:center">' +
                 '<span>' + langDot + '</span>' +
                 '<span>★ ' + r.stargazers_count + '</span>' +
                 '<span>⑂ ' + r.forks_count + '</span>' +
               '</div>' +
-              '<a href="' + esc(r.html_url) + '" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);text-decoration:none">View →</a>' +
+              '<a class="proj-expand" href="' + esc(r.html_url) + '" target="_blank" rel="noopener">View on GitHub ↗</a>' +
             '</div></div>';
         }).join("");
         ghGrid.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
