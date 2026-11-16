@@ -34,7 +34,7 @@ const PROFILE = {
     "Terraform",
     "GitOps",
     "SOC 2",
-    "ISO27001",
+    "ISO 27001",
     "FinOps",
   ],
 
