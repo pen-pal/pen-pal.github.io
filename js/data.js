@@ -11,34 +11,199 @@ const PROFILE = {
   medium: "https://palpen.medium.com",
   mediumUser: "palpen",
 
-  summary: "Senior DevOps and platform engineer with 8+ years in infrastructure and operations, nearly seven of them in DevOps and platform roles across crypto and blockchain, real-time video and ML inference, and ed-tech. Runs Kubernetes on AWS and GCP (EKS and self-hosted) with Terraform, Ansible and GitOps CI/CD, and builds security in through zero-trust access, least-privilege IAM, and SOC 2 and ISO 27001 programmes at two companies. Halved cloud spend at two companies ($24K to $12K a month at one), ships zero-downtime database and cluster upgrades, and has led a DevOps team as Team Lead. AWS Certified DevOps Engineer – Professional.",
+  summary:
+    "Senior DevOps and platform engineer with 8+ years in infrastructure and operations, nearly seven of them in DevOps and platform roles across crypto and blockchain, real-time video and ML inference, and ed-tech. Runs Kubernetes on AWS and GCP (EKS and self-hosted) with Terraform, Ansible and GitOps CI/CD, and builds security in through zero-trust access, least-privilege IAM, and SOC 2 and ISO 27001 programmes at two companies. Halved cloud spend at two companies ($24K to $12K a month at one), ships zero-downtime database and cluster upgrades, and has led a DevOps team as Team Lead. AWS Certified DevOps Engineer – Professional.",
 
   meta: [
     { key: "Location", val: "Kathmandu, Nepal (UTC+5:45)" },
     { key: "Current", val: "Freelance platform consultant" },
     { key: "Specialty", val: "Kubernetes, GitOps & DevSecOps" },
-    { key: "Status", val: "Open to roles · remote", color: "#4db89e" }
+    { key: "Status", val: "Open to roles · remote", color: "#4db89e" },
   ],
 
   stats: [
     { num: "8", unit: "+", label: "Years in infra<br>& operations" },
     { num: "50", unit: "%", label: "Cloud spend cut<br>at two companies" },
     { num: "20", unit: "+", label: "Kubernetes<br>clusters run" },
-    { num: "99.99", unit: "%", label: "Uptime on<br>node infrastructure" }
+    { num: "99.99", unit: "%", label: "Uptime on<br>node infrastructure" },
   ],
 
-  heroTags: ["Kubernetes", "AWS", "Terraform", "GitOps", "SOC 2", "FinOps"],
+  heroTags: [
+    "Kubernetes",
+    "AWS",
+    "Terraform",
+    "GitOps",
+    "SOC 2",
+    "ISO27001",
+    "FinOps",
+  ],
 
   skills: [
-    { cat: "Cloud", items: ["AWS", "GCP", "Azure", "DigitalOcean", "Oracle Cloud"], hot: [0, 1] },
-    { cat: "Containers & Orchestration", items: ["Kubernetes", "EKS", "k3s", "Helm", "Docker", "ECS", "KEDA", "HPA", "Docker Swarm"], hot: [0, 1, 3] },
-    { cat: "CI/CD & GitOps", items: ["ArgoCD", "Flux CD", "GitHub Actions", "GitLab CI", "Jenkins", "CircleCI", "Bitbucket Pipelines", "Blue-green & canary"], hot: [0, 2] },
-    { cat: "Infrastructure as Code", items: ["Terraform", "OpenTofu", "Terragrunt", "Ansible", "CloudFormation", "CDK", "Packer", "Control Tower / AFT"], hot: [0, 3] },
-    { cat: "Observability & SRE", items: ["Prometheus", "Grafana", "Loki", "Tempo", "Alloy", "ELK", "Datadog", "Sentry", "PagerDuty", "k6"], hot: [0, 1] },
-    { cat: "Security & Compliance", items: ["SOC 2", "ISO 27001", "GDPR", "Vault", "Kyverno", "Trivy", "Snyk", "Checkov", "SonarQube", "GuardDuty", "CloudTrail"], hot: [0, 1] },
-    { cat: "Networking & Access", items: ["Istio", "Cilium", "Kong", "Nginx", "HAProxy", "Cloudflare Zero Trust", "AWS WAF", "Tailscale", "WireGuard"], hot: [0, 5] },
-    { cat: "Data & Messaging", items: ["PostgreSQL", "TimescaleDB", "Aurora / RDS", "pgBackRest", "MongoDB Atlas", "Redis", "Elasticsearch", "Milvus", "RabbitMQ", "Kafka"], hot: [0, 1] },
-    { cat: "Languages & ML", items: ["Python", "Go", "Bash", "TypeScript", "Rust", "GPU sharing (MPS)", "Scale-to-zero GPUs", "MCP", "Snowflake"], hot: [0, 1] }
+    {
+      cat: "Cloud",
+      items: ["AWS", "GCP", "Azure", "DigitalOcean", "Oracle Cloud"],
+      hot: [0, 1, 3], // AWS, GCP
+    },
+    {
+      cat: "Containers & Orchestration",
+      items: [
+        "Kubernetes",
+        "EKS",
+        "k3s",
+        "k0s",
+        "Helm",
+        "Docker",
+        "ECS",
+        "KEDA",
+        "HPA",
+        "Docker Swarm",
+      ],
+      hot: [0, 1, 4, 5], // Kubernetes, EKS, Helm
+    },
+    {
+      cat: "CI/CD & GitOps",
+      items: [
+        "ArgoCD",
+        "Flux CD",
+        "GitHub Actions",
+        "GitLab CI",
+        "Jenkins",
+        "CircleCI",
+        "Bitbucket Pipelines",
+        "Blue-Green Deployment",
+        "Canary Releases",
+        "A/B Testing",
+        "Shadow Deployment",
+        "Feature Flags",
+      ],
+      hot: [0, 2, 3, 7, 8, 11], // ArgoCD, GitHub Actions, Blue-Green, Canary
+    },
+    {
+      cat: "Infrastructure as Code",
+      items: [
+        "Terraform",
+        "OpenTofu",
+        "Terragrunt",
+        "Ansible",
+        "CloudFormation",
+        "AWS CDK",
+        "Packer",
+        "Control Tower / AFT",
+      ],
+      hot: [0, 1, 3, 4, 6], // Terraform, Ansible
+    },
+    {
+      cat: "Observability & SRE",
+      items: [
+        "Prometheus",
+        "Grafana",
+        "Grafana OnCall",
+        "Loki",
+        "Tempo",
+        "Alloy",
+        "Faro",
+        "Pyroscope",
+        "OpenReplay",
+        "ELK Stack",
+        "New Relic",
+        "CloudWatch",
+        "Datadog",
+        "Honeybadger",
+        "Scout APM",
+        "Sentry",
+        "GlitchTip",
+        "PagerDuty",
+        "Monoscope",
+      ],
+      hot: [0, 1, 9, 12, 13, 14], // Prometheus, Grafana
+    },
+    {
+      cat: "Security & Compliance",
+      items: [
+        "SOC 2",
+        "ISO 27001",
+        "GDPR",
+        "AWS GuardDuty",
+        "AWS Inspector",
+        "AWS Security Hub",
+        "CloudTrail",
+        "Wazuh",
+        "Falco",
+        "CrowdStrike Falcon",
+        "Open Policy Agent (OPA) / Gatekeeper",
+        "Kyverno",
+        "Trivy",
+        "Snyk",
+        "Checkov",
+        "SonarQube",
+        "Semgrep",
+        "Grype",
+        "tfsec",
+        "Keycloak",
+        "Vault",
+        "Infisical",
+        "Auth0",
+        "CISO Assistant",
+        "Vanta",
+        "Prowler",
+      ],
+      hot: [0, 1, 2], // SOC 2, ISO 27001
+    },
+    {
+      cat: "Networking & Access",
+      items: [
+        "Istio",
+        "Cilium",
+        "Kong",
+        "Nginx",
+        "HAProxy",
+        "Cloudflare Zero Trust",
+        "Pritunl VPN",
+        "AWS WAF",
+        "Tailscale",
+        "WireGuard",
+      ],
+      hot: [0, 3, 5, 6, 8], // Istio, Cloudflare Zero Trust
+    },
+    {
+      cat: "Data & Messaging",
+      items: [
+        "PostgreSQL",
+        "TimescaleDB",
+        "Aurora / RDS",
+        "pgBackRest",
+        "MongoDB Atlas",
+        "Redis",
+        "Valkey",
+        "Elasticsearch",
+        "OpenSearch",
+        "AWS SQS",
+        "ActiveMQ",
+        "Milvus",
+        "RabbitMQ",
+        "Apache Kafka",
+        "MySQL",
+        "InfluxDB",
+        "Snowflake",
+      ],
+      hot: [0, 1, 3, 4, 5, 16], // PostgreSQL, TimescaleDB
+    },
+    {
+      cat: "Languages & ML",
+      items: [
+        "Python",
+        "Go",
+        ".NET",
+        "Bash",
+        "Ruby on Rails",
+        "TypeScript",
+        "Rust",
+        "GPU Sharing (MPS)",
+        "Scale-to-Zero GPUs",
+        "MCP",
+      ],
+      hot: [0, 1, 3, 6], // Python, Go
+    },
   ],
 
   // Rendered on the page and in the printable CV.
@@ -54,9 +219,15 @@ const PROFILE = {
         "Led the <strong>move off Datadog</strong> to a self-hosted Prometheus, Grafana, Alloy, Faro, OpenReplay, GlitchTip and PagerDuty stack covering 100% of services, with alerts tied to SLA targets.",
         "Replaced the legacy VPN with <strong>Cloudflare Zero Trust and Tailscale</strong> for identity-aware, least-privilege access to every environment.",
         "Ran <strong>rolling EKS and EC2 upgrades across 8+ clusters</strong> with zero service disruption, plus disaster-recovery drills for validator nodes and RPC endpoints.",
-        "Cut monthly spend by moving edge security from Cloudflare to <strong>AWS WAF</strong> and shutting down QA and Dev outside business hours."
+        "Cut monthly spend by moving edge security from Cloudflare to <strong>AWS WAF</strong> and shutting down QA and Dev outside business hours.",
       ],
-      tags: ["EKS", "TimescaleDB", "Prometheus", "Cloudflare ZT", "SOC 2 / ISO 27001"]
+      tags: [
+        "EKS",
+        "TimescaleDB",
+        "Prometheus",
+        "Cloudflare ZT",
+        "SOC 2 / ISO 27001",
+      ],
     },
     {
       period: "Nov 2023 — Feb 2025",
@@ -69,9 +240,9 @@ const PROFILE = {
         "Wrote the <strong>central Helm chart blueprint</strong> adopted company-wide and enforced admission policy on every client cluster with Kyverno.",
         "Wrote scripts that migrated <strong>thousands of ingress resources to Kong</strong> API Gateway, and introduced Istio with canary deployments.",
         "Eliminated static AWS secrets with <strong>AWS Private CA</strong> for IAM key rotation, and added Trivy and Snyk scanning to every pipeline.",
-        "Built monitoring on Prometheus, Grafana, Loki and ELK that <strong>cut mean time to recovery</strong>."
+        "Built monitoring on Prometheus, Grafana, Loki and ELK that <strong>cut mean time to recovery</strong>.",
       ],
-      tags: ["Kubernetes", "ArgoCD", "Kong", "Istio", "Multi-cloud"]
+      tags: ["Kubernetes", "ArgoCD", "Kong", "Istio", "Multi-cloud"],
     },
     {
       period: "Jul 2021 — Feb 2024",
@@ -84,9 +255,9 @@ const PROFILE = {
         "<strong>Cut cloud spend 50%</strong> across a 10+ account AWS organisation using spot and reserved instances, right-sizing and automated scheduling.",
         "Added <strong>per-PR preview environments</strong> that cut feedback loops from days to minutes, and blue-green and canary releases for zero-downtime deploys.",
         "Built <strong>shift-left security scanning</strong> into every pipeline (SonarQube, Snyk, Trivy, Checkov) and drove SOC 2, ISO 27001 and GDPR compliance.",
-        "Ran EKS with HPA, KEDA, Istio and External Secrets Operator, with tracing on Prometheus, Grafana, Loki, Tempo, ELK and Sentry."
+        "Ran EKS with HPA, KEDA, Istio and External Secrets Operator, with tracing on Prometheus, Grafana, Loki, Tempo, ELK and Sentry.",
       ],
-      tags: ["EKS", "Jitsi", "GitLab CI", "Cost optimisation", "Team lead"]
+      tags: ["EKS", "Jitsi", "GitLab CI", "Cost optimisation", "Team lead"],
     },
     {
       period: "Feb 2020 — Jul 2021",
@@ -97,9 +268,9 @@ const PROFILE = {
         "Engineered <strong>GPU sharing across Kubernetes pods</strong> (NVIDIA device plugin, MPS), cutting per-inference cost by over 60% for real-time video analytics.",
         "Packaged a <strong>single-node k3s cluster with pre-baked models</strong> as a golden AMI and ISO (Packer, Ansible) for air-gapped government deployments.",
         "Provisioned EKS, ECS, Aurora and ElastiCache on <strong>AWS and Oracle Cloud</strong> with Terraform, cutting manual setup time 70%.",
-        "Established the DevOps practice from scratch, with CI/CD on CircleCI and TravisCI and Helm charts for ML deployment."
+        "Established the DevOps practice from scratch, with CI/CD on CircleCI and TravisCI and Helm charts for ML deployment.",
       ],
-      tags: ["GPU sharing", "k3s", "Terraform", "Oracle Cloud", "Vault"]
+      tags: ["GPU sharing", "k3s", "Terraform", "Oracle Cloud", "Vault"],
     },
     {
       live: true,
@@ -111,13 +282,14 @@ const PROFILE = {
         "<strong>Emergegen AI</strong>: built ML inference hosting on EKS and ECS with Milvus, and <strong>KEDA autoscaling on RabbitMQ queue depth</strong> that scales GPU instances to zero when idle.",
         "<strong>Emergegen AI</strong>: deployed Account Factory for Terraform to vend accounts with security baselines (SCPs) in under 30 minutes.",
         "<strong>Altada</strong>: built real-time pipelines with AWS Glue and Kinesis Firehose (Terragrunt) and designed a secure multi-account AWS architecture.",
-        "Published cross-cloud apps on the <strong>Snowflake Marketplace</strong> with Snowflake Container Services, and nested CloudFormation for metered AWS SaaS Marketplace listings."
+        "Published cross-cloud apps on the <strong>Snowflake Marketplace</strong> with Snowflake Container Services, and nested CloudFormation for metered AWS SaaS Marketplace listings.",
       ],
-      tags: ["EVM nodes", "KEDA", "AWS AFT", "Snowflake", "LitmusChaos"]
-    }
+      tags: ["EVM nodes", "KEDA", "AWS AFT", "Snowflake", "LitmusChaos"],
+    },
   ],
 
-  earlyCareer: "Linux System Support Engineer, NepalLink Network (2019–2020) · Junior Network Monitoring Engineer, Vianet Communications (2018–2019) · Technical Researcher, Datalytics (2016–2018)",
+  earlyCareer:
+    "Linux System Support Engineer, NepalLink Network (2019–2020) · Junior Network Monitoring Engineer, Vianet Communications (2018–2019) · Technical Researcher, Datalytics (2016–2018)",
 
   projects: [
     {
@@ -126,7 +298,7 @@ const PROFILE = {
       impact: "Programmes run at ZenLedger and Innovatetech",
       tags: ["Cloudflare ZT", "Tailscale", "Trivy", "Checkov", "CloudTrail"],
       cat: "Security & Compliance",
-      caseStudy: 0
+      caseStudy: 0,
     },
     {
       title: "High-Availability <em>EVM Node</em> Infrastructure",
@@ -134,7 +306,7 @@ const PROFILE = {
       impact: "Sub-second RPC latency with 99.99% uptime",
       tags: ["EKS", "Kubernetes", "Terraform", "Hardhat", "Foundry"],
       cat: "Blockchain Infrastructure",
-      caseStudy: 1
+      caseStudy: 1,
     },
     {
       title: "Self-Hosted <em>HA TimescaleDB</em>",
@@ -142,7 +314,7 @@ const PROFILE = {
       impact: "5 TB+ of backups migrated with minimal downtime",
       tags: ["TimescaleDB", "PostgreSQL", "Autobase", "pgBackRest", "RDS"],
       cat: "Databases",
-      caseStudy: 2
+      caseStudy: 2,
     },
     {
       title: "Observability <em>off Datadog</em>",
@@ -150,7 +322,7 @@ const PROFILE = {
       impact: "100% of services covered on a self-hosted stack",
       tags: ["Prometheus", "Grafana", "Alloy", "GlitchTip", "PagerDuty"],
       cat: "Observability",
-      caseStudy: 3
+      caseStudy: 3,
     },
     {
       title: "JMW — <em>Jitsi Meet</em> Multi-tenant",
@@ -158,7 +330,7 @@ const PROFILE = {
       impact: "Capacity follows real demand instead of provisioned peak",
       tags: ["Jitsi", "JVB", "Jicofo", "AWS", "Custom AMIs"],
       cat: "Real-time Video",
-      caseStudy: 4
+      caseStudy: 4,
     },
     {
       title: "GPU Sharing for <em>ML Inference</em>",
@@ -166,22 +338,22 @@ const PROFILE = {
       impact: "Per-inference cost cut by over 60%",
       tags: ["Kubernetes", "NVIDIA MPS", "KEDA", "RabbitMQ", "Milvus"],
       cat: "MLOps / GPU",
-      caseStudy: 5
+      caseStudy: 5,
     },
     {
       title: "Per-PR <em>Preview</em> Environments",
       desc: "Every pull request gets its own short-lived environment, so QA tests each change in isolation instead of queueing for a shared staging server.",
       impact: "Feedback loops cut from days to minutes",
       tags: ["Kubernetes", "Helm", "GitLab CI"],
-      cat: "Platform Engineering"
+      cat: "Platform Engineering",
     },
     {
       title: "Snowflake & AWS <em>Marketplace</em> Listings",
       desc: "Published cross-cloud apps on the Snowflake Marketplace with Snowflake Container Services across AWS and Azure, and wrote nested CloudFormation for metered AWS SaaS Marketplace listings.",
       impact: "Cross-cloud listings running on AWS and Azure",
       tags: ["Snowflake", "CloudFormation", "AWS", "Azure", "Docker"],
-      cat: "Multi-cloud / Data"
-    }
+      cat: "Multi-cloud / Data",
+    },
   ],
 
   openSource: [
@@ -190,59 +362,84 @@ const PROFILE = {
       href: "https://github.com/pmady/keda-gpu-scaler/pulls?q=is%3Apr+author%3Apen-pal+is%3Amerged",
       role: "Collaborator · 13 merged PRs",
       desc: "KEDA external scaler for Kubernetes GPU workloads. Published the Helm chart to GHCR via OCI with chart tests, added coverage reporting and format gating to CI, and extended the gpu-metrics CLI.",
-      tags: ["Go", "Helm", "gRPC"]
+      tags: ["Go", "Helm", "gRPC"],
     },
     {
       title: "gpu-mcp-server",
       href: "https://github.com/pmady/gpu-mcp-server/pulls?q=is%3Apr+author%3Apen-pal+is%3Amerged",
       role: "Collaborator · 6 merged PRs",
       desc: "MCP server exposing NVIDIA GPU metrics to AI agents. Built PID-level GPU process attribution, Streamable HTTP transport and a Helm chart for DaemonSet deployment.",
-      tags: ["Go", "MCP", "NVML"]
+      tags: ["Go", "MCP", "NVML"],
     },
     {
       title: "Autobase",
       href: "https://github.com/autobase-tech/autobase/pulls?q=is%3Apr+author%3Apen-pal",
       role: "Contributor",
       desc: "PostgreSQL HA automation platform. Configurable HAProxy failover so long-running queries survive, Docker Secrets support in the console, and private-subnet deployments across five clouds.",
-      tags: ["Ansible", "Go", "React"]
+      tags: ["Ansible", "Go", "React"],
     },
     {
       title: "Smaller contributions",
       href: "https://github.com/screenpipe/screenpipe/pull/3564",
       role: "screenpipe · KaTeX · anchore/scan-action",
       desc: "Fixed the npx install of screenpipe's MCP HTTP server, rewrote KaTeX's self-hosting documentation, and updated anchore/scan-action's CI workflow examples.",
-      tags: ["TypeScript", "Docs", "CI"]
+      tags: ["TypeScript", "Docs", "CI"],
     },
     {
       title: "apex",
       href: "https://github.com/pen-pal/apex",
       role: "Own project",
       desc: "Live, byte-accurate visualisations of how computers work, across 300+ tested topics.",
-      tags: ["Visualisation", "Education"]
+      tags: ["Visualisation", "Education"],
     },
     {
       title: "rampart · terraform-aws-mongodbatlas",
       href: "https://github.com/pen-pal/rampart",
       role: "Own projects",
       desc: "rampart is self-hosted uptime monitoring on Postgres; terraform-aws-mongodbatlas is a Terraform module for MongoDB Atlas on AWS.",
-      tags: ["Postgres", "Terraform", "MongoDB Atlas"]
-    }
+      tags: ["Postgres", "Terraform", "MongoDB Atlas"],
+    },
   ],
 
   contact: [
-    { label: "Email", val: "ManishKhadka@protonmail.com", href: "mailto:ManishKhadka@protonmail.com" },
+    {
+      label: "Email",
+      val: "ManishKhadka@protonmail.com",
+      href: "mailto:ManishKhadka@protonmail.com",
+    },
     { label: "Phone", val: "+977 984 372 9354", href: "tel:+9779843729354" },
-    { label: "LinkedIn", val: "linkedin.com/in/manishkhadka", href: "https://linkedin.com/in/manishkhadka" },
-    { label: "GitHub", val: "github.com/pen-pal", href: "https://github.com/pen-pal" },
-    { label: "Medium", val: "palpen.medium.com", href: "https://palpen.medium.com" }
+    {
+      label: "LinkedIn",
+      val: "linkedin.com/in/manishkhadka",
+      href: "https://linkedin.com/in/manishkhadka",
+    },
+    {
+      label: "GitHub",
+      val: "github.com/pen-pal",
+      href: "https://github.com/pen-pal",
+    },
+    {
+      label: "Medium",
+      val: "palpen.medium.com",
+      href: "https://palpen.medium.com",
+    },
   ],
 
   education: [
-    { degree: "Master of Arts in Psychology (in progress)", school: "Tri-Chandra Multiple Campus, Kathmandu · 2023 — Present" },
-    { degree: "B.Eng. Electrical & Electronics Engineering", school: "Kathmandu University · 2012 — 2016" }
+    {
+      degree: "Master of Arts in Psychology (in progress)",
+      school: "Tri-Chandra Multiple Campus, Kathmandu · 2023 — Present",
+    },
+    {
+      degree: "B.Eng. Electrical & Electronics Engineering",
+      school: "Kathmandu University · 2012 — 2016",
+    },
   ],
 
   certifications: [
-    { name: "AWS Certified DevOps Engineer — Professional", url: "https://www.credly.com/badges/bd435d12-affc-486b-bff6-57c50cb2dfd9" }
-  ]
+    {
+      name: "AWS Certified DevOps Engineer — Professional",
+      url: "https://www.credly.com/badges/bd435d12-affc-486b-bff6-57c50cb2dfd9",
+    },
+  ],
 };
