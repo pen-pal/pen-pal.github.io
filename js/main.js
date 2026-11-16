@@ -279,14 +279,20 @@
         '<div class="exp-right">' +
           '<div class="exp-role">' + job.role + '</div>' +
           '<div class="exp-co">' + job.company + '</div>' +
-          '<ul class="exp-bullets">' +
-            job.bullets.map(function (b) { return '<li>' + b + '</li>'; }).join("") +
-          '</ul>' +
+          bulletsHtml(job.bullets) +
           tagsHtml +
         '</div>' +
         '</div>';
     }).join("");
     expList.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
+  }
+
+  // Long roles show their first three bullets; the rest sit behind a native <details>.
+  function bulletsHtml(list) {
+    function ul(items) { return '<ul class="exp-bullets">' + items.map(function (b) { return '<li>' + b + '</li>'; }).join("") + '</ul>'; }
+    if (list.length <= 4) return ul(list);
+    return ul(list.slice(0, 3)) +
+      '<details class="exp-more"><summary>Show ' + (list.length - 3) + ' more</summary>' + ul(list.slice(3)) + '</details>';
   }
 
   // -- Work Projects --
