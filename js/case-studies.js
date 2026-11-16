@@ -147,7 +147,7 @@ const CASE_STUDIES = [
         metrics: [
           { num: "M+", label: "Users served" },
           { num: "50%", label: "Cloud spend cut" },
-          { num: "6", label: "Engineers led" }
+          { num: "10+", label: "AWS accounts" }
         ]
       },
       {
