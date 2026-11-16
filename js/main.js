@@ -197,11 +197,6 @@
   });
 
   // ==========================================
-  // PRINT (ATS resume)
-  // ==========================================
-  $$(".js-print").forEach(function (b) { b.addEventListener("click", function () { window.print(); }); });
-
-  // ==========================================
   // ESCAPE KEY
   // ==========================================
   document.addEventListener("keydown", function (e) {
@@ -376,44 +371,6 @@
         '<div class="rc-left"><div class="rc-section-lbl">Education</div>' + eduHtml + '</div>' +
         '<div class="rc-right"><div class="rc-section-lbl">Certification</div>' + certHtml + '</div>' +
       '</div>';
-  }
-
-  // ATS print resume
-  var resumePrint = $("#resumePrint");
-  if (resumePrint) {
-    function plain(html) { return html.replace(/<[^>]*>/g, ""); }
-    function h2(t) { return '<h2>' + t + '</h2>'; }
-
-    var expPrintHtml = (P.experience || []).map(function (e) {
-      return '<div class="rp-job">' +
-        '<div class="rp-row"><strong>' + plain(e.role) + '</strong><span>' + e.period + '</span></div>' +
-        '<div class="rp-co">' + e.company + '</div>' +
-        '<ul>' + e.bullets.map(function (b) { return '<li>' + plain(b) + '</li>'; }).join("") + '</ul>' +
-        '</div>';
-    }).join("") + (P.earlyCareer ? '<p><strong>Early career, 2016 – 2020:</strong> ' + P.earlyCareer + '</p>' : "");
-
-    var skillsPrintHtml = (P.skills || []).map(function (g) {
-      return '<li><strong>' + g.cat + ':</strong> ' + g.items.join(", ") + '</li>';
-    }).join("");
-
-    var ossPrintHtml = (P.openSource || []).map(function (o) {
-      return '<li><strong>' + o.title + '</strong> (' + o.role + '): ' + o.desc + '</li>';
-    }).join("");
-
-    resumePrint.innerHTML =
-      '<h1>' + P.name + '</h1>' +
-      '<p class="rp-title">' + P.title + '</p>' +
-      '<p class="rp-contact">' +
-        [P.location, P.email, P.phone, P.linkedin, P.github, P.medium].map(function (v) {
-          return v.replace("https://", "");
-        }).join(" · ") +
-      '</p>' +
-      h2("Summary") + '<p>' + P.summary + '</p>' +
-      h2("Technical Skills") + '<ul class="rp-skills">' + skillsPrintHtml + '</ul>' +
-      h2("Experience") + expPrintHtml +
-      h2("Projects and Open Source") + '<ul>' + ossPrintHtml + '</ul>' +
-      h2("Certifications") + '<ul>' + (P.certifications || []).map(function (c) { return '<li>' + c.name + '</li>'; }).join("") + '</ul>' +
-      h2("Education") + '<ul>' + (P.education || []).map(function (e) { return '<li><strong>' + e.degree + '</strong>, ' + e.school + '</li>'; }).join("") + '</ul>';
   }
 
   // -- Open source contributions (curated) --

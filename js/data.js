@@ -3,16 +3,12 @@ const PROFILE = {
   name: "Manish Khadka",
   title: "Senior DevOps / SRE / Platform Engineer",
   location: "Kathmandu, Nepal",
-  phone: "+977 984 372 9354",
   email: "ManishKhadka@protonmail.com",
   linkedin: "https://linkedin.com/in/manishkhadka",
   github: "https://github.com/pen-pal",
   githubUser: "pen-pal",
   medium: "https://palpen.medium.com",
   mediumUser: "palpen",
-
-  summary:
-    "Senior DevOps and platform engineer with 8+ years in infrastructure and operations, nearly seven of them in DevOps and platform roles across crypto and blockchain, real-time video and ML inference, and ed-tech. Runs Kubernetes on AWS and GCP (EKS and self-hosted) with Terraform, Ansible and GitOps CI/CD, and builds security in through zero-trust access, least-privilege IAM, and SOC 2 and ISO 27001 programmes at two companies. Halved cloud spend at two companies ($24K to $12K a month at one), ships zero-downtime database and cluster upgrades, and has led a DevOps team as Team Lead. AWS Certified DevOps Engineer – Professional.",
 
   meta: [
     { key: "Location", val: "Kathmandu, Nepal (UTC+5:45)" },
