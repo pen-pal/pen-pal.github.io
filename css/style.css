@@ -13,7 +13,6 @@
   --ink-muted: #8a8477;
   --accent: #c45d3e;
   --accent-warm: #d4845a;
-  --accent-gold: #c49a4c;
   --accent-cool: #4db89e;
   --rule: rgba(232,228,220,.1);
   --rule2: rgba(232,228,220,.18);
@@ -311,7 +310,7 @@ section {
   font-size: 0.78rem;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--accent-gold);
+  color: var(--ink-muted);
   margin-bottom: .2rem;
 }
 .meta-val {
@@ -350,7 +349,7 @@ section {
   font-size: 0.80rem;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--accent-gold);
+  color: var(--ink-muted);
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
@@ -359,7 +358,7 @@ section {
 .skill-cat::before {
   content: '';
   width: .8rem; height: 1px;
-  background: var(--accent-gold);
+  background: var(--ink-muted);
 }
 .skill-items { display: flex; flex-wrap: wrap; gap: .35rem }
 .skill-tag {
@@ -544,7 +543,7 @@ section {
   color: var(--ink-muted);
   transition: all .25s;
 }
-.proj-tag:hover { color: var(--accent-gold) }
+.proj-tag:hover { color: var(--accent) }
 .proj-foot { display: flex; align-items: center; justify-content: space-between; padding-top: .8rem; border-top: 1px solid var(--rule) }
 .proj-cat { font-family: var(--mono); font-size: 0.78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted) }
 .proj-actions { display: flex; align-items: center; gap: 1rem }
@@ -790,7 +789,7 @@ a.proj-expand { text-decoration: none }
   font-size: 0.76rem;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--accent-gold);
+  color: var(--ink-muted);
   margin-bottom: .75rem;
 }
 .rc-edu-item { padding: .6rem 0; border-bottom: 1px solid var(--rule) }
