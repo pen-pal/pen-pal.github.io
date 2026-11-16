@@ -426,11 +426,10 @@ section {
 }
 .exp-role em { font-style: italic; color: var(--accent) }
 .exp-co {
-  font-family: var(--mono);
-  font-size: 0.82rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
+  font-family: var(--body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink-soft);
   margin-bottom: 1.4rem;
 }
 .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: .5rem }
@@ -471,10 +470,9 @@ section {
    ======================================== */
 .proj-tabs { display: flex; gap: .5rem; margin-bottom: 1.25rem }
 .proj-tab {
-  font-family: var(--mono);
-  font-size: 0.82rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  font-family: var(--body);
+  font-size: .92rem;
+  font-weight: 500;
   padding: .55rem 1.2rem;
   color: var(--ink-muted);
   cursor: pointer;
@@ -544,13 +542,12 @@ section {
 }
 .proj-tag:hover { color: var(--accent-gold) }
 .proj-foot { display: flex; align-items: center; justify-content: space-between; padding-top: .8rem; border-top: 1px solid var(--rule) }
-.proj-cat { font-family: var(--mono); font-size: 0.78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent) }
+.proj-cat { font-family: var(--mono); font-size: 0.78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted) }
 .proj-actions { display: flex; align-items: center; gap: 1rem }
 .proj-expand {
-  font-family: var(--mono);
-  font-size: 0.80rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+  font-family: var(--body);
+  font-size: .92rem;
+  font-weight: 500;
   color: var(--accent);
   cursor: pointer;
   background: none; border: none;
@@ -690,7 +687,7 @@ a.proj-expand { text-decoration: none }
   justify-content: space-between;
   align-items: center;
 }
-.bc-read { font-family: var(--mono); font-size: 0.74rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent) }
+.bc-read { font-family: var(--body); font-size: .92rem; font-weight: 500; color: var(--accent) }
 .bc-arrow { font-size: .85rem; color: var(--ink-muted); transition: all .3s }
 
 /* ========================================

@@ -303,7 +303,7 @@
     workGrid.innerHTML = P.projects.map(function (proj, i) {
       var tagsHtml = proj.tags.map(function (t) { return '<span class="proj-tag">' + t + '</span>'; }).join("");
       var csBtn = typeof proj.caseStudy === "number"
-        ? '<button class="proj-expand" data-cs="' + proj.caseStudy + '">Case Study →</button>'
+        ? '<button class="proj-expand" data-cs="' + proj.caseStudy + '">Case study →</button>'
         : "";
       return '<div class="proj-card reveal" style="transition-delay:' + (i * .06) + 's">' +
         '<div class="proj-title">' + proj.title + '</div>' +
