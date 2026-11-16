@@ -364,20 +364,6 @@
         '</div>';
     }).join("");
 
-    var contactInfoHtml = [
-      { label: "Email", val: P.email },
-      { label: "Phone", val: P.phone },
-      { label: "Location", val: P.location },
-      { label: "LinkedIn", val: P.linkedin.replace("https://", "") },
-      { label: "GitHub", val: P.github.replace("https://", "") },
-      { label: "Medium", val: P.medium.replace("https://", "") }
-    ].map(function (c) {
-      return '<div class="rc-contact-item">' +
-        '<span class="rc-contact-label">' + c.label + '</span>' +
-        '<span>' + c.val + '</span>' +
-        '</div>';
-    }).join("");
-
     var eduHtml = (P.education || []).map(function (e) {
       return '<div class="rc-edu-item">' +
         '<div class="rc-edu-deg">' + e.degree + '</div>' +
@@ -387,25 +373,8 @@
 
     resumeBody.innerHTML =
       '<div class="resume-card">' +
-        '<div class="rc-left">' +
-          '<div class="rc-name">' + P.name + '</div>' +
-          '<div class="rc-jobtitle">' + P.title + '</div>' +
-          '<div class="rc-stats">' + statsHtml("rc-stat-n", "rc-stat-l") + '</div>' +
-          certHtml +
-        '</div>' +
-        '<div class="rc-right">' +
-          '<div>' +
-            '<div class="rc-section-lbl">Contact</div>' +
-            contactInfoHtml +
-          '</div>' +
-          '<div>' +
-            '<div class="rc-section-lbl">Education</div>' +
-            eduHtml +
-          '</div>' +
-          '<p style="font-family:var(--body);font-size:1rem;line-height:1.7;color:var(--ink-muted);font-style:italic;margin-top:auto">' +
-            'Full CV available as PDF — click Download above, or connect on LinkedIn.' +
-          '</p>' +
-        '</div>' +
+        '<div class="rc-left"><div class="rc-section-lbl">Education</div>' + eduHtml + '</div>' +
+        '<div class="rc-right"><div class="rc-section-lbl">Certification</div>' + certHtml + '</div>' +
       '</div>';
   }
 
