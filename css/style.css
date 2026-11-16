@@ -305,8 +305,8 @@ section {
    ======================================== */
 .about {
   display: grid;
-  grid-template-columns: 14rem 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 14rem minmax(0, 46rem);
+  gap: 3rem;
 }
 .about-meta .meta-row {
   padding: .8rem 0;
@@ -337,17 +337,6 @@ section {
 }
 .about-body p+p { margin-top: 1.2rem }
 .about-body strong { color: var(--ink); font-weight: 400 }
-.about-pull {
-  font-family: var(--serif);
-  font-size: clamp(1.15rem, 1.8vw, 1.65rem);
-  font-style: italic;
-  line-height: 1.45;
-  color: var(--ink);
-  border-top: 1px solid var(--rule2);
-  padding-top: 1.5rem;
-  border-left: 2px solid var(--accent);
-  padding-left: 1.5rem;
-}
 
 /* ========================================
    SKILLS
