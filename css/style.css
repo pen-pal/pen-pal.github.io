@@ -138,6 +138,7 @@ nav.scrolled { border-color: var(--rule2) }
   align-items: center;
   position: relative;
   border-bottom: 1px solid var(--rule);
+  background: radial-gradient(60rem 30rem at 15% 0%, rgba(196,93,62,.09), transparent 70%);
 }
 .hero-left { animation: fadeUp .8s ease forwards }
 
