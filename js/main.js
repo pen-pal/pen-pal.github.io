@@ -4,6 +4,47 @@
   function $(sel) { return document.querySelector(sel); }
   function $$(sel) { return document.querySelectorAll(sel); }
 
+  // Text from third-party APIs (GitHub, Medium) must never be parsed as HTML.
+  function esc(str) {
+    return String(str == null ? "" : str).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  // Medium article bodies are HTML; keep the markup but drop anything executable
+  // and the tracking pixel Medium appends to every feed item.
+  function sanitize(html) {
+    var doc = new DOMParser().parseFromString(html || "", "text/html");
+    doc.querySelectorAll("script,style,iframe,object,embed,form,img[src*='/_/stat']").forEach(function (n) {
+      n.parentNode.removeChild(n);
+    });
+    doc.querySelectorAll("*").forEach(function (n) {
+      Array.prototype.slice.call(n.attributes).forEach(function (a) {
+        if (/^on/i.test(a.name) || /^\s*javascript:/i.test(a.value)) n.removeAttribute(a.name);
+      });
+      if (n.tagName === "A") { n.setAttribute("target", "_blank"); n.setAttribute("rel", "noopener"); }
+    });
+    return doc.body.innerHTML;
+  }
+
+  // Remember what had focus before a panel opened so closing it can hand focus back.
+  var lastFocus = null;
+  function openPanel(panel, overlay, focusEl) {
+    lastFocus = document.activeElement;
+    if (panel) panel.classList.add("open");
+    if (overlay) overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+    if (focusEl) focusEl.focus();
+  }
+  function closePanel(panel, overlay) {
+    if (!panel || !panel.classList.contains("open")) return;
+    panel.classList.remove("open");
+    if (overlay) overlay.classList.remove("open");
+    document.body.style.overflow = "";
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+    lastFocus = null;
+  }
+
   // ==========================================
   // SCROLL REVEAL
   // ==========================================
@@ -131,26 +172,18 @@
     var drawerBody = $("#drawerBody");
     if (drawerBody) {
       drawerBody.innerHTML =
-        '<div class="drawer-cat">' + cats + '</div>' +
-        '<h2 class="drawer-title">' + item.title + '</h2>' +
-        '<div class="drawer-date">' + date + ' · Manish Khadka</div>' +
-        '<div class="drawer-content">' + item.content + '</div>' +
-        '<a href="' + item.link + '" target="_blank" class="drawer-external">Read on Medium ↗</a>';
+        '<div class="drawer-cat">' + esc(cats) + '</div>' +
+        '<h2 class="drawer-title" id="drawerTitle">' + esc(item.title) + '</h2>' +
+        '<div class="drawer-date">' + date + ' · ' + esc(PROFILE.name) + '</div>' +
+        '<div class="drawer-content">' + sanitize(item.content) + '</div>' +
+        '<a href="' + esc(item.link) + '" target="_blank" rel="noopener" class="drawer-external">Read on Medium ↗</a>';
     }
     var drawer = $("#drawer");
-    var drawerOv = $("#drawerOverlay");
-    if (drawer) drawer.classList.add("open");
-    if (drawerOv) drawerOv.classList.add("open");
-    document.body.style.overflow = "hidden";
+    if (drawer) drawer.scrollTop = 0;
+    openPanel(drawer, $("#drawerOverlay"), $("#drawerCloseBtn"));
   }
 
-  function closeDrawer() {
-    var drawer = $("#drawer");
-    var drawerOv = $("#drawerOverlay");
-    if (drawer) drawer.classList.remove("open");
-    if (drawerOv) drawerOv.classList.remove("open");
-    document.body.style.overflow = "";
-  }
+  function closeDrawer() { closePanel($("#drawer"), $("#drawerOverlay")); }
 
   var drawerCloseBtn = $("#drawerCloseBtn");
   var drawerOvEl = $("#drawerOverlay");
@@ -441,26 +474,26 @@
       Go: "#00ADD8", Shell: "#89e051", HTML: "#e34c26", CSS: "#563d7c",
       Dockerfile: "#384d54", HCL: "#844FBA"
     };
-    fetch("https://api.github.com/users/" + P.githubUser + "/repos?sort=updated&per_page=9")
+    fetch("https://api.github.com/users/" + P.githubUser + "/repos?sort=updated&per_page=30")
       .then(function (r) { return r.json(); })
       .then(function (repos) {
         if (!Array.isArray(repos) || !repos.length) throw new Error("empty");
         ghGrid.innerHTML = repos.filter(function (r) { return !r.fork; }).slice(0, 9).map(function (r, i) {
           var dotColor = langColors[r.language] || "#888";
           var langDot = r.language
-            ? '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:' + dotColor + ';vertical-align:middle;margin-right:5px"></span>' + r.language
+            ? '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:' + dotColor + ';vertical-align:middle;margin-right:5px"></span>' + esc(r.language)
             : "—";
           return '<div class="proj-card reveal" style="transition-delay:' + (i * .05) + 's">' +
             '<div class="proj-num">0' + (i + 1) + '</div>' +
-            '<div class="proj-title">' + r.name.replace(/-/g, " ") + '</div>' +
-            '<div class="proj-desc">' + (r.description || "No description provided.") + '</div>' +
+            '<div class="proj-title">' + esc(r.name.replace(/-/g, " ")) + '</div>' +
+            '<div class="proj-desc">' + esc(r.description || "No description provided.") + '</div>' +
             '<div class="proj-foot">' +
               '<div style="font-family:var(--mono);font-size:.68rem;color:var(--ink-muted);display:flex;gap:.75rem;align-items:center">' +
                 '<span>' + langDot + '</span>' +
                 '<span>★ ' + r.stargazers_count + '</span>' +
                 '<span>⑂ ' + r.forks_count + '</span>' +
               '</div>' +
-              '<a href="' + r.html_url + '" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);text-decoration:none">View →</a>' +
+              '<a href="' + esc(r.html_url) + '" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);text-decoration:none">View →</a>' +
             '</div></div>';
         }).join("");
         ghGrid.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
@@ -483,11 +516,11 @@
         window._mediumItems = items;
 
         blogGrid.innerHTML = items.map(function (item, i) {
-          var cat = (item.categories || [])[0] || "Article";
+          var cat = esc((item.categories || [])[0] || "Article");
           var date = new Date(item.pubDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
           var words = (item.content || "").replace(/<[^>]*>/g, "").split(/\s+/).length;
           var readTime = Math.max(1, Math.round(words / 200));
-          var excerpt = (item.description || "").replace(/<[^>]*>/g, "").trim().substring(0, 120) + "…";
+          var excerpt = esc(new DOMParser().parseFromString(item.description || "", "text/html").body.textContent.trim().substring(0, 120)) + "…";
 
           // Best-effort thumbnail extraction
           var thumb = item.thumbnail
@@ -497,10 +530,10 @@
 
           // Only show thumb if we actually have one — otherwise use compact placeholder
           var mediaHtml = thumb
-            ? '<div class="bc-thumb"><img src="' + thumb + '" alt="" loading="lazy" onerror="this.parentElement.style.display=\'none\'"></div>'
-            : '<div class="bc-ph"><span>' + item.title.charAt(0).toUpperCase() + '</span></div>';
+            ? '<div class="bc-thumb"><img src="' + esc(thumb) + '" alt="" loading="lazy" onerror="this.parentElement.style.display=\'none\'"></div>'
+            : '<div class="bc-ph"><span>' + esc(item.title.charAt(0).toUpperCase()) + '</span></div>';
 
-          return '<div class="blog-card reveal" data-index="' + i + '" style="transition-delay:' + (i * .05) + 's">' +
+          return '<div class="blog-card reveal" role="button" tabindex="0" aria-label="Read: ' + esc(item.title) + '" data-index="' + i + '" style="transition-delay:' + (i * .05) + 's">' +
             mediaHtml +
             '<div class="bc-body">' +
               '<div class="bc-meta">' +
@@ -510,7 +543,7 @@
                 '<span class="bc-sep">·</span>' +
                 '<span>' + readTime + ' min read</span>' +
               '</div>' +
-              '<div class="bc-title">' + item.title + '</div>' +
+              '<div class="bc-title">' + esc(item.title) + '</div>' +
               '<div class="bc-excerpt">' + excerpt + '</div>' +
             '</div>' +
             '<div class="bc-foot">' +
