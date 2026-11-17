@@ -21,10 +21,13 @@
   --accent-soft: rgba(196,93,62,.12);
   --cool-soft: rgba(77,184,158,.08);
   --cool-line: rgba(77,184,158,.3);
-  --glow: rgba(196,93,62,.09);
+  --glow: rgba(196,93,62,.13);
   --nav-bg: rgba(8,8,8,.96);
   --panel-head: rgba(14,14,12,.96);
   --overlay: rgba(4,4,4,.85);
+  --grid: rgba(232,228,220,.07);
+  --band: #0d0d0f;
+  --glow2: rgba(77,184,158,.09);
   --radius: 12px;
   --display: 'Inter', system-ui, sans-serif;
   --body: 'Inter', system-ui, sans-serif;
@@ -44,6 +47,7 @@
     --accent-soft: rgba(184,67,31,.09); --cool-soft: rgba(15,118,110,.07); --cool-line: rgba(15,118,110,.3);
     --glow: rgba(184,67,31,.07); --nav-bg: rgba(250,250,249,.92); --panel-head: rgba(255,255,255,.94);
     --overlay: rgba(24,24,27,.35);
+    --grid: rgba(24,24,27,.07); --band: #f2f1ee; --glow2: rgba(15,118,110,.06);
    }
 }
 :root[data-theme="light"] { 
@@ -55,6 +59,7 @@
     --accent-soft: rgba(184,67,31,.09); --cool-soft: rgba(15,118,110,.07); --cool-line: rgba(15,118,110,.3);
     --glow: rgba(184,67,31,.07); --nav-bg: rgba(250,250,249,.92); --panel-head: rgba(255,255,255,.94);
     --overlay: rgba(24,24,27,.35);
+    --grid: rgba(24,24,27,.07); --band: #f2f1ee; --glow2: rgba(15,118,110,.06);
    }
 
 html {
@@ -181,8 +186,24 @@ nav { gap: .75rem }
   align-items: center;
   position: relative;
   border-bottom: 1px solid var(--rule);
-  background: radial-gradient(60rem 30rem at 15% 0%, var(--glow), transparent 70%);
+  overflow: hidden;
 }
+.hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 35% 40%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 70% at 35% 40%, #000 20%, transparent 75%);
+}
+.hero::after {
+  content: ''; position: absolute; inset: -20%; pointer-events: none;
+  background:
+    radial-gradient(40rem 26rem at 20% 10%, var(--glow), transparent 70%),
+    radial-gradient(34rem 24rem at 85% 70%, var(--glow2), transparent 70%);
+  animation: drift 24s ease-in-out infinite alternate;
+}
+@keyframes drift { to { transform: translate(4%, -3%) } }
+.hero > * { position: relative; z-index: 1 }
 .hero-left { animation: fadeUp .8s ease forwards }
 
 .hero-eyebrow {
