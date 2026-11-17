@@ -329,7 +329,15 @@ section {
 #about, #experience { background: var(--band) }
 #projects { background: radial-gradient(50rem 28rem at 100% 0%, var(--glow2), transparent 70%) }
 #blog { background: radial-gradient(50rem 28rem at 0% 10%, var(--glow), transparent 70%) }
-#contact { background: radial-gradient(46rem 26rem at 50% 100%, var(--glow), transparent 70%) }
+#contact { position: relative; overflow: hidden; background: radial-gradient(46rem 26rem at 50% 100%, var(--glow), transparent 70%) }
+#contact::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 100%, #000 15%, transparent 70%);
+  mask-image: radial-gradient(ellipse 70% 80% at 50% 100%, #000 15%, transparent 70%);
+}
+#contact > * { position: relative }
 .section-header {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -877,7 +885,7 @@ a.proj-expand { text-decoration: none }
 /* ========================================
    CONTACT
    ======================================== */
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: color-mix(in srgb, var(--bg) 70%, transparent); backdrop-filter: blur(8px); border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden }
 .contact-left { padding: 3.5rem 3rem; border-right: 1px solid var(--rule); display: flex; flex-direction: column; justify-content: center }
 .contact-right { padding: 3.5rem 3rem; display: flex; flex-direction: column; justify-content: center }
 .c-heading { font-family: var(--display); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; line-height: 1.05; letter-spacing: -.035em; margin-bottom: 1.5rem }
