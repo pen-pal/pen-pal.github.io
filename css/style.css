@@ -28,6 +28,7 @@
   --grid: rgba(232,228,220,.07);
   --band: #0d0d0f;
   --glow2: rgba(77,184,158,.09);
+  --lift: 0 18px 40px -18px rgba(196,93,62,.35);
   --radius: 12px;
   --display: 'Inter', system-ui, sans-serif;
   --body: 'Inter', system-ui, sans-serif;
@@ -47,7 +48,7 @@
     --accent-soft: rgba(184,67,31,.09); --cool-soft: rgba(15,118,110,.07); --cool-line: rgba(15,118,110,.3);
     --glow: rgba(184,67,31,.07); --nav-bg: rgba(250,250,249,.92); --panel-head: rgba(255,255,255,.94);
     --overlay: rgba(24,24,27,.35);
-    --grid: rgba(24,24,27,.07); --band: #f2f1ee; --glow2: rgba(15,118,110,.06);
+    --grid: rgba(24,24,27,.07); --band: #f2f1ee; --glow2: rgba(15,118,110,.06); --lift: 0 18px 40px -20px rgba(184,67,31,.3);
    }
 }
 :root[data-theme="light"] { 
@@ -59,7 +60,7 @@
     --accent-soft: rgba(184,67,31,.09); --cool-soft: rgba(15,118,110,.07); --cool-line: rgba(15,118,110,.3);
     --glow: rgba(184,67,31,.07); --nav-bg: rgba(250,250,249,.92); --panel-head: rgba(255,255,255,.94);
     --overlay: rgba(24,24,27,.35);
-    --grid: rgba(24,24,27,.07); --band: #f2f1ee; --glow2: rgba(15,118,110,.06);
+    --grid: rgba(24,24,27,.07); --band: #f2f1ee; --glow2: rgba(15,118,110,.06); --lift: 0 18px 40px -20px rgba(184,67,31,.3);
    }
 
 html {
@@ -412,11 +413,11 @@ section {
   background: var(--bg2);
   border: 1px solid var(--rule);
   border-radius: var(--radius);
-  transition: border-color .3s;
+  transition: border-color .3s, box-shadow .3s;
   break-inside: avoid;
   margin-bottom: 1rem;
 }
-.skill-group:hover { border-color: var(--rule2) }
+.skill-group:hover { border-color: var(--accent-soft); box-shadow: var(--lift) }
 .skill-cat {
   font-family: var(--mono);
   font-size: 0.80rem;
@@ -580,7 +581,7 @@ section {
   transform: scaleX(0); transform-origin: left;
   transition: transform .5s cubic-bezier(.16,1,.3,1);
 }
-.proj-card:hover { border-color: var(--rule2); transform: translateY(-2px) }
+.proj-card:hover { border-color: var(--accent-soft); box-shadow: var(--lift); transform: translateY(-3px) }
 .proj-card:hover::before { transform: scaleX(1) }
 .proj-num {
   font-family: var(--mono);
@@ -692,7 +693,8 @@ a.proj-expand { text-decoration: none }
   position: relative; overflow: hidden;
   transition: background .35s;
 }
-.blog-card:hover { border-color: var(--rule2) }
+.blog-card { transition: border-color .3s, box-shadow .3s, transform .3s }
+.blog-card:hover { border-color: var(--accent-soft); box-shadow: var(--lift); transform: translateY(-3px) }
 .blog-card:hover .bc-arrow { color: var(--accent); transform: translate(2px,-2px) }
 
 /* Fixed-height thumb — no empty boxes */
