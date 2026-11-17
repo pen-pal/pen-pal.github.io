@@ -257,7 +257,9 @@ nav { gap: .75rem }
   opacity: 0;
 }
 .hero-card {
-  background: var(--surface);
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--rule);
   border-radius: var(--radius);
   padding: 2.5rem;
