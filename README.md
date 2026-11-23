@@ -1,6 +1,7 @@
 # Manish Khadka — Portfolio
 
-DevOps / SRE / Platform Engineer portfolio site. Deployed via GitHub Pages.
+DevOps / SRE / MLOps / Platform Engineer portfolio site. 
+Deployed via GitHub Pages.
 
 ## Structure
 ```
